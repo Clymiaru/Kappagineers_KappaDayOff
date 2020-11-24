@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Joystick : MonoBehaviour
 {
     public GameObject crosshair;
-    public float speed = 5f;
+    public float speed = .05f;
     private bool touchStart = false;
     private Vector2 startPoint;
     private Vector2 endPoint;
@@ -27,20 +28,22 @@ public class Joystick : MonoBehaviour
             Vector2 touchLocation = Input.GetTouch(0).position;
             if (!touchStart)
             {
-                
-                startPoint = Camera.main.ScreenToWorldPoint(new Vector3
-                    (touchLocation.x, touchLocation.y, Camera.main.transform.position.z));
+
+                //startPoint = Camera.main.ScreenToWorldPoint(new Vector3
+                //    (touchLocation.x, touchLocation.y, Camera.main.transform.position.z));
+                startPoint = touchLocation;
                 touchStart = true;
 
                 innerCircle.transform.position = startPoint;
                 outerCircle.transform.position = startPoint;
-                innerCircle.GetComponent<SpriteRenderer>().enabled = true;
-                outerCircle.GetComponent<SpriteRenderer>().enabled = true;
+                innerCircle.GetComponent<Image>().enabled = true;
+                outerCircle.GetComponent<Image>().enabled = true;
             }
             else
             {
-                endPoint = Camera.main.ScreenToWorldPoint(new Vector3
-                    (touchLocation.x, touchLocation.y, Camera.main.transform.position.z));
+                //endPoint = Camera.main.ScreenToWorldPoint(new Vector3
+                //    (touchLocation.x, touchLocation.y, Camera.main.transform.position.z));
+                endPoint = touchLocation;
             }
         }
         else
@@ -52,15 +55,15 @@ public class Joystick : MonoBehaviour
         if (touchStart)
         {
             Vector2 offset = endPoint - startPoint;
-            Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
+            Vector2 direction = Vector2.ClampMagnitude(offset, 100.0f);
             moveCharacter(direction);
 
             innerCircle.transform.position = new Vector2(startPoint.x + direction.x, startPoint.y + direction.y);
         }
         else
         {
-            innerCircle.GetComponent<SpriteRenderer>().enabled = false;
-            outerCircle.GetComponent<SpriteRenderer>().enabled = false;
+            innerCircle.GetComponent<Image>().enabled = false;
+            outerCircle.GetComponent<Image>().enabled = false;
         }
     }
 
