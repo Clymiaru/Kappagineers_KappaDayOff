@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class WaterBalloon : BulletBehavior
 {
-    
+    public WaterBalloon()
+    {
+        damageType = EnemyType.Youkai;
+    }
 }
