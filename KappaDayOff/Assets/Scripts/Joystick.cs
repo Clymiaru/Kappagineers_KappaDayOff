@@ -25,7 +25,7 @@ public class Joystick : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Vector2 touchLocation = Input.GetTouch(0).position;
-            if (!touchStart)
+            if (!touchStart && touchLocation.x < Screen.width  / 2)
             {
                 
                 startPoint = Camera.main.ScreenToWorldPoint(new Vector3
