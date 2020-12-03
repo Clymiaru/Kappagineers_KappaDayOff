@@ -10,7 +10,7 @@ public enum EnemyType
 public class EnemyStats : MonoBehaviour
 {
     private int HP = 10;
-    private EnemyType type = EnemyType.Fairy;
+    private EnemyType type = EnemyType.Youkai;
     public void TakeDamage(int damage, EnemyType damageType)
     {
         if (damageType == type)
