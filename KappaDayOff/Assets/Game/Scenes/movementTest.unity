@@ -438,6 +438,10 @@ MonoBehaviour:
   - {fileID: 2304301875224676635, guid: e9759b94fca889e4a9c640cf935196c8, type: 3}
   - {fileID: 7059383835183353387, guid: c2d0fe597daf8664381c9c28ccd1f2cf, type: 3}
   - {fileID: 8773717134419042078, guid: 9b24a375bf0da7145894fac0f85ebf16, type: 3}
+  gunCooldowns:
+  - 0.2
+  - 0.2
+  - 0.2
 --- !u!212 &582079298
 SpriteRenderer:
   m_ObjectHideFlags: 0
