@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmplifiedSpeakers : BulletBehavior
+public class AmplifiedSpeakers : AlliedBullets
 {
     public float AoERadius = 5.0f;
     public int AoEDamage = 5;

@@ -411,6 +411,8 @@ GameObject:
   - component: {fileID: 582079299}
   - component: {fileID: 582079298}
   - component: {fileID: 582079297}
+  - component: {fileID: 582079300}
+  - component: {fileID: 582079301}
   m_Layer: 0
   m_Name: BulletSpawner
   m_TagString: Untagged
@@ -500,6 +502,65 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &582079300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582079296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d723bf10a4345534f83049f2d8efe7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &582079301
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582079296}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.2, y: 0.2}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2}
+  m_EdgeRadius: 0
+--- !u!1 &592323662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6526324371865629900, guid: aec9ad04b5cdc3d41b044f7c48a27230,
+    type: 3}
+  m_PrefabInstance: {fileID: 6245446214720528587}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &592323663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592323662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e71a5fd77484a47874e231b50b372c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 582079296}
+  bullet: {fileID: 7678902560999188023, guid: df136b441197ab543a0e60009224efe3, type: 3}
+  secondsPerShot: 1
 --- !u!1 &601967227
 GameObject:
   m_ObjectHideFlags: 0

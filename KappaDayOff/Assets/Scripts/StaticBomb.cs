@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StaticBomb : BulletBehavior
+public class StaticBomb : AlliedBullets
 {
     public StaticBomb()
     {
