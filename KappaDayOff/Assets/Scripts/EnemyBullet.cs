@@ -8,6 +8,7 @@ public class EnemyBullet : BulletBehavior
     public EnemyBullet()
     {
         speed = 0.05f;
+        type = BulletType.EnemyBullet;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -16,7 +17,7 @@ public class EnemyBullet : BulletBehavior
         if (player != null)
         {
             player.TakeDamage(damage);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
@@ -25,7 +26,7 @@ public class EnemyBullet : BulletBehavior
         bulletHP -= damage;
         if (bulletHP <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

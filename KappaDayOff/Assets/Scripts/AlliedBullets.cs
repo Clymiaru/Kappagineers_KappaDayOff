@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlliedBullets : BulletBehavior
+public abstract class AlliedBullets : BulletBehavior
 {
     protected EnemyType damageType;
 
@@ -12,7 +12,8 @@ public class AlliedBullets : BulletBehavior
         if (enemy != null)
         {
             enemy.TakeDamage(damage, damageType);
-            Destroy(gameObject);
+            activateEffect();
+            gameObject.SetActive(false);
         }
         else
         {
@@ -20,8 +21,11 @@ public class AlliedBullets : BulletBehavior
             if (enemyBullet != null)
             {
                 enemyBullet.TakeDamage(damage);
-                Destroy(gameObject);
+                activateEffect();
+                gameObject.SetActive(false);
             }
         }
     }
+
+    protected abstract void activateEffect();  
 }

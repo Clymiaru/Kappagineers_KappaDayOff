@@ -6,36 +6,75 @@ public class ShooterBehavior : MonoBehaviour
 {
     public GameObject bulletOriginPoint;
     public GameObject crosshair;
-    public GameObject[] bulletPrefabs;
+    public BulletPool objectPool;
+    
     public float[] gunCooldowns;
 
-    private int chosenBulletIndex = 0;
+    private enum EquippedWeapon
+    {
+        amplifiedSpeaker, waterBalloon, staticBomb
+    }
+
+    private EquippedWeapon chosenWeapon = EquippedWeapon.amplifiedSpeaker;
     private bool isShootingOnCooldown = false;
 
     public void SwitchGunLeft()
     {
-        if (chosenBulletIndex > 0)
-            chosenBulletIndex--;
-        else
-            chosenBulletIndex = bulletPrefabs.Length - 1;
+        switch(chosenWeapon)
+        {
+            case EquippedWeapon.amplifiedSpeaker:
+                chosenWeapon = EquippedWeapon.staticBomb;
+                break;
+            case EquippedWeapon.staticBomb:
+                chosenWeapon = EquippedWeapon.waterBalloon;
+                break;
+            case EquippedWeapon.waterBalloon:
+                chosenWeapon = EquippedWeapon.amplifiedSpeaker;
+                break;
+        }
     }
 
     public void SwitchGunRight()
     {
-        if (chosenBulletIndex < bulletPrefabs.Length - 1)
-            chosenBulletIndex++;
-        else
-            chosenBulletIndex = 0;
+        switch (chosenWeapon)
+        {
+            case EquippedWeapon.amplifiedSpeaker:
+                chosenWeapon = EquippedWeapon.waterBalloon;
+                break;
+            case EquippedWeapon.staticBomb:
+                chosenWeapon = EquippedWeapon.amplifiedSpeaker;
+                break;
+            case EquippedWeapon.waterBalloon:
+                chosenWeapon = EquippedWeapon.staticBomb;
+                break;
+        }
     }
 
     public void Shoot()
     {
         if (!isShootingOnCooldown)
         {
-            GameObject newBullet = Instantiate(bulletPrefabs[chosenBulletIndex], bulletOriginPoint.transform.position, Quaternion.identity);
+            GameObject newBullet = null;
+
+            switch (chosenWeapon)
+            {
+                case EquippedWeapon.amplifiedSpeaker:
+                    newBullet = objectPool.GetAmplifiedWave();
+                    break;
+                case EquippedWeapon.staticBomb:
+                    newBullet = objectPool.GetStaticBomb();
+                    break;
+                case EquippedWeapon.waterBalloon:
+                    newBullet = objectPool.GetWaterBalloon();
+                    break;
+            }
+
+            newBullet.transform.position = bulletOriginPoint.transform.position;
             BulletBehavior bullet = newBullet.GetComponent<BulletBehavior>();
             if (bullet != null)
+            {
                 bullet.SetBulletDestination(crosshair.transform.position);
+            }
             StartCoroutine(BeginCooldown());
         }
     }
@@ -43,7 +82,20 @@ public class ShooterBehavior : MonoBehaviour
     private IEnumerator BeginCooldown()
     {
         isShootingOnCooldown = true;
-        yield return new WaitForSeconds(gunCooldowns[chosenBulletIndex]);
+
+        switch(chosenWeapon)
+        {
+            case EquippedWeapon.amplifiedSpeaker:
+                yield return new WaitForSeconds(gunCooldowns[0]);
+                break;
+            case EquippedWeapon.waterBalloon:
+                yield return new WaitForSeconds(gunCooldowns[1]);
+                break;
+            case EquippedWeapon.staticBomb:
+                yield return new WaitForSeconds(gunCooldowns[2]);
+                break;
+        }
+
         isShootingOnCooldown = false;
     }
 }

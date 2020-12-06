@@ -10,14 +10,10 @@ public class AmplifiedSpeakers : AlliedBullets
     public AmplifiedSpeakers()
     {
         damageType = EnemyType.Fairy;
+        type = BulletType.AmplifiedWave;
     }
 
-    private void OnDestroy()
-    {
-        ActivateAoE();
-    }
-
-    private void ActivateAoE()
+    protected override void activateEffect()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, AoERadius);
         for (int i = 0; i < colliders.Length; i++)
