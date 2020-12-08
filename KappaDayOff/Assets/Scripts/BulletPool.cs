@@ -39,17 +39,17 @@ public class BulletPool : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             GameObject newWaterBalloon = Instantiate(waterBallonBase);
-            activeWaterBalloons.Add(newWaterBalloon);
+            inactiveWaterBalloons.Add(newWaterBalloon);
             newWaterBalloon.GetComponent<BulletBehavior>().SetBulletPool(Instance);
             newWaterBalloon.SetActive(false);
             
             GameObject newStaticBomb = Instantiate(staticBombBase);  
-            activeStaticBombs.Add(newStaticBomb);
+            inactiveStaticBombs.Add(newStaticBomb);
             newStaticBomb.GetComponent<BulletBehavior>().SetBulletPool(Instance);
             newStaticBomb.SetActive(false);
 
             GameObject newAmplifiedWaves = Instantiate(amplifiedWaveBase);          
-            activeAmplifiedWaves.Add(newAmplifiedWaves);
+            inactiveAmplifiedWaves.Add(newAmplifiedWaves);
             newAmplifiedWaves.GetComponent<BulletBehavior>().SetBulletPool(Instance);
             newAmplifiedWaves.SetActive(false);
         }
