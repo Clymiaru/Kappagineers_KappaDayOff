@@ -149,4 +149,9 @@ public class BulletPool : MonoBehaviour
         inactiveEnemyBullets.Add(bullet);
         activeEnemyBullets.Remove(bullet);
     }
+
+    public List<GameObject> GetEnemyBullets()
+    {
+        return activeEnemyBullets;
+    }
 }
