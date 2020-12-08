@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class RailFollower : MonoBehaviour
 {
-    public float speed = 30f;
     public LineRenderer rail;
+    public float[] durationGoingToEachPoint;
     private Vector3[] railPoints;
     private int currentRailpointIndex = 1;
+    private float currentTravelTime = 0;
 
     private void Awake()
     {
@@ -21,33 +22,13 @@ public class RailFollower : MonoBehaviour
     {
         if (currentRailpointIndex < railPoints.Length)
         {
-            Vector3 movementDirection = (railPoints[currentRailpointIndex] - railPoints[currentRailpointIndex - 1]).normalized;
-
-            this.gameObject.transform.position += movementDirection * this.speed * Time.deltaTime;
-
-            if (movementDirection.x > 0 && this.gameObject.transform.position.x > railPoints[currentRailpointIndex].x ||
-                movementDirection.x < 0 && this.gameObject.transform.position.x < railPoints[currentRailpointIndex].x)
+            this.gameObject.transform.position = Vector3.Lerp(railPoints[currentRailpointIndex - 1],
+                railPoints[currentRailpointIndex], currentTravelTime / durationGoingToEachPoint[currentRailpointIndex - 1]);
+            currentTravelTime = Mathf.Clamp(currentTravelTime + Time.deltaTime, 0, durationGoingToEachPoint[currentRailpointIndex - 1]);
+            if (currentTravelTime == durationGoingToEachPoint[currentRailpointIndex - 1])
             {
-                this.gameObject.transform.position = railPoints[currentRailpointIndex];
                 currentRailpointIndex++;
-            }
-            else if (movementDirection.x == 0)
-            {
-                if (movementDirection.y > 0 && this.gameObject.transform.position.y > railPoints[currentRailpointIndex].y ||
-                    movementDirection.y < 0 && this.gameObject.transform.position.y < railPoints[currentRailpointIndex].y)
-                {
-                    this.gameObject.transform.position = railPoints[currentRailpointIndex];
-                    currentRailpointIndex++;
-                }
-                else if (movementDirection.y == 0)
-                {
-                    if (movementDirection.z > 0 && this.gameObject.transform.position.z > railPoints[currentRailpointIndex].z ||
-                        movementDirection.z < 0 && this.gameObject.transform.position.z < railPoints[currentRailpointIndex].z)
-                    {
-                        this.gameObject.transform.position = railPoints[currentRailpointIndex];
-                        currentRailpointIndex++;
-                    }
-                }
+                currentTravelTime = 0;
             }
         }
     }
