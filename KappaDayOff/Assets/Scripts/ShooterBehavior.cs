@@ -9,6 +9,7 @@ public class ShooterBehavior : MonoBehaviour
     public BulletPool objectPool;
     
     public float[] gunCooldowns;
+    public GameObject barrier;
 
     private enum EquippedWeapon
     {
@@ -52,7 +53,7 @@ public class ShooterBehavior : MonoBehaviour
 
     public void Shoot()
     {
-        if (!isShootingOnCooldown)
+        if (!isShootingOnCooldown && !barrier.activeSelf)
         {
             GameObject newBullet = null;
 

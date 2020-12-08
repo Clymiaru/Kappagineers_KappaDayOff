@@ -19,6 +19,13 @@ public class EnemyBullet : BulletBehavior
             player.TakeDamage(damage);
             gameObject.SetActive(false);
         }
+        else
+        {
+            if (collision.gameObject.tag == "Barrier")
+            {
+                gameObject.SetActive(false);
+            }
+        }
     }
 
     public void TakeDamage(int damage)
