@@ -5,20 +5,38 @@ using System;
 
 public class GestureManager : MonoBehaviour
 {
+    public static GestureManager Instance = null;
+    
+    #region Gesture Event Handlers
+
+    public event Action OnBack;
+    public event EventHandler<TapEventArgs>   OnTap;
     public event EventHandler<SwipeEventArgs> OnSwipe;
 
-    public static GestureManager Instance;
+    #endregion
+    
+    #region Gesture Properties
 
+    public TapProperty   _tapProperty;
     public SwipeProperty _swipeProperty;
-
+    
+    #endregion
+    
     private Vector2 startPoint = Vector2.zero;
     private Vector2 endPoint = Vector2.zero;
     private float gestureTime = 0;
 
     public CucumberMissile bomb;
+    
+    private readonly List<Touch> touches = new List<Touch>();
+    private Camera mainCamera = null;
+    
+    Touch trackedFinger1;
 
     private void Awake()
     {
+        mainCamera = Camera.main;
+        
         if (Instance == null)
         {
             Instance = this;
@@ -28,11 +46,14 @@ public class GestureManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    Touch trackedFinger1;
-
+    
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            OnBack?.Invoke();
+        }
+        
         if (Input.touchCount > 0)
         {
             trackedFinger1 = Input.GetTouch(0);
@@ -40,11 +61,21 @@ public class GestureManager : MonoBehaviour
             if (trackedFinger1.phase == TouchPhase.Began)
             {
                 startPoint = trackedFinger1.position;
-                gestureTime = 0;
+                gestureTime = 0.0f;
             }
             else if (trackedFinger1.phase == TouchPhase.Ended)
             {
                 endPoint = trackedFinger1.position;
+                
+                float currentTapDistance  = Vector2.Distance (startPoint, endPoint);
+                float approvedTapDistance = _tapProperty.TapMaxDistance * Screen.dpi;
+
+                if (gestureTime        <= _tapProperty.TapTime &&
+                    currentTapDistance < approvedTapDistance)
+                {
+                    FireTapEvent();
+                }
+
 
                 if (gestureTime <= _swipeProperty.swipeTime && 
                     (Vector2.Distance(startPoint, endPoint) >= (_swipeProperty.minSwipeDistance * Screen.dpi)))
@@ -57,6 +88,23 @@ public class GestureManager : MonoBehaviour
                 gestureTime += Time.deltaTime;
             }
         }
+    }
+
+    private void FireTapEvent() 
+    {
+        var hitObj = GetHitInfo(startPoint);
+
+        var args = new TapEventArgs(startPoint, hitObj);
+
+        OnTap?.Invoke (this, args);
+
+        if (hitObj is null) 
+        {
+            return;
+        }
+
+        var tap = hitObj.GetComponent<ITapped>();
+        tap.OnTap (args);
     }
 
     private void FireSwipeEvent()
@@ -102,4 +150,27 @@ public class GestureManager : MonoBehaviour
             bomb.OnSwipe(new SwipeEventArgs(startPoint, diff, swipeDir));
         }
     }
+    
+    private GameObject GetHitInfo (Vector2 screenPos) 
+    {
+        var ray = mainCamera.ScreenPointToRay (screenPos);
+        bool hasHit = Physics.Raycast (ray, out var hitInfo, Mathf.Infinity);
+        return (hasHit is true) ? hitInfo.collider.gameObject : null;
+    }
+    
+    // private void OnDrawGizmos()
+    // {
+    //     if (Input.touchCount <= 0)
+    //     {
+    //         return;
+    //     }
+    //
+    //     foreach (var touch in touches)
+    //     {
+    //         var ray = mainCamera.ScreenPointToRay(touch.position);
+    //         
+    //         Gizmos.color = Color.red;
+    //         Gizmos.DrawSphere(ray.GetPoint(5.0f), 0.5f);
+    //     }
+    // }
 }
