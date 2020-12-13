@@ -1,20 +1,9 @@
 ﻿using UnityEngine;
 
-public class ExitGamePopup : MonoBehaviour, IView
+public class ExitGamePopup : MonoBehaviour
 {
-    private TitleScreen titleScreen;
+    [SerializeField] private TitleScreen titleScreen;
     
-    private void OnEnable()
-    {
-        GestureManager.Instance.OnTap += OnCancelExitGame;
-        
-    }
-
-    private void OnDisable()
-    {
-        GestureManager.Instance.OnTap -= OnCancelExitGame;
-    }
-
     public void OnExitGameProceed()
     {
         // Fade to black
@@ -22,10 +11,11 @@ public class ExitGamePopup : MonoBehaviour, IView
         // Free memory
         
         // Another way is to flag for quiting the game and let other classes do the necessary work
+        Debug.Log("Exit Game Proceed");
         Application.Quit();
     }
 
-    private void OnCancelExitGame(object obj, TapEventArgs args)
+    public void OnCancelExitGame()
     {
         Hide();
         titleScreen.Show();

@@ -26,12 +26,12 @@ public class SaveTestScreen : MonoBehaviour
     public void OnSaveData()
     {
         var data = new SaveData(coins, 0);
-        SaveHandler.Instance.Save(data);
+        SaveHandler.Instance.Save(data, "TestData.test");
     }
 
     public void OnLoadData()
     {
-        var data = SaveHandler.Instance.Load();
+        var data = SaveHandler.Instance.Load("TestData.test");
         if (data != null)
         {
             coins = data.Coins;

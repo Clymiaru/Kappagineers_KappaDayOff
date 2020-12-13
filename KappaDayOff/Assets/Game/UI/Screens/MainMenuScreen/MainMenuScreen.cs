@@ -2,18 +2,31 @@
 
 public class MainMenuScreen : MonoBehaviour
 {
-    private void Awake()
-    {
-        
-    }
-    
-    private void Start()
+    // TODO: Change background when orientation changes
+    public void OnGoToDeparture()
     {
         
     }
 
-    private void Update()
+    public void OnGoToWorkshop()
     {
         
     }
+
+    public void OnExchangeCoinToKappaTokens()
+    {
+        
+    }
+
+    public void OnExchangeKappaTokensToCoins()
+    {
+        
+    }
+
+    public void OnOpenSettings()
+    {
+        
+    }
+    
+    
 }

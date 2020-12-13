@@ -5,11 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveHandler
 {
-    // [Tooltip("Path to the save file after reaching the Game's Directory")]
-    private string saveFileDirectory = "SaveData";
-    
-    // [Tooltip("File name of the save data including the type")]
-    private string saveDataName = "TestData.test";
+    private const string DefaultPathDestination = "SaveData";
     
     private static SaveHandler sharedInstance = null;
     public static SaveHandler Instance 
@@ -25,47 +21,55 @@ public class SaveHandler
         }
     }
 
-    public string SaveDataDirectory
+    private string saveFileDirectory = Path.Combine(Application.persistentDataPath, DefaultPathDestination);
+    public string SaveFileDirectory
     {
-        get
+        get => saveFileDirectory;
+        set
         {
-            string path = Application.persistentDataPath;
-            path = Path.Combine(path, saveFileDirectory);
-            path = Path.Combine(saveDataName);
-            return path;
+            string path = value;
+            path = Path.Combine(Application.persistentDataPath, path);
+            
+            saveFileDirectory = path;
         }
     }
 
-    public void Save(SaveData data)
+    public void Save(SaveData data, string saveName)
     {
+        string path = Path.Combine(SaveFileDirectory, saveName);
+
+        if (!Directory.Exists(SaveFileDirectory))
+        {
+            Directory.CreateDirectory(SaveFileDirectory);
+        }
+        
         var formatter = new BinaryFormatter();
         
-        using (var stream = new FileStream(SaveDataDirectory, FileMode.Create))
+        using (var stream = new FileStream(path, FileMode.Create))
         {
             formatter.Serialize(stream, data);
-            stream.Close();
         }
         
-        Debug.Log(SaveDataDirectory);
+        Debug.Log($"Save successful!! {path}");
     }
 
-    public SaveData Load()
+    public SaveData Load(string saveName)
     {
         SaveData data = null;
+        string   path = Path.Combine(SaveFileDirectory, saveName);
         
-        if (File.Exists(SaveDataDirectory))
+        if (File.Exists(path))
         {
             var formatter = new BinaryFormatter();
                 
-            using (var stream = new FileStream(SaveDataDirectory, FileMode.Open))
+            using (var stream = new FileStream(path, FileMode.Open))
             {
                 data = formatter.Deserialize(stream) as SaveData;
-                stream.Close();
             }
         }
         else
         {
-            Debug.LogError($"Save data not found!! ({SaveDataDirectory})");
+            Debug.LogError($"Save data not found!! ({path})");
         }
         
         return data;
