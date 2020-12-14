@@ -16,4 +16,9 @@ public class LevelSelectionScreen : MonoBehaviour
     {
         
     }
+    
+    public void OnExitScreen()
+    {
+        gameObject.SetActive(false);
+    }
 }

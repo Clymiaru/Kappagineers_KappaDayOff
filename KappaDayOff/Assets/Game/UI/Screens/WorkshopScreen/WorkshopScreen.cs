@@ -16,4 +16,9 @@ public class WorkshopScreen : MonoBehaviour
     {
         
     }
+    
+    public void OnExitScreen()
+    {
+        gameObject.SetActive(false);
+    }
 }
