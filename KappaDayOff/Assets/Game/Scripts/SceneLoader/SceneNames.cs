@@ -5,5 +5,6 @@ public class SceneNames
     public const string Intro          = "IntroScene";
     public const string MainMenu       = "MenuScene";
     public const string LevelSelection = "LevelSelectionScene";
+    public const string Workshop       = "WorkshopScene";
     public const string Level          = "LevelScene";
 }

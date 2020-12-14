@@ -8,8 +8,6 @@ public class MainMenuScreen : MonoBehaviour
     // TODO: Change background when orientation changes
 
     [SerializeField] private SettingsScreen       settingsScreen       = null;
-    [SerializeField] private LevelSelectionScreen levelSelectionScreen = null;
-    [SerializeField] private WorkshopScreen       workshopScreen       = null;
     [SerializeField] private ExchangeScreen       exchangeScreen       = null;
     [SerializeField] private ExitGamePopup        exitGamePopup        = null;
 
@@ -38,18 +36,12 @@ public class MainMenuScreen : MonoBehaviour
 
     public void OnGoToDeparture()
     {
-        // Get data from game manager
-        // * Player Currency Data
-        // * Player Level Data
-        levelSelectionScreen.gameObject.SetActive(true);
+        SceneLoader.Instance.LoadScene(SceneNames.LevelSelection);
     }
 
     public void OnGoToWorkshop()
     {
-        // Get data from game manager
-        // * Player Currency Data
-        // * Player Upgrade Data
-        workshopScreen.gameObject.SetActive(true);
+        SceneLoader.Instance.LoadScene(SceneNames.Workshop);
     }
 
     public void OnExchangeCoinsForKappaTokens()
