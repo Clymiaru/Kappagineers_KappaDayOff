@@ -36,12 +36,10 @@ public class MainMenuScreen : MonoBehaviour
 
     public void OnGoToDeparture()
     {
-        SceneLoader.Instance.LoadScene(SceneNames.LevelSelection);
     }
 
     public void OnGoToWorkshop()
     {
-        SceneLoader.Instance.LoadScene(SceneNames.Workshop);
     }
 
     public void OnExchangeCoinsForKappaTokens()
