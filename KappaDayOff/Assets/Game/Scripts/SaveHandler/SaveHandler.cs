@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class SaveHandler
 {
     private const string DefaultPathDestination = "SaveData";
+    private const string SaveFileExtension      = "dat";
     
     private static SaveHandler sharedInstance = null;
     public static SaveHandler Instance 
@@ -36,7 +37,7 @@ public class SaveHandler
 
     public void Save(SaveData data, string saveName)
     {
-        string path = Path.Combine(SaveFileDirectory, saveName);
+        string path = Path.Combine(SaveFileDirectory, $"{saveName}.{SaveFileExtension}");
 
         if (!Directory.Exists(SaveFileDirectory))
         {
@@ -56,7 +57,8 @@ public class SaveHandler
     public SaveData Load(string saveName)
     {
         SaveData data = null;
-        string   path = Path.Combine(SaveFileDirectory, saveName);
+
+        string path = Path.Combine(SaveFileDirectory, $"{saveName}.{SaveFileExtension}");
         
         if (File.Exists(path))
         {

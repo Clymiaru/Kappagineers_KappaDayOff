@@ -5,8 +5,8 @@ public class SaveData
 {
     #region Currency Data
 
-    public int Coins;
-    public int KappaTokens;    
+    public int Coins = 0;
+    public int KappaTokens = 0;    
 
     #endregion
 
@@ -27,13 +27,12 @@ public class SaveData
     #region Level Data
 
     public LevelData LevelOneProgress;
-    public LevelData LevelTwoProgress;
-    public LevelData LevelThreeProgress;
 
     #endregion
     
     public SaveData(int coins = 0, int kappaTokens = 0)
     {
+        // TODO: Initialize upgrades and level 1 data
         Coins       = coins;
         KappaTokens = kappaTokens;
     }

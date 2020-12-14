@@ -10,68 +10,80 @@ public class GameManager : MonoBehaviour
         get => sharedInstance;
         private set => sharedInstance = value;
     }
-
-    [SerializeField] private string playerSaveFilename = "player";
-    [SerializeField] private string playerSaveFileExtension = "dat";
+    
+    private const string PlayerSaveFileName = "player";
+    
+    public bool IsPaused { get; private set; } = false;
     
     private void Awake()
     {
         Instance = this;
-        
-        // Load TitleScreen
-        // Initialize main menu
-
-        // if the player taps anywhere on the screen, load their save data
     }
 
     private void Start()
     {
-        // Initialize game state
-        SceneLoader.Instance.LoadScene(SceneNames.Intro);
+        // Load all saved global data
+        InitializePlayerData();
     }
 
-    // Player in general
-    // * Currency Data
-    public int Coins       { get; private set; } = 0;
-    public int KappaTokens { get; private set; } = 0;
+    private void OnDestroy()
+    {
+        SavePlayerData();
+    }
+
+    #region Global Game Data
     
-    // * Upgrade levels (Weapons and character)
+    public CurrencyData PlayerCurrency    { get; private set; } = new CurrencyData();
+    public UpgradeData  PlayerUpgradeData { get; private set; } = new UpgradeData();
+    public LevelData    LevelOneProgress  { get; private set; } = new LevelData();
     
-    // * Level Progress Data
-        // Level Progress Data
-        // * Level ID / Name
-        // * Completion State (Not Started, Has Tried, Completed)
-        // * Highscore Achieved
-    
+    #endregion
+
+    public void UpdateCurrency(CurrencyType currency, int amountAdded)
+    {
+        if (currency == CurrencyType.COIN)
+        {
+            PlayerCurrency.Coins += amountAdded;
+            PlayerCurrency.Coins =  Mathf.Max(PlayerCurrency.Coins, 0);
+        }
+        else if (currency == CurrencyType.KAPPA_TOKEN)
+        {
+            PlayerCurrency.KappaTokens += amountAdded;
+            PlayerCurrency.KappaTokens =  Mathf.Max(PlayerCurrency.KappaTokens, 0);
+        }
+    }
 
     public void InitializePlayerData()
     {
-        var playerData = SaveHandler.Instance.Load($"{playerSaveFilename}.{playerSaveFileExtension}");
+        var playerData = SaveHandler.Instance.Load(PlayerSaveFileName);
 
         if (playerData == null)
         {
-            // This is a new player, create a new save file with initial values
-            return;
+            playerData = CreateNewPlayerSave();
         }
         
-        // This player has played before, get their previous progress
-        Coins       = playerData.Coins;
-        KappaTokens = playerData.KappaTokens;
+        // TODO: Initialize upgrades and level 1 data
+        PlayerCurrency.Coins = playerData.Coins;
+        PlayerCurrency.KappaTokens = playerData.KappaTokens;
     }
 
-    // Do this at least before quitting the game
+    private SaveData CreateNewPlayerSave()
+    {
+        var playerData = new SaveData();
+        SaveHandler.Instance.Save(playerData, PlayerSaveFileName);
+        return playerData;
+    }
+    
     public void SavePlayerData()
     {
-        // Update save data
+        // TODO: Call when the game ends or in key events
         var playerData = new SaveData();
         
-        playerData.Coins       = Coins;
-        playerData.KappaTokens = KappaTokens;
+        playerData.Coins       = PlayerCurrency.Coins;
+        playerData.KappaTokens = PlayerCurrency.KappaTokens;
         
-        SaveHandler.Instance.Save(playerData, $"{playerSaveFilename}.{playerSaveFileExtension}");
+        SaveHandler.Instance.Save(playerData, PlayerSaveFileName);
     }
-
-    
 
     #region Developer Options
 
@@ -88,8 +100,26 @@ public class GameManager : MonoBehaviour
 
     public void UnlimitedMoney()
     {
-        Coins       = int.MaxValue;
-        KappaTokens = int.MaxValue;
+        PlayerCurrency.Coins       = int.MaxValue;
+        PlayerCurrency.KappaTokens = int.MaxValue;
+        Debug.Log("DEBUG: Unlimited Money");
+    }
+    
+    public void ResetPlayerProgress()
+    {
+        PlayerCurrency.Coins       = 1000;
+        PlayerCurrency.KappaTokens = 3;
+        Debug.Log("DEBUG: Reset Player Progress");
+    }
+
+    public void ChangeTimeOfDay()
+    {
+        
+    }
+
+    public void NotificationInterval()
+    {
+        
     }
     
     #endregion
