@@ -775,7 +775,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 22828194}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2115940765}
+        m_MethodName: OnWaterBalloonLauncherUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &22828194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,8 +993,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 254, y: -110}
-  m_SizeDelta: {x: 508, y: 50}
+  m_AnchoredPosition: {x: 254, y: -147.5}
+  m_SizeDelta: {x: 508, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &24166196
 MonoBehaviour:
@@ -1001,7 +1012,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 50
+  m_PreferredHeight: 125
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -1024,7 +1035,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Max HP 50
+  m_text: 'Damage 10
+
+    Cooldown(sec) 1.0
+
+    Knockback 1.0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 987178317e9fc5c418c451571aee12d6, type: 2}
   m_sharedMaterial: {fileID: 5424414365771795073, guid: 987178317e9fc5c418c451571aee12d6,
@@ -2026,7 +2041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 1455653151}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -2948,7 +2963,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 21.16687, y: 1150}
+  m_SizeDelta: {x: -920, y: 1150}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &189625050
 MonoBehaviour:
@@ -3455,7 +3470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Content: {fileID: 189625049}
   m_Horizontal: 0
-  m_Vertical: 0
+  m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
@@ -3689,8 +3704,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 254, y: -207.5}
-  m_SizeDelta: {x: 508, y: 125}
+  m_AnchoredPosition: {x: 254, y: -245}
+  m_SizeDelta: {x: 508, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &271205577
 MonoBehaviour:
@@ -3708,7 +3723,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 125
+  m_PreferredHeight: 50
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -3731,7 +3746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increases your Max HP
+  m_text: Improve Weapon Stats
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 987178317e9fc5c418c451571aee12d6, type: 2}
   m_sharedMaterial: {fileID: 5424414365771795073, guid: 987178317e9fc5c418c451571aee12d6,
@@ -4062,6 +4077,7 @@ GameObject:
   - component: {fileID: 350637942}
   - component: {fileID: 350637941}
   - component: {fileID: 350637940}
+  - component: {fileID: 350637944}
   m_Layer: 5
   m_Name: UpgradeAmplifiedSpeakers
   m_TagString: Untagged
@@ -4172,6 +4188,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350637938}
   m_CullTransparentMesh: 0
+--- !u!114 &350637944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350637938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66879e058a9cc7e4cbcb941929461747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statMessage: Damage
+  statMessage2: Cooldown(sec)
+  statMessage3: Knockback
+  levelText: {fileID: 696563203}
+  statText: {fileID: 24166197}
 --- !u!1 &360705750
 GameObject:
   m_ObjectHideFlags: 0
@@ -5010,7 +5043,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 430620885}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2115940765}
+        m_MethodName: OnStaticBombUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &430620885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5650,7 +5694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225.95828, y: -62.5}
+  m_AnchoredPosition: {x: 461.25, y: -62.5}
   m_SizeDelta: {x: 250, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &473871189
@@ -6718,7 +6762,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increase Max HP
+  m_text: Upgrade Amplified Speakers
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40f88a93c03d4f449abec4f4fb822783, type: 2}
   m_sharedMaterial: {fileID: 6728431432326204157, guid: 40f88a93c03d4f449abec4f4fb822783,
@@ -6746,7 +6790,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52
+  m_fontSize: 50.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6973,7 +7017,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 514454813}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2115940765}
+        m_MethodName: OnMaxHPUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &514454813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9458,6 +9513,7 @@ GameObject:
   - component: {fileID: 694029649}
   - component: {fileID: 694029648}
   - component: {fileID: 694029647}
+  - component: {fileID: 694029650}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -9483,8 +9539,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 489.41656, y: -1046.7203}
-  m_SizeDelta: {x: 878.8331, y: 1743.4407}
+  m_AnchoredPosition: {x: 960, y: -527.5}
+  m_SizeDelta: {x: 1820, y: 705}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &694029647
 MonoBehaviour:
@@ -9543,6 +9599,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694029645}
   m_CullTransparentMesh: 0
+--- !u!114 &694029650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694029645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Content: {fileID: 0}
+  m_Horizontal: 0
+  m_Vertical: 1
+  m_MovementType: 1
+  m_Elasticity: 0.1
+  m_Inertia: 1
+  m_DecelerationRate: 0.135
+  m_ScrollSensitivity: 1
+  m_Viewport: {fileID: 0}
+  m_HorizontalScrollbar: {fileID: 0}
+  m_VerticalScrollbar: {fileID: 0}
+  m_HorizontalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 0
+  m_HorizontalScrollbarSpacing: 0
+  m_VerticalScrollbarSpacing: 0
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &696563200
 GameObject:
   m_ObjectHideFlags: 0
@@ -10785,7 +10871,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 770547257}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2115940765}
+        m_MethodName: OnAmplifiedSpeakersUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &770547257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11971,8 +12068,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 489.41656, y: -1993.4407}
-  m_SizeDelta: {x: 878.8331, y: 150}
+  m_AnchoredPosition: {x: 960, y: -955}
+  m_SizeDelta: {x: 1820, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &853812272
 MonoBehaviour:
@@ -12692,7 +12789,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increase Max HP
+  m_text: Upgrade Static Bomb
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40f88a93c03d4f449abec4f4fb822783, type: 2}
   m_sharedMaterial: {fileID: 6728431432326204157, guid: 40f88a93c03d4f449abec4f4fb822783,
@@ -12967,7 +13064,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 983912319}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2115940765}
+        m_MethodName: OnBarrierCooldownUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &983912319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13043,8 +13151,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 489.41656, y: -112.5}
-  m_SizeDelta: {x: 878.8331, y: 125}
+  m_AnchoredPosition: {x: 960, y: -112.5}
+  m_SizeDelta: {x: 1820, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &986369380
 MonoBehaviour:
@@ -13393,6 +13501,7 @@ GameObject:
   - component: {fileID: 1034796482}
   - component: {fileID: 1034796481}
   - component: {fileID: 1034796480}
+  - component: {fileID: 1034796484}
   m_Layer: 5
   m_Name: UpgradeStaticBomb
   m_TagString: Untagged
@@ -13418,7 +13527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -1400}
+  m_AnchoredPosition: {x: 450, y: -850}
   m_SizeDelta: {x: 800, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1034796480
@@ -13503,6 +13612,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034796478}
   m_CullTransparentMesh: 0
+--- !u!114 &1034796484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034796478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66879e058a9cc7e4cbcb941929461747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statMessage: Damage
+  statMessage2: Cooldown(sec)
+  statMessage3: Stun Duration
+  levelText: {fileID: 140857438}
+  statText: {fileID: 1484983983}
 --- !u!1 &1038945138
 GameObject:
   m_ObjectHideFlags: 0
@@ -13601,8 +13727,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 254, y: -207.5}
-  m_SizeDelta: {x: 508, y: 125}
+  m_AnchoredPosition: {x: 254, y: -245}
+  m_SizeDelta: {x: 508, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1042803822
 MonoBehaviour:
@@ -13620,7 +13746,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 125
+  m_PreferredHeight: 50
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -13643,7 +13769,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increases your Max HP
+  m_text: Improve Weapon Stats
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 987178317e9fc5c418c451571aee12d6, type: 2}
   m_sharedMaterial: {fileID: 5424414365771795073, guid: 987178317e9fc5c418c451571aee12d6,
@@ -15590,6 +15716,7 @@ GameObject:
   - component: {fileID: 1277007563}
   - component: {fileID: 1277007565}
   - component: {fileID: 1277007566}
+  - component: {fileID: 1277007567}
   m_Layer: 5
   m_Name: UpgradeHP
   m_TagString: Untagged
@@ -15700,6 +15827,23 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &1277007567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277007561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66879e058a9cc7e4cbcb941929461747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statMessage: Max HP
+  statMessage2: 
+  statMessage3: 
+  levelText: {fileID: 660952312}
+  statText: {fileID: 2037601723}
 --- !u!1 &1283640304
 GameObject:
   m_ObjectHideFlags: 0
@@ -16505,8 +16649,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 254, y: -207.5}
-  m_SizeDelta: {x: 508, y: 125}
+  m_AnchoredPosition: {x: 254, y: -245}
+  m_SizeDelta: {x: 508, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1312908468
 MonoBehaviour:
@@ -16524,7 +16668,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 125
+  m_PreferredHeight: 50
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -16547,7 +16691,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increases your Max HP
+  m_text: Improve Weapon Stats
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 987178317e9fc5c418c451571aee12d6, type: 2}
   m_sharedMaterial: {fileID: 5424414365771795073, guid: 987178317e9fc5c418c451571aee12d6,
@@ -16702,7 +16846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increase Max HP
+  m_text: Upgrade Water Balloon Launcher
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40f88a93c03d4f449abec4f4fb822783, type: 2}
   m_sharedMaterial: {fileID: 6728431432326204157, guid: 40f88a93c03d4f449abec4f4fb822783,
@@ -17516,6 +17660,7 @@ GameObject:
   - component: {fileID: 1422963363}
   - component: {fileID: 1422963362}
   - component: {fileID: 1422963361}
+  - component: {fileID: 1422963365}
   m_Layer: 5
   m_Name: UpgradeWaterBalloonLauncher
   m_TagString: Untagged
@@ -17541,7 +17686,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -850}
+  m_AnchoredPosition: {x: 1300, y: -300}
   m_SizeDelta: {x: 800, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1422963361
@@ -17626,6 +17771,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422963359}
   m_CullTransparentMesh: 0
+--- !u!114 &1422963365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422963359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66879e058a9cc7e4cbcb941929461747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statMessage: Damage
+  statMessage2: Cooldown(sec)
+  statMessage3: 
+  levelText: {fileID: 1469303874}
+  statText: {fileID: 1862096233}
 --- !u!1 &1435189126
 GameObject:
   m_ObjectHideFlags: 0
@@ -17907,7 +18069,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 21.16687, y: 1700}
+  m_SizeDelta: {x: -70, y: 1150}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1455653152
 MonoBehaviour:
@@ -18345,8 +18507,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 254, y: -110}
-  m_SizeDelta: {x: 508, y: 50}
+  m_AnchoredPosition: {x: 254, y: -147.5}
+  m_SizeDelta: {x: 508, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1484983982
 MonoBehaviour:
@@ -18364,7 +18526,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 50
+  m_PreferredHeight: 125
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -18387,7 +18549,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Max HP 50
+  m_text: 'Damage 10
+
+    Cooldown(sec) 1.0
+
+    Stun Duration 0.2'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 987178317e9fc5c418c451571aee12d6, type: 2}
   m_sharedMaterial: {fileID: 5424414365771795073, guid: 987178317e9fc5c418c451571aee12d6,
@@ -21111,7 +21277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 652.8749, y: -62.5}
+  m_AnchoredPosition: {x: 1358.75, y: -62.5}
   m_SizeDelta: {x: 250, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1668263114
@@ -23600,8 +23766,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 254, y: -110}
-  m_SizeDelta: {x: 508, y: 50}
+  m_AnchoredPosition: {x: 254, y: -147.5}
+  m_SizeDelta: {x: 508, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1862096232
 MonoBehaviour:
@@ -23619,7 +23785,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 50
+  m_PreferredHeight: 125
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -23642,7 +23808,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Max HP 50
+  m_text: 'Damage 10
+
+    Cooldown(sec) 1.0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 987178317e9fc5c418c451571aee12d6, type: 2}
   m_sharedMaterial: {fileID: 5424414365771795073, guid: 987178317e9fc5c418c451571aee12d6,
@@ -24588,6 +24756,7 @@ GameObject:
   - component: {fileID: 1915682467}
   - component: {fileID: 1915682466}
   - component: {fileID: 1915682465}
+  - component: {fileID: 1915682469}
   m_Layer: 5
   m_Name: UpgradeBarrier
   m_TagString: Untagged
@@ -24698,6 +24867,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915682463}
   m_CullTransparentMesh: 0
+--- !u!114 &1915682469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915682463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66879e058a9cc7e4cbcb941929461747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statMessage: Barrier Cooldown(sec)
+  statMessage2: 
+  statMessage3: 
+  levelText: {fileID: 2127253371}
+  statText: {fileID: 482790492}
 --- !u!1 &1929703774
 GameObject:
   m_ObjectHideFlags: 0
@@ -26218,6 +26404,11 @@ MonoBehaviour:
   - {fileID: 1664295903}
   characterUpgradesPanel: {fileID: 770258654}
   weaponUpgradesPanel: {fileID: 658038737}
+  playerHP: {fileID: 1277007567}
+  barrierCD: {fileID: 1915682469}
+  amplifiedSpeakersUpgrade: {fileID: 350637944}
+  waterBalloonUpgrade: {fileID: 1422963365}
+  staticBombUpgrade: {fileID: 1034796484}
 --- !u!114 &2115940766
 MonoBehaviour:
   m_ObjectHideFlags: 0

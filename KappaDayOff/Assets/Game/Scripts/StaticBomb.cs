@@ -6,6 +6,7 @@ public class StaticBomb : AlliedBullets
 {
     public StaticBomb()
     {
+        damage = UpgradableStats.Instance().GetStaticBombPower();
         damageType = EnemyType.Machine;
         type = BulletType.StaticBomb;
     }

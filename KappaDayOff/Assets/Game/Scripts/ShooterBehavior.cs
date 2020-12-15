@@ -7,8 +7,11 @@ public class ShooterBehavior : MonoBehaviour
     public GameObject bulletOriginPoint;
     public GameObject crosshair;
     public BulletPool objectPool;
-    
-    public float[] gunCooldowns;
+
+    private float speakerCD;
+    private float balloonCD;
+    private float staticBombCD;
+
     public GameObject barrier;
 
     private enum EquippedWeapon
@@ -18,6 +21,13 @@ public class ShooterBehavior : MonoBehaviour
 
     private EquippedWeapon chosenWeapon = EquippedWeapon.amplifiedSpeaker;
     private bool isShootingOnCooldown = false;
+
+    private void Awake()
+    {
+        speakerCD = UpgradableStats.Instance().GetSpeakerCD();
+        balloonCD = UpgradableStats.Instance().GetWaterBalloonCD();
+        staticBombCD = UpgradableStats.Instance().GetStaticBombCD();
+    }
 
     public void SwitchGunLeft()
     {
@@ -87,13 +97,13 @@ public class ShooterBehavior : MonoBehaviour
         switch(chosenWeapon)
         {
             case EquippedWeapon.amplifiedSpeaker:
-                yield return new WaitForSeconds(gunCooldowns[0]);
+                yield return new WaitForSeconds(speakerCD);
                 break;
             case EquippedWeapon.waterBalloon:
-                yield return new WaitForSeconds(gunCooldowns[1]);
+                yield return new WaitForSeconds(balloonCD);
                 break;
             case EquippedWeapon.staticBomb:
-                yield return new WaitForSeconds(gunCooldowns[2]);
+                yield return new WaitForSeconds(staticBombCD);
                 break;
         }
 
