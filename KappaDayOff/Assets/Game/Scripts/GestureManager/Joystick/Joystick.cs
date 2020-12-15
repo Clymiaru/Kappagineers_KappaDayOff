@@ -116,3 +116,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
 //         crosshair.transform.Translate(direction * speed * Time.deltaTime);
 //     }
 // }
+
+
+
+
