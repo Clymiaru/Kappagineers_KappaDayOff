@@ -11,6 +11,50 @@ public class UpgradeDescription : MonoBehaviour
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private TMP_Text statText;
 
+    [SerializeField] private TMP_Text coinText;
+    [SerializeField] private TMP_Text kappaTokensText;
+    
+    [SerializeField] private string statName;
+
+    public void Start()
+    {
+        int currentLevel = 0;
+        if (statName is "CharacterHP")
+        {
+            currentLevel = GameManager.Instance.PlayerCharacter.HPLevel;
+        }
+        
+        if (statName is "CharacterBarrier")
+        {
+            currentLevel = GameManager.Instance.PlayerCharacter.BarrierCooldownLevel;
+        }
+        
+        if (statName is "AmplifiedSpeaker")
+        {
+            currentLevel = GameManager.Instance.AmplifiedSpeakers.PowerLevel;
+        }
+        
+        if (statName is "WaterBalloonLauncer")
+        {
+            currentLevel = GameManager.Instance.WaterBalloonLauncher.PowerLevel;
+        }
+        
+        if (statName is "StaticBomb")
+        {
+            currentLevel = GameManager.Instance.StaticBomb.PowerLevel;
+        }
+        
+        int costInCoins       = 100 * currentLevel;
+        int costInKappaTokens = (2 * (currentLevel - 5));
+        costInKappaTokens = Mathf.Max(costInKappaTokens, 0);
+
+        coinText.text        = costInCoins.ToString();
+        kappaTokensText.text = costInKappaTokens.ToString();
+        
+        levelText.text = "Level " + currentLevel;
+        
+    }
+
     public bool UpgradeStat(int newValue, int upgradeLevel, 
                             CurrencyData payment)
     {
@@ -26,6 +70,13 @@ public class UpgradeDescription : MonoBehaviour
             levelText.text = "Level " + upgradeLevel;
             statText.text = string.Format("{0} {1}", statMessage, newValue);
             
+            int costInCoins       = 100 * upgradeLevel;
+            int costInKappaTokens = (2 * (upgradeLevel - 5));
+            costInKappaTokens = Mathf.Max(costInKappaTokens, 0);
+
+            coinText.text        = costInCoins.ToString();
+            kappaTokensText.text = costInKappaTokens.ToString();
+            
             return true;
         }
         else
@@ -37,6 +88,9 @@ public class UpgradeDescription : MonoBehaviour
         int costInCoins       = 100 * currentLevel;
         int costInKappaTokens = (2 * (currentLevel - 5));
         costInKappaTokens = Mathf.Max(costInKappaTokens, 0);
+
+        coinText.text        = (100 * currentLevel).ToString();
+        kappaTokensText.text = Mathf.Max(costInKappaTokens, 0).ToString();
 
         bool  isValidPurchase        = false;
         
@@ -61,6 +115,13 @@ public class UpgradeDescription : MonoBehaviour
             upgradeLevel++;
             levelText.text = "Level " + upgradeLevel;
             statText.text = string.Format("{0} {1:#.00}", statMessage, newValue);
+            
+            int costInCoins       = 100 * upgradeLevel;
+            int costInKappaTokens = (2 * (upgradeLevel - 5));
+            costInKappaTokens = Mathf.Max(costInKappaTokens, 0);
+
+            coinText.text        = costInCoins.ToString();
+            kappaTokensText.text = costInKappaTokens.ToString();
             return true;
         }
         else
@@ -83,6 +144,14 @@ public class UpgradeDescription : MonoBehaviour
         {
             upgradeLevel++;
             levelText.text = "Level " + upgradeLevel;
+            
+            int costInCoins       = 100 * upgradeLevel;
+            int costInKappaTokens = (2 * (upgradeLevel - 5));
+            costInKappaTokens = Mathf.Max(costInKappaTokens, 0);
+
+            coinText.text        = costInCoins.ToString();
+            kappaTokensText.text = costInKappaTokens.ToString();
+            
             if (secondaryEffect != 0)
                 statText.text = string.Format("{0} {1}\n{2} {3:#.00}\n{4} {5:#.00}",
                     statMessage, newPower, statMessage2, CD, statMessage3, secondaryEffect);

@@ -4207,6 +4207,9 @@ MonoBehaviour:
   statMessage3: Knockback
   levelText: {fileID: 696563203}
   statText: {fileID: 24166197}
+  coinText: {fileID: 23778952}
+  kappaTokensText: {fileID: 477134264}
+  statName: AmplifiedSpeaker
 --- !u!1 &360705750
 GameObject:
   m_ObjectHideFlags: 0
@@ -12954,7 +12957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9811321, g: 0.34709862, b: 0.34709862, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -13645,6 +13648,9 @@ MonoBehaviour:
   statMessage3: Stun Duration
   levelText: {fileID: 140857438}
   statText: {fileID: 1484983983}
+  coinText: {fileID: 1217518587}
+  kappaTokensText: {fileID: 1367736186}
+  statName: StaticBomb
 --- !u!1 &1038945138
 GameObject:
   m_ObjectHideFlags: 0
@@ -15860,6 +15866,9 @@ MonoBehaviour:
   statMessage3: 
   levelText: {fileID: 660952312}
   statText: {fileID: 2037601723}
+  coinText: {fileID: 642866364}
+  kappaTokensText: {fileID: 1479339604}
+  statName: CharacterHP
 --- !u!1 &1283640304
 GameObject:
   m_ObjectHideFlags: 0
@@ -17804,6 +17813,9 @@ MonoBehaviour:
   statMessage3: 
   levelText: {fileID: 1469303874}
   statText: {fileID: 1862096233}
+  coinText: {fileID: 1912638657}
+  kappaTokensText: {fileID: 1622932859}
+  statName: WaterBalloonLauncher
 --- !u!1 &1435189126
 GameObject:
   m_ObjectHideFlags: 0
@@ -24900,6 +24912,9 @@ MonoBehaviour:
   statMessage3: 
   levelText: {fileID: 2127253371}
   statText: {fileID: 482790492}
+  coinText: {fileID: 2093235733}
+  kappaTokensText: {fileID: 1310143329}
+  statName: CharacterBarrier
 --- !u!1 &1929703774
 GameObject:
   m_ObjectHideFlags: 0
