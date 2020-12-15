@@ -5,7 +5,7 @@ using TMPro;
 
 public class UpgradeDescription : MonoBehaviour
 {
-    private int upgradeLevel = 1;
+    private static int upgradeLevel = 1;
     [SerializeField] private string statMessage;
     [SerializeField] private string statMessage2;
     [SerializeField] private string statMessage3;
