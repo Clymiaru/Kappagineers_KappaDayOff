@@ -4,6 +4,51 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
+{
+    public Image JoystickParent;
+    public Image Stick;
+    
+    public Vector2 JoystickVector { get; private set; }
+    
+    public void OnDrag(PointerEventData eventData)
+    {
+        Vector2 locPosition;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(JoystickParent.rectTransform,
+                                                                    eventData.position,
+                                                                    eventData.pressEventCamera,
+                                                                    out locPosition))
+        {
+            var half_width  = JoystickParent.rectTransform.rect.width  / 2;
+            var half_height = JoystickParent.rectTransform.rect.height / 2;
+
+            float x = locPosition.x / half_width;
+            float y = locPosition.y / half_height;
+
+            JoystickVector = new Vector2(x, y);
+            
+            if (JoystickVector.magnitude > 1.0f)
+            {
+                JoystickVector = JoystickVector.normalized;
+            }
+            
+            Stick.rectTransform.localPosition =
+                new Vector2(JoystickVector.x * half_width, JoystickVector.y * half_height);
+        }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        OnDrag(eventData);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        JoystickVector                    = Vector2.zero;
+        Stick.rectTransform.localPosition = Vector2.zero;
+    }
+}
+
 // public class Joystick : MonoBehaviour
 // {
 //     public GameObject crosshair;
@@ -71,63 +116,3 @@ using UnityEngine.UI;
 //         crosshair.transform.Translate(direction * speed * Time.deltaTime);
 //     }
 // }
-public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
-{
-    public Image JoystickParent;
-    public Image Stick;
-    
-    public Vector2 JoystickVector { get; private set; }
-    
-    private void Awake()
-    {
-        
-    }
-    
-    private void Start()
-    {
-        
-    }
-
-    private void Update()
-    {
-        
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        Vector2 locPosition;
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(JoystickParent.rectTransform,
-                                                                    eventData.position,
-                                                                    eventData.pressEventCamera,
-                                                                    out locPosition))
-        {
-            var half_width  = JoystickParent.rectTransform.rect.width  / 2;
-            var half_height = JoystickParent.rectTransform.rect.height / 2;
-
-            float x = locPosition.x / half_width;
-            float y = locPosition.y / half_height;
-
-            JoystickVector = new Vector2(x, y);
-            
-            if (JoystickVector.magnitude > 1.0f)
-            {
-                JoystickVector = JoystickVector.normalized;
-                Debug.Log(JoystickVector);
-            }
-            
-            Stick.rectTransform.localPosition =
-                new Vector2(JoystickVector.x * half_width, JoystickVector.y * half_height);
-        }
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        OnDrag(eventData);
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        JoystickVector                    = Vector2.zero;
-        Stick.rectTransform.localPosition = Vector2.zero;
-    }
-}
