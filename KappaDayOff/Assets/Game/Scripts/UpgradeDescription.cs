@@ -5,14 +5,13 @@ using TMPro;
 
 public class UpgradeDescription : MonoBehaviour
 {
-    private static int upgradeLevel = 1;
     [SerializeField] private string statMessage;
     [SerializeField] private string statMessage2;
     [SerializeField] private string statMessage3;
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private TMP_Text statText;
 
-    public bool UpgradeStat(int newValue)
+    public bool UpgradeStat(int newValue, int upgradeLevel)
     {
         if (upgradeLevel < 10)
         {
@@ -25,7 +24,7 @@ public class UpgradeDescription : MonoBehaviour
             return false;
     }
 
-    public bool UpgradeStat(float newValue)
+    public bool UpgradeStat(float newValue, int upgradeLevel)
     {
         if (upgradeLevel < 10)
         {
@@ -38,7 +37,7 @@ public class UpgradeDescription : MonoBehaviour
             return false;
     }
 
-    public bool UpgradeStats(int newPower, float CD, float secondaryEffect = 0)
+    public bool UpgradeStats(int newPower, float CD, int upgradeLevel, float secondaryEffect = 0)
     {
         if (upgradeLevel < 10)
         {
