@@ -66,6 +66,14 @@ public class WorkshopScreen : MonoBehaviour
 
     public void OnMaxHPUpgrade()
     {
+        int currentHP  = GameManager.Instance.PlayerCharacter.MaxHP;
+        int maxHPLevel = GameManager.Instance.PlayerCharacter.HPLevel;
+        
+        // if can afford
+        // proceed
+        // else
+        // don't
+        
         int HP = UpgradableStats.Instance().GetPlayerHP() + 50;
         int level = UpgradableStats.Instance().GetPlayerHPLevel();
         if(playerHP.UpgradeStat(HP, level))

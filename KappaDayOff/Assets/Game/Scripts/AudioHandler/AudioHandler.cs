@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
@@ -40,5 +41,28 @@ public class AudioHandler : MonoBehaviour
     {
         PlayerPrefs.SetInt("BGM_Volume", currentBGMVolume);
         PlayerPrefs.SetInt("SFX_Volume", currentSFXVolume);
+    }
+
+    public void PlaySFX(AudioSource audioSource)
+    {
+        audioSource.loop   = false;
+        audioSource.volume = SFXVolume;
+        StartCoroutine(PlayOnBackground(audioSource));
+    }
+    
+    public void PlayBGM(AudioSource audioSource)
+    {
+        audioSource.loop   = true;
+        audioSource.volume = BGMVolume;
+        audioSource.Play();
+    }
+
+    public IEnumerator PlayOnBackground(AudioSource audioSource)
+    {
+        audioSource.Play();
+        while (audioSource.isPlaying)
+        {
+            yield return null;
+        }
     }
 }

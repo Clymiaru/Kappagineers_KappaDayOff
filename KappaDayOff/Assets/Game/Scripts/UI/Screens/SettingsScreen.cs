@@ -22,6 +22,9 @@ public class SettingsScreen : MonoBehaviour
     
     [Header("Debug Options")] 
     [SerializeField] private GameObject debugOptionsPanel = null;
+    
+    [SerializeField] private AudioSource tapSFX     = null;
+    [SerializeField] private AudioSource successSFX = null;
 
     private GameObject currentPanelSelected = null;
     
@@ -54,6 +57,7 @@ public class SettingsScreen : MonoBehaviour
 
     public void OnSoundOptionsSelect()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
         currentPanelSelected.SetActive(false);
         currentPanelSelected = soundOptionsPanel.gameObject;
         currentPanelSelected.SetActive(true);
@@ -78,6 +82,7 @@ public class SettingsScreen : MonoBehaviour
     
     public void OnCreditsSelect()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
         currentPanelSelected.SetActive(false);
         currentPanelSelected = creditsPanel.gameObject;
         currentPanelSelected.SetActive(true);
@@ -90,6 +95,7 @@ public class SettingsScreen : MonoBehaviour
     #region Debug Options
     public void OnDebugOptionsSelect()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
         currentPanelSelected.SetActive(false);
         currentPanelSelected = debugOptionsPanel.gameObject;
         currentPanelSelected.SetActive(true);
@@ -98,39 +104,47 @@ public class SettingsScreen : MonoBehaviour
 
     public void OnUnlockAllLevels()
     {
-        
+        AudioHandler.Instance.PlaySFX(successSFX);
     }
     
     public void OnUnlimitedMoney()
     {
+        AudioHandler.Instance.PlaySFX(successSFX);
         GameManager.Instance.UnlimitedMoney();
     }
     
     public void OnResetPlayerProgress()
     {
+        AudioHandler.Instance.PlaySFX(successSFX);
         GameManager.Instance.ResetPlayerProgress();
     }
 
     public void OnChangeTimeOfDay()
     {
-        
+        AudioHandler.Instance.PlaySFX(successSFX);
     }
-    
+
     public void GenerateNotifications()
-    {}
+    {
+        AudioHandler.Instance.PlaySFX(successSFX);
+    }
 
     public void GenerateNotificationsAtInterval()
     {
-        
+        AudioHandler.Instance.PlaySFX(successSFX);
     }
     
-
     #endregion
 
     public void OnExitScreen()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
+        
         gameObject.SetActive(false);
         currentPanelSelected.SetActive(false);
-        OnSoundOptionsSelect();
+        
+        currentPanelSelected = soundOptionsPanel.gameObject;
+        currentPanelSelected.SetActive(true);
+        optionIndex = 0;
     }
 }

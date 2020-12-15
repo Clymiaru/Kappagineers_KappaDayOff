@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor.UI;
 using UnityEngine;
 
 using Text = TMPro.TMP_Text;
@@ -15,6 +16,9 @@ public class MainMenuScreen : MonoBehaviour
     [SerializeField] private Text coinsValueText       = null;
     [SerializeField] private Text kappaTokensValueText = null;
 
+    [SerializeField] private AudioSource tapSFX = null;
+    [SerializeField] private AudioSource successSFX = null;
+    
     private CurrencyData playerCurrency;
     private void Start()
     {
@@ -39,11 +43,14 @@ public class MainMenuScreen : MonoBehaviour
     {
         // HACK: Skip to level for now
         // TODO: Go to level selection screen if we have enough time.
+        
+        AudioHandler.Instance.PlaySFX(tapSFX);
         SceneLoader.Instance.LoadScene(SceneNames.Level);
     }
 
     public void OnGoToWorkshop()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
         workshopScreen.gameObject.SetActive(true);
     }
 
@@ -51,6 +58,7 @@ public class MainMenuScreen : MonoBehaviour
     {
         // Get data from game manager
         // * Player Currency Data
+        AudioHandler.Instance.PlaySFX(tapSFX);
         exchangeScreen.WantedCurrency = CurrencyType.KAPPA_TOKEN;
         exchangeScreen.gameObject.SetActive(true);
     }
@@ -59,12 +67,14 @@ public class MainMenuScreen : MonoBehaviour
     {
         // Get data from game manager
         // * Player Currency Data
+        AudioHandler.Instance.PlaySFX(tapSFX);
         exchangeScreen.WantedCurrency = CurrencyType.COIN;
         exchangeScreen.gameObject.SetActive(true);
     }
 
     public void OnOpenSettings()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
         settingsScreen.gameObject.SetActive(true);
     }
 
