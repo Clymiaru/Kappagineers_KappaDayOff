@@ -39,6 +39,9 @@ public class ExchangeScreen : MonoBehaviour
     
     #endregion
 
+    
+    [SerializeField] private AudioSource tapSFX     = null;
+    [SerializeField] private AudioSource successSFX = null;
 
     private void OnEnable()
     {
@@ -72,14 +75,18 @@ public class ExchangeScreen : MonoBehaviour
     
     public void OnExchange()
     {
+        AudioHandler.Instance.PlaySFX(successSFX);
+        
         CurrencyExchanger.CommenceExchange(WantedCurrency, 
                                            quantityOfWantedCurrency);
         quantityOfWantedCurrency = 0;
+        
         ResetScreen();
     }
 
     public void OnAddWantedCurrency()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
         quantityOfWantedCurrency++;
         
         bool isExchangeValid = CurrencyExchanger.CheckForAffordability(WantedCurrency, quantityOfWantedCurrency);
@@ -96,6 +103,7 @@ public class ExchangeScreen : MonoBehaviour
 
     public void OnSubtractWantedCurrency()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
         quantityOfWantedCurrency--;
         quantityOfWantedCurrency = Mathf.Max(quantityOfWantedCurrency, 0);
         
@@ -122,6 +130,7 @@ public class ExchangeScreen : MonoBehaviour
     
     public void OnExitScreen()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
         ResetScreen();
         gameObject.SetActive(false);
     }

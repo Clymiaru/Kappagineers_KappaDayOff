@@ -11961,6 +11961,8 @@ MonoBehaviour:
   wantedCurrencyText: {fileID: 1787972425}
   neededCurrencyIcon: {fileID: 433245240}
   neededCurrencyText: {fileID: 1050865307}
+  tapSFX: {fileID: 879298464}
+  successSFX: {fileID: 958034952}
 --- !u!114 &852331929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25897,11 +25899,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: e21d68ed57e82df4aae7e74a98c0ba06, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
