@@ -23,14 +23,17 @@ public class GestureManager : MonoBehaviour
     public SwipeProperty _swipeProperty;
     public PanProperty _panProperty;
     public PinchProperty _pinchProperty;
+    public DoubleTapProperty _doubleTapProperty;
     
     #endregion
     
     private Vector2 startPoint = Vector2.zero;
     private Vector2 endPoint = Vector2.zero;
     private float gestureTime = 0;
+    private float lastTapTime = 0;
 
     public CucumberMissile bomb;
+    public BarrierBehavior barrier;
     
     private readonly List<Touch> touches = new List<Touch>();
     private Camera mainCamera = null;
@@ -72,23 +75,32 @@ public class GestureManager : MonoBehaviour
                 }
                 else if (trackedFinger1.phase == TouchPhase.Ended)
                 {
-                    endPoint = trackedFinger1.position;
-
-                    float currentTapDistance = Vector2.Distance(startPoint, endPoint);
-                    float approvedTapDistance = _tapProperty.TapMaxDistance * Screen.dpi;
-
-                    if (gestureTime <= _tapProperty.TapTime &&
-                        currentTapDistance < approvedTapDistance)
+                    if (lastTapTime <= _doubleTapProperty.MaxTapTimeDistance)
                     {
-                        FireTapEvent();
+                        FireDoubleTapEvent();
+                    }
+                    else
+                    {
+                        endPoint = trackedFinger1.position;
+
+                        float currentTapDistance = Vector2.Distance(startPoint, endPoint);
+                        float approvedTapDistance = _tapProperty.TapMaxDistance * Screen.dpi;
+
+                        if (gestureTime <= _tapProperty.TapTime &&
+                            currentTapDistance < approvedTapDistance)
+                        {
+                            FireTapEvent();
+                        }
+
+
+                        if (gestureTime <= _swipeProperty.swipeTime &&
+                            (Vector2.Distance(startPoint, endPoint) >= (_swipeProperty.minSwipeDistance * Screen.dpi)))
+                        {
+                            FireSwipeEvent();
+                        }
                     }
 
-
-                    if (gestureTime <= _swipeProperty.swipeTime &&
-                        (Vector2.Distance(startPoint, endPoint) >= (_swipeProperty.minSwipeDistance * Screen.dpi)))
-                    {
-                        FireSwipeEvent();
-                    }
+                    lastTapTime = 0;
                 }
                 else
                 {
@@ -120,6 +132,7 @@ public class GestureManager : MonoBehaviour
                 }
             }
         }
+        lastTapTime += Time.deltaTime;
     }
 
     private void FireTapEvent() 
@@ -211,6 +224,11 @@ public class GestureManager : MonoBehaviour
         {
             onPinchSpread(this, args);
         }
+    }
+
+    private void FireDoubleTapEvent()
+    {
+        barrier.ActivateBarrier();
     }
     
     // private void OnDrawGizmos()
