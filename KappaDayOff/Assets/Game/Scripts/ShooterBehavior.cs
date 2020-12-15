@@ -14,12 +14,11 @@ public class ShooterBehavior : MonoBehaviour
 
     public GameObject barrier;
 
-    private enum EquippedWeapon
+    public enum EquippedWeapon
     {
         amplifiedSpeaker, waterBalloon, staticBomb
     }
 
-    private EquippedWeapon chosenWeapon = EquippedWeapon.amplifiedSpeaker;
     private bool isShootingOnCooldown = false;
 
     private void Awake()
@@ -29,7 +28,7 @@ public class ShooterBehavior : MonoBehaviour
         staticBombCD = UpgradableStats.Instance().GetStaticBombCD();
     }
 
-    public void SwitchGunLeft()
+    /*public void SwitchGunLeft()
     {
         switch(chosenWeapon)
         {
@@ -67,7 +66,7 @@ public class ShooterBehavior : MonoBehaviour
         {
             GameObject newBullet = null;
 
-            switch (chosenWeapon)
+            switch (weapon)
             {
                 case EquippedWeapon.amplifiedSpeaker:
                     newBullet = objectPool.GetAmplifiedWave();
@@ -86,15 +85,63 @@ public class ShooterBehavior : MonoBehaviour
             {
                 bullet.SetBulletDestination(crosshair.transform.position);
             }
-            StartCoroutine(BeginCooldown());
+            StartCoroutine(BeginCooldown(weapon));
+        }
+    }*/
+
+    public void ShootSpeaker()
+    {
+        if (!isShootingOnCooldown && !barrier.activeSelf)
+        {
+            GameObject newBullet = objectPool.GetAmplifiedWave();
+
+            newBullet.transform.position = bulletOriginPoint.transform.position;
+            BulletBehavior bullet = newBullet.GetComponent<BulletBehavior>();
+            if (bullet != null)
+            {
+                bullet.SetBulletDestination(crosshair.transform.position);
+            }
+            StartCoroutine(BeginCooldown(EquippedWeapon.amplifiedSpeaker));
         }
     }
 
-    private IEnumerator BeginCooldown()
+    public void ShootStaticBomb()
+    {
+        if (!isShootingOnCooldown && !barrier.activeSelf)
+        {
+            GameObject newBullet = objectPool.GetStaticBomb();
+
+            newBullet.transform.position = bulletOriginPoint.transform.position;
+            BulletBehavior bullet = newBullet.GetComponent<BulletBehavior>();
+            if (bullet != null)
+            {
+                bullet.SetBulletDestination(crosshair.transform.position);
+            }
+            StartCoroutine(BeginCooldown(EquippedWeapon.staticBomb));
+        }
+    }
+
+    public void ShootWaterBalloon()
+    {
+        if (!isShootingOnCooldown && !barrier.activeSelf)
+        {
+            GameObject newBullet = objectPool.GetWaterBalloon();
+
+            newBullet.transform.position = bulletOriginPoint.transform.position;
+            BulletBehavior bullet = newBullet.GetComponent<BulletBehavior>();
+            if (bullet != null)
+            {
+                bullet.SetBulletDestination(crosshair.transform.position);
+            }
+            StartCoroutine(BeginCooldown(EquippedWeapon.waterBalloon));
+        }
+    }
+
+    private IEnumerator BeginCooldown(EquippedWeapon weapon)
     {
         isShootingOnCooldown = true;
 
-        switch(chosenWeapon)
+        switch(weapon)
         {
             case EquippedWeapon.amplifiedSpeaker:
                 yield return new WaitForSeconds(speakerCD);
