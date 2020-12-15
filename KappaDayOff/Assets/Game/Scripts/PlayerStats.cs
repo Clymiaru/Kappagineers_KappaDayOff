@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
         if (HP <= 0)
         {
             Destroy(gameObject);
+            SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
         }
     }
 }

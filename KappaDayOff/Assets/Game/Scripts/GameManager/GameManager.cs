@@ -1,5 +1,4 @@
 ﻿using System;
-using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour

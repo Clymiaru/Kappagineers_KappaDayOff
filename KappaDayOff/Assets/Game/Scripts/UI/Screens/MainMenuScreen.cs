@@ -1,5 +1,5 @@
 ﻿using System;
-using UnityEditor.UI;
+using UnityEngine.UI;
 using UnityEngine;
 
 using Text = TMPro.TMP_Text;
