@@ -67,68 +67,80 @@ public class WorkshopScreen : MonoBehaviour
     public void OnMaxHPUpgrade()
     {
         int HP = UpgradableStats.Instance().GetPlayerHP() + 50;
-        if(playerHP.UpgradeStat(HP))
+        int level = UpgradableStats.Instance().GetPlayerHPLevel();
+        if(playerHP.UpgradeStat(HP, level))
         {
             UpgradableStats.Instance().SetPlayerHP(HP);
+            UpgradableStats.Instance().upgradePlayerHP();
         }
     }
     
     public void OnBarrierCooldownUpgrade()
     {
         float CD = UpgradableStats.Instance().GetBarrierCD();
+        int level = UpgradableStats.Instance().GetBarrierCDLevel();
         switch (CD)
         {
             case 60:
-                if (barrierCD.UpgradeStat(57))
+                if (barrierCD.UpgradeStat(57, level))
                 {
+                    UpgradableStats.Instance().upgradeBarrierCD();
                     UpgradableStats.Instance().SetBarrierCD(57);
                 }
                 break;
             case 57:
-                if (barrierCD.UpgradeStat(54))
+                if (barrierCD.UpgradeStat(54, level))
                 {
+                    UpgradableStats.Instance().upgradeBarrierCD();
                     UpgradableStats.Instance().SetBarrierCD(54);
                 }
                 break;
             case 54:
-                if (barrierCD.UpgradeStat(51))
+                if (barrierCD.UpgradeStat(51, level))
                 {
+                    UpgradableStats.Instance().upgradeBarrierCD();
                     UpgradableStats.Instance().SetBarrierCD(51);
                 }
                 break;
             case 51:
-                if (barrierCD.UpgradeStat(49))
+                if (barrierCD.UpgradeStat(49, level))
                 {
+                    UpgradableStats.Instance().upgradeBarrierCD();
                     UpgradableStats.Instance().SetBarrierCD(49);
                 }
                 break;
             case 49:
-                if (barrierCD.UpgradeStat(46))
+                if (barrierCD.UpgradeStat(46, level))
                 {
+                    UpgradableStats.Instance().upgradeBarrierCD();
                     UpgradableStats.Instance().SetBarrierCD(46);
                 }
                 break;
             case 46:
-                if (barrierCD.UpgradeStat(43))
+                if (barrierCD.UpgradeStat(43, level))
                 {
+                    UpgradableStats.Instance().upgradeBarrierCD();
                     UpgradableStats.Instance().SetBarrierCD(43);
                 }
                 break;
             case 43:
-                if (barrierCD.UpgradeStat(40))
+                if (barrierCD.UpgradeStat(40, level))
                 {
+                    UpgradableStats.Instance().upgradeBarrierCD();
                     UpgradableStats.Instance().SetBarrierCD(40);
                 }
                 break;
             case 40:
-                if (barrierCD.UpgradeStat(37))
+                if (barrierCD.UpgradeStat(37, level))
                 {
+                    UpgradableStats.Instance().upgradeBarrierCD();
                     UpgradableStats.Instance().SetBarrierCD(37);
                 }
                 break;
             case 37:
-                if (barrierCD.UpgradeStat(35))
+                if (barrierCD.UpgradeStat(35, level))
                 {
+                    UpgradableStats.Instance().upgradeBarrierCD();
                     UpgradableStats.Instance().SetBarrierCD(35);
                 }
                 break;
@@ -142,6 +154,7 @@ public class WorkshopScreen : MonoBehaviour
         int power = UpgradableStats.Instance().GetSpeakerPower() + 5;
         float CD = UpgradableStats.Instance().GetSpeakerCD() - 0.1f;
         float knockback = UpgradableStats.Instance().GetSpeakerPushDistance();
+        int level = UpgradableStats.Instance().GetAmplifiedSpeakersLevel();
         switch (knockback)
         {
             case 1.0f:
@@ -174,8 +187,9 @@ public class WorkshopScreen : MonoBehaviour
             default:
                 break;
         }
-        if (amplifiedSpeakersUpgrade.UpgradeStats(power, CD, knockback))
+        if (amplifiedSpeakersUpgrade.UpgradeStats(power, CD, level, knockback))
         {
+            UpgradableStats.Instance().upgradeAmplifiedSpeakers();
             UpgradableStats.Instance().SetSpeakerPower(power);
             UpgradableStats.Instance().SetSpeakerCD(CD);
             UpgradableStats.Instance().SetSpeakerPushDistance(knockback);
@@ -186,8 +200,10 @@ public class WorkshopScreen : MonoBehaviour
     {
         int power = UpgradableStats.Instance().GetWaterBalloonPower() + 5;
         float CD = UpgradableStats.Instance().GetWaterBalloonCD() - 0.1f;
-        if (waterBalloonUpgrade.UpgradeStats(power, CD))
+        int level = UpgradableStats.Instance().GetWaterBalloonLevel();
+        if (waterBalloonUpgrade.UpgradeStats(power, CD, level))
         {
+            UpgradableStats.Instance().upgradeWaterBalloon();
             UpgradableStats.Instance().SetWaterBalloonPower(power);
             UpgradableStats.Instance().SetWaterBalloonCD(CD);
         }
@@ -198,6 +214,7 @@ public class WorkshopScreen : MonoBehaviour
         int power = UpgradableStats.Instance().GetStaticBombPower() + 5;
         float CD = UpgradableStats.Instance().GetStaticBombCD() - 0.1f;
         float stunDuration = UpgradableStats.Instance().GetStaticBombDuration();
+        int level = UpgradableStats.Instance().GetStaticBombLevel();
         switch(stunDuration)
         {
             case 0.2f:
@@ -230,8 +247,9 @@ public class WorkshopScreen : MonoBehaviour
             default:
                 break;
         }
-        if (staticBombUpgrade.UpgradeStats(power, CD, stunDuration))
+        if (staticBombUpgrade.UpgradeStats(power, CD, level, stunDuration))
         {
+            UpgradableStats.Instance().upgradeStaticBomb();
             UpgradableStats.Instance().SetStaticBombPower(power);
             UpgradableStats.Instance().SetStaticBombCD(CD);
             UpgradableStats.Instance().SetStaticBombDuration(stunDuration);

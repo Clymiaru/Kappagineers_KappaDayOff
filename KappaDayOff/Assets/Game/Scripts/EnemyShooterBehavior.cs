@@ -8,10 +8,11 @@ public class EnemyShooterBehavior : MonoBehaviour
     public BulletPool objectPool;
     public float secondsPerShot = 1.0f;
     private bool isCoolingDown = false;
+    private bool isVisible = false;
 
     private void Update()
     {
-        if (!isCoolingDown && player != null)
+        if (!isCoolingDown && player != null && isVisible)
         {
             StartCoroutine(Shoot());
         }
@@ -30,5 +31,15 @@ public class EnemyShooterBehavior : MonoBehaviour
         }
         yield return new WaitForSeconds(secondsPerShot);
         isCoolingDown = false;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
+    }
+
+    private void OnBecameVisible()
+    {
+        isVisible = true;
     }
 }

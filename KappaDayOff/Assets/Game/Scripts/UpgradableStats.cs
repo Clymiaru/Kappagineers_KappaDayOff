@@ -18,32 +18,42 @@ public class UpgradableStats
 
     }
 
+    private int playerHPLevel = 1;
     private int playerHP = 50;
+    private int barrierCDLevel = 1;
     private float barrierCD = 60;
-    
+
+    private int amplifiedSpeakerLevel = 1;
     private int amplifiedSpeakersPower = 10;
     private float amplifiedSpeakersCD = 1;
     private float amplifiedSpeakersPushDistance = 1;
-    
+
+    private int waterBalloonLevel = 1;
     private int waterBalloonPower = 10;
     private float waterBalloonCD = 1;
 
+    private int staticBombLevel = 1;
     private int staticBombPower = 10;
     private float staticBombCD = 1;
     private float staticBombDuration = 0.2f;
 
     public void ResetUpgrades()
     {
+        playerHPLevel = 1;
         playerHP = 50;
+        barrierCDLevel = 1;
         barrierCD = 60;
 
+        amplifiedSpeakerLevel = 1;
         amplifiedSpeakersPower = 10;
         amplifiedSpeakersCD = 1;
         amplifiedSpeakersPushDistance = 1;
 
+        waterBalloonLevel = 1;
         waterBalloonPower = 10;
         waterBalloonCD = 1;
 
+        staticBombLevel = 1;
         staticBombPower = 10;
         staticBombCD = 1;
         staticBombDuration = 0.2f;
@@ -147,5 +157,55 @@ public class UpgradableStats
     public void SetStaticBombDuration(float duration)
     {
         staticBombDuration = duration;
+    }
+
+    public int GetPlayerHPLevel()
+    {
+        return playerHPLevel;
+    }
+
+    public void upgradePlayerHP()
+    {
+        playerHPLevel++;
+    }
+
+    public int GetBarrierCDLevel()
+    {
+        return barrierCDLevel;
+    }
+
+    public void upgradeBarrierCD()
+    {
+        barrierCDLevel++;
+    }
+
+    public int GetAmplifiedSpeakersLevel()
+    {
+        return amplifiedSpeakerLevel;
+    }
+
+    public void upgradeAmplifiedSpeakers()
+    {
+        amplifiedSpeakerLevel++;
+    }
+
+    public int GetWaterBalloonLevel()
+    {
+        return waterBalloonLevel;
+    }
+
+    public void upgradeWaterBalloon()
+    {
+        waterBalloonLevel++;
+    }
+
+    public int GetStaticBombLevel()
+    {
+        return staticBombLevel;
+    }
+
+    public void upgradeStaticBomb()
+    {
+        staticBombLevel++;
     }
 }
