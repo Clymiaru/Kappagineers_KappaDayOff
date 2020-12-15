@@ -6,11 +6,21 @@ public class BarrierBehavior : MonoBehaviour
 {
     public GameObject barrier;
     public float duration;
+    private float cooldown;
+    private bool activatable = true;
+
+    private void Awake()
+    {
+        cooldown = UpgradableStats.Instance().GetBarrierCD();
+    }
 
     public void ActivateBarrier()
     {
-        if (!barrier.activeSelf)
+        if (activatable)
+        {
             StartCoroutine(StartBarrierDuration());
+            StartCoroutine(StartBarrierCD());
+        }
     }
 
     private IEnumerator StartBarrierDuration()
@@ -18,5 +28,12 @@ public class BarrierBehavior : MonoBehaviour
         barrier.SetActive(true);
         yield return new WaitForSeconds(duration);
         barrier.SetActive(false);
+    }
+
+    private IEnumerator StartBarrierCD()
+    {
+        activatable = false;
+        yield return new WaitForSeconds(cooldown);
+        activatable = true;
     }
 }

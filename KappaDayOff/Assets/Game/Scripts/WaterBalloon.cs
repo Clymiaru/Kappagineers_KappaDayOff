@@ -8,6 +8,8 @@ public class WaterBalloon : AlliedBullets
     public int AoEDamage = 5;
     public WaterBalloon()
     {
+        damage = UpgradableStats.Instance().GetWaterBalloonPower();
+        AoEDamage = damage;
         damageType = EnemyType.Youkai;
         type = BulletType.WaterBalloon;
     }
