@@ -7,9 +7,10 @@ public class MainMenuScreen : MonoBehaviour
 {
     // TODO: Change background when orientation changes
 
-    [SerializeField] private SettingsScreen       settingsScreen       = null;
-    [SerializeField] private ExchangeScreen       exchangeScreen       = null;
-    [SerializeField] private ExitGamePopup        exitGamePopup        = null;
+    [SerializeField] private SettingsScreen settingsScreen = null;
+    [SerializeField] private WorkshopScreen workshopScreen = null;
+    [SerializeField] private ExchangeScreen exchangeScreen = null;
+    [SerializeField] private ExitGamePopup  exitGamePopup  = null;
 
     [SerializeField] private Text coinsValueText       = null;
     [SerializeField] private Text kappaTokensValueText = null;
@@ -36,10 +37,14 @@ public class MainMenuScreen : MonoBehaviour
 
     public void OnGoToDeparture()
     {
+        // HACK: Skip to level for now
+        // TODO: Go to level selection screen if we have enough time.
+        SceneLoader.Instance.LoadScene(SceneNames.Level);
     }
 
     public void OnGoToWorkshop()
     {
+        workshopScreen.gameObject.SetActive(true);
     }
 
     public void OnExchangeCoinsForKappaTokens()
