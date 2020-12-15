@@ -59,7 +59,7 @@ public class AudioHandler : MonoBehaviour
     {
         audioSource.loop   = false;
         audioSource.volume = (float)SFXVolume / 100;;
-        StartCoroutine(PlayOnBackground(audioSource));
+        audioSource.Play();
     }
     
     public void PlayBGM(AudioSource audioSource)
@@ -67,14 +67,5 @@ public class AudioHandler : MonoBehaviour
         audioSource.loop   = true;
         audioSource.volume = (float)BGMVolume / 100;;
         audioSource.Play();
-    }
-
-    public IEnumerator PlayOnBackground(AudioSource audioSource)
-    {
-        audioSource.Play();
-        while (audioSource.isPlaying)
-        {
-            yield return null;
-        }
     }
 }

@@ -11,21 +11,51 @@ public class UpgradeDescription : MonoBehaviour
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private TMP_Text statText;
 
-    public bool UpgradeStat(int newValue, int upgradeLevel)
+    public bool UpgradeStat(int newValue, int upgradeLevel, 
+                            CurrencyData payment)
     {
+        if (!IsAffordable(upgradeLevel + 1, payment))
+        {
+            Debug.Log("Not affordable" + payment);
+            return false;
+        }
+        
         if (upgradeLevel < 10)
         {
             upgradeLevel++;
             levelText.text = "Level " + upgradeLevel;
             statText.text = string.Format("{0} {1}", statMessage, newValue);
+            
             return true;
         }
         else
             return false;
     }
 
-    public bool UpgradeStat(float newValue, int upgradeLevel)
+    private bool IsAffordable(int currentLevel, CurrencyData payment)
     {
+        int costInCoins       = 100 * currentLevel;
+        int costInKappaTokens = (2 * (currentLevel - 5));
+        costInKappaTokens = Mathf.Max(costInKappaTokens, 0);
+
+        bool  isValidPurchase        = false;
+        
+        float coinAffordabilityRatio      = (float) payment.Coins       / costInCoins;
+        float kappaTokenAfforabilityRatio = (float) payment.KappaTokens / costInKappaTokens;
+
+        Debug.Log(payment);
+        return coinAffordabilityRatio      >= 1.0f &&
+               kappaTokenAfforabilityRatio >= 1.0f;
+    }
+
+    public bool UpgradeStat(float newValue, int upgradeLevel, CurrencyData payment)
+    {
+        if (!IsAffordable(upgradeLevel + 1, payment))
+        {
+            Debug.Log("Not affordable" + payment);
+            return false;
+        }
+        
         if (upgradeLevel < 10)
         {
             upgradeLevel++;
@@ -37,8 +67,18 @@ public class UpgradeDescription : MonoBehaviour
             return false;
     }
 
-    public bool UpgradeStats(int newPower, float CD, int upgradeLevel, float secondaryEffect = 0)
+    public bool UpgradeStats(int newPower, float CD, int upgradeLevel, float secondaryEffect = 0, 
+                             CurrencyData payment = null)
     {
+        if (payment != null)
+        {
+            if (!IsAffordable(upgradeLevel + 1, payment))
+            {
+                Debug.Log("Not affordable" + payment);
+                return false;
+            }
+        }
+        
         if (upgradeLevel < 10)
         {
             upgradeLevel++;

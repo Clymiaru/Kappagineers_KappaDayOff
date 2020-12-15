@@ -12960,7 +12960,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1460e101d8c275644bf661a7548340e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 79c45c5a3be3c824cb8ba55f44f69db6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26552,6 +26552,8 @@ MonoBehaviour:
   amplifiedSpeakersUpgrade: {fileID: 350637944}
   waterBalloonUpgrade: {fileID: 1422963365}
   staticBombUpgrade: {fileID: 1034796484}
+  tapSFX: {fileID: 879298464}
+  successSFX: {fileID: 958034952}
 --- !u!114 &2115940766
 MonoBehaviour:
   m_ObjectHideFlags: 0

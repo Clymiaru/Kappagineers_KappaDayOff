@@ -5,7 +5,6 @@ using UnityEngine.UI;
 // TODO: Finish workshop functionality and the screen
 public class WorkshopScreen : MonoBehaviour
 {
-    
     [SerializeField] private List<Button> upgradeCategoryButtons = new List<Button>();
 
     [SerializeField] private GameObject characterUpgradesPanel = null;
@@ -17,13 +16,12 @@ public class WorkshopScreen : MonoBehaviour
     [SerializeField] private UpgradeDescription waterBalloonUpgrade;
     [SerializeField] private UpgradeDescription staticBombUpgrade;
 
+    [SerializeField] private AudioSource tapSFX     = null;
+    [SerializeField] private AudioSource successSFX = null;
+    
     private GameObject currentPanelSelected = null;
     
     private int optionIndex = 0; // For now, auto-select the first option
-
-    private void Awake()
-    {
-    }
 
     private void OnEnable()
     {
@@ -45,6 +43,8 @@ public class WorkshopScreen : MonoBehaviour
 
     public void OnCharacterUpgradesSelect()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
+        
         currentPanelSelected.SetActive(false);
         currentPanelSelected = characterUpgradesPanel.gameObject;
         currentPanelSelected.SetActive(true);
@@ -53,6 +53,8 @@ public class WorkshopScreen : MonoBehaviour
 
     public void OnWeaponUpgradesSelect()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
+        
         currentPanelSelected.SetActive(false);
         currentPanelSelected = weaponUpgradesPanel.gameObject;
         currentPanelSelected.SetActive(true);
@@ -61,95 +63,186 @@ public class WorkshopScreen : MonoBehaviour
 
     public void OnExitScreen()
     {
+        AudioHandler.Instance.PlaySFX(tapSFX);
         gameObject.SetActive(false);
+    }
+
+    private void UpdateCurrency(int currentLevel)
+    {
+        int costInCoins       = 100 * currentLevel;
+        int costInKappaTokens = (2 * (currentLevel - 5));
+        costInKappaTokens = Mathf.Max(costInKappaTokens, 0);
+
+        GameManager.Instance.PlayerCurrency.Coins -= costInCoins;
+        GameManager.Instance.PlayerCurrency.KappaTokens -= costInKappaTokens;
     }
 
     public void OnMaxHPUpgrade()
     {
-        int currentHP  = GameManager.Instance.PlayerCharacter.MaxHP;
-        int maxHPLevel = GameManager.Instance.PlayerCharacter.HPLevel;
+        int HP    = GameManager.Instance.PlayerCharacter.MaxHP + 50;
+        int level = GameManager.Instance.PlayerCharacter.HPLevel;
         
-        // if can afford
-        // proceed
-        // else
-        // don't
-        
-        int HP = UpgradableStats.Instance().GetPlayerHP() + 50;
-        int level = UpgradableStats.Instance().GetPlayerHPLevel();
-        if(playerHP.UpgradeStat(HP, level))
+        if(playerHP.UpgradeStat(HP, level, 
+                                GameManager.Instance.PlayerCurrency))
         {
+            AudioHandler.Instance.PlaySFX(successSFX);
+            
             UpgradableStats.Instance().SetPlayerHP(HP);
             UpgradableStats.Instance().upgradePlayerHP();
+            
+            GameManager.Instance.PlayerCharacter.MaxHP   = HP;
+            GameManager.Instance.PlayerCharacter.HPLevel = level + 1;
+
+            UpdateCurrency(level);
         }
     }
     
     public void OnBarrierCooldownUpgrade()
     {
-        float CD = UpgradableStats.Instance().GetBarrierCD();
-        int level = UpgradableStats.Instance().GetBarrierCDLevel();
+        // if can afford
+        // proceed
+        // Play success
+        // else
+        // don't
+        
+        float CD    = GameManager.Instance.PlayerCharacter.BarrierCooldownTime;
+        int   level = GameManager.Instance.PlayerCharacter.BarrierCooldownLevel;
+        
         switch (CD)
         {
             case 60:
-                if (barrierCD.UpgradeStat(57, level))
+                if (barrierCD.UpgradeStat(57, level, 
+                                          GameManager.Instance.PlayerCurrency))
                 {
                     UpgradableStats.Instance().upgradeBarrierCD();
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
+                    
                     UpgradableStats.Instance().SetBarrierCD(57);
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 57;
+                    
+                    UpdateCurrency(level);
+                    
+                    AudioHandler.Instance.PlaySFX(successSFX);
                 }
                 break;
             case 57:
-                if (barrierCD.UpgradeStat(54, level))
+                if (barrierCD.UpgradeStat(54, level, 
+                                          GameManager.Instance.PlayerCurrency))
                 {
                     UpgradableStats.Instance().upgradeBarrierCD();
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
+                    
                     UpgradableStats.Instance().SetBarrierCD(54);
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 54;
+                    
+                    UpdateCurrency(level);
+                    
+                    AudioHandler.Instance.PlaySFX(successSFX);
                 }
                 break;
             case 54:
-                if (barrierCD.UpgradeStat(51, level))
+                if (barrierCD.UpgradeStat(51, level, 
+                                          GameManager.Instance.PlayerCurrency))
                 {
                     UpgradableStats.Instance().upgradeBarrierCD();
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
+                    
                     UpgradableStats.Instance().SetBarrierCD(51);
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 51;
+                    
+                    UpdateCurrency(level);
+                    
+                    AudioHandler.Instance.PlaySFX(successSFX);
                 }
                 break;
             case 51:
-                if (barrierCD.UpgradeStat(49, level))
+                if (barrierCD.UpgradeStat(49, level, 
+                                          GameManager.Instance.PlayerCurrency))
                 {
                     UpgradableStats.Instance().upgradeBarrierCD();
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
+                    
                     UpgradableStats.Instance().SetBarrierCD(49);
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 49;
+                    
+                    UpdateCurrency(level);
+                    
+                    AudioHandler.Instance.PlaySFX(successSFX);
                 }
                 break;
             case 49:
-                if (barrierCD.UpgradeStat(46, level))
+                if (barrierCD.UpgradeStat(46, level, 
+                                          GameManager.Instance.PlayerCurrency))
                 {
                     UpgradableStats.Instance().upgradeBarrierCD();
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
+                    
                     UpgradableStats.Instance().SetBarrierCD(46);
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 46;
+                    
+                    UpdateCurrency(level);
+                    
+                    AudioHandler.Instance.PlaySFX(successSFX);
                 }
                 break;
             case 46:
-                if (barrierCD.UpgradeStat(43, level))
+                if (barrierCD.UpgradeStat(43, level, 
+                                          GameManager.Instance.PlayerCurrency))
                 {
                     UpgradableStats.Instance().upgradeBarrierCD();
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
+                    
                     UpgradableStats.Instance().SetBarrierCD(43);
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 43;
+                    
+                    UpdateCurrency(level);
+                    
+                    AudioHandler.Instance.PlaySFX(successSFX);
                 }
                 break;
             case 43:
-                if (barrierCD.UpgradeStat(40, level))
+                if (barrierCD.UpgradeStat(40, level, 
+                                          GameManager.Instance.PlayerCurrency))
                 {
                     UpgradableStats.Instance().upgradeBarrierCD();
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
+                    
                     UpgradableStats.Instance().SetBarrierCD(40);
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 40;
+                    
+                    UpdateCurrency(level);
+                    
+                    AudioHandler.Instance.PlaySFX(successSFX);
                 }
                 break;
             case 40:
-                if (barrierCD.UpgradeStat(37, level))
+                if (barrierCD.UpgradeStat(37, level, 
+                                          GameManager.Instance.PlayerCurrency))
                 {
                     UpgradableStats.Instance().upgradeBarrierCD();
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
+                    
                     UpgradableStats.Instance().SetBarrierCD(37);
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 37;
+                    
+                    UpdateCurrency(level);
+                    
+                    AudioHandler.Instance.PlaySFX(successSFX);
                 }
                 break;
             case 37:
-                if (barrierCD.UpgradeStat(35, level))
+                if (barrierCD.UpgradeStat(35, level, 
+                                          GameManager.Instance.PlayerCurrency))
                 {
                     UpgradableStats.Instance().upgradeBarrierCD();
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
+                    
                     UpgradableStats.Instance().SetBarrierCD(35);
+                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 35;
+                    
+                    UpdateCurrency(level);
+                    
+                    AudioHandler.Instance.PlaySFX(successSFX);
                 }
                 break;
             default:
@@ -159,10 +252,17 @@ public class WorkshopScreen : MonoBehaviour
     
     public void OnAmplifiedSpeakersUpgrade()
     {
-        int power = UpgradableStats.Instance().GetSpeakerPower() + 5;
-        float CD = UpgradableStats.Instance().GetSpeakerCD() - 0.1f;
-        float knockback = UpgradableStats.Instance().GetSpeakerPushDistance();
-        int level = UpgradableStats.Instance().GetAmplifiedSpeakersLevel();
+        // if can afford
+        // proceed
+        // Play success
+        // else
+        // don't
+        
+        int   power     = GameManager.Instance.AmplifiedSpeakers.Power        + 5;
+        float CD        = GameManager.Instance.AmplifiedSpeakers.CooldownTime - 0.1f;
+        float knockback = GameManager.Instance.AmplifiedSpeakers.PushDistance;
+        int   level     = GameManager.Instance.AmplifiedSpeakers.PowerLevel;
+        
         switch (knockback)
         {
             case 1.0f:
@@ -195,8 +295,21 @@ public class WorkshopScreen : MonoBehaviour
             default:
                 break;
         }
-        if (amplifiedSpeakersUpgrade.UpgradeStats(power, CD, level, knockback))
+        if (amplifiedSpeakersUpgrade.UpgradeStats(power, CD, level, knockback, 
+                                                  GameManager.Instance.PlayerCurrency))
         {
+            AudioHandler.Instance.PlaySFX(successSFX);
+
+            GameManager.Instance.AmplifiedSpeakers.PowerLevel++;
+            GameManager.Instance.AmplifiedSpeakers.CooldownLevel++;
+            GameManager.Instance.AmplifiedSpeakers.PushDistanceLevel++;
+
+            GameManager.Instance.AmplifiedSpeakers.Power        = power;
+            GameManager.Instance.AmplifiedSpeakers.CooldownTime = CD;
+            GameManager.Instance.AmplifiedSpeakers.PushDistance = knockback;
+            
+            UpdateCurrency(level);
+            
             UpgradableStats.Instance().upgradeAmplifiedSpeakers();
             UpgradableStats.Instance().SetSpeakerPower(power);
             UpgradableStats.Instance().SetSpeakerCD(CD);
@@ -206,11 +319,28 @@ public class WorkshopScreen : MonoBehaviour
     
     public void OnWaterBalloonLauncherUpgrade()
     {
-        int power = UpgradableStats.Instance().GetWaterBalloonPower() + 5;
-        float CD = UpgradableStats.Instance().GetWaterBalloonCD() - 0.1f;
-        int level = UpgradableStats.Instance().GetWaterBalloonLevel();
-        if (waterBalloonUpgrade.UpgradeStats(power, CD, level))
+        // if can afford
+        // proceed
+        // Play success
+        // else
+        // don't
+        
+        int   power = GameManager.Instance.WaterBalloonLauncher.Power        + 5;
+        float CD    = GameManager.Instance.WaterBalloonLauncher.CooldownTime - 0.1f;
+        int   level = GameManager.Instance.WaterBalloonLauncher.PowerLevel;
+        if (waterBalloonUpgrade.UpgradeStats(power, CD, level, 0, 
+                                             GameManager.Instance.PlayerCurrency))
         {
+            AudioHandler.Instance.PlaySFX(successSFX);
+            
+            GameManager.Instance.WaterBalloonLauncher.PowerLevel++;
+            GameManager.Instance.WaterBalloonLauncher.CooldownLevel++;
+
+            GameManager.Instance.WaterBalloonLauncher.Power        = power;
+            GameManager.Instance.WaterBalloonLauncher.CooldownTime = CD;
+            
+            UpdateCurrency(level);
+            
             UpgradableStats.Instance().upgradeWaterBalloon();
             UpgradableStats.Instance().SetWaterBalloonPower(power);
             UpgradableStats.Instance().SetWaterBalloonCD(CD);
@@ -219,6 +349,12 @@ public class WorkshopScreen : MonoBehaviour
     
     public void OnStaticBombUpgrade()
     {
+        // if can afford
+        // proceed
+        // Play success
+        // else
+        // don't
+        
         int power = UpgradableStats.Instance().GetStaticBombPower() + 5;
         float CD = UpgradableStats.Instance().GetStaticBombCD() - 0.1f;
         float stunDuration = UpgradableStats.Instance().GetStaticBombDuration();
@@ -255,8 +391,21 @@ public class WorkshopScreen : MonoBehaviour
             default:
                 break;
         }
-        if (staticBombUpgrade.UpgradeStats(power, CD, level, stunDuration))
+        if (staticBombUpgrade.UpgradeStats(power, CD, level, stunDuration, 
+                                           GameManager.Instance.PlayerCurrency))
         {
+            AudioHandler.Instance.PlaySFX(successSFX);
+            
+            GameManager.Instance.StaticBomb.PowerLevel++;
+            GameManager.Instance.StaticBomb.CooldownLevel++;
+            GameManager.Instance.StaticBomb.ImmobilizationTimeLevel++;
+
+            GameManager.Instance.StaticBomb.Power              = power;
+            GameManager.Instance.StaticBomb.CooldownTime       = CD;
+            GameManager.Instance.StaticBomb.ImmobilizationTime = stunDuration;
+            
+            UpdateCurrency(level);
+            
             UpgradableStats.Instance().upgradeStaticBomb();
             UpgradableStats.Instance().SetStaticBombPower(power);
             UpgradableStats.Instance().SetStaticBombCD(CD);
