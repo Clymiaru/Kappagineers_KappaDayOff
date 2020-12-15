@@ -6,6 +6,11 @@ public abstract class AlliedBullets : BulletBehavior
 {
     protected EnemyType damageType;
 
+    private void Awake()
+    {
+        speed = 0.5f;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         EnemyStats enemy = collision.gameObject.GetComponent<EnemyStats>();

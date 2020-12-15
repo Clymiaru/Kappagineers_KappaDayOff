@@ -12,6 +12,8 @@ public class GestureManager : MonoBehaviour
     public event Action OnBack;
     public event EventHandler<TapEventArgs>   OnTap;
     public event EventHandler<SwipeEventArgs> OnSwipe;
+    public event EventHandler<PanEventArgs> onTwoFingerDrag;
+    public event EventHandler<PinchEventArgs> onPinchSpread;
 
     #endregion
     
@@ -19,6 +21,8 @@ public class GestureManager : MonoBehaviour
 
     public TapProperty   _tapProperty;
     public SwipeProperty _swipeProperty;
+    public PanProperty _panProperty;
+    public PinchProperty _pinchProperty;
     
     #endregion
     
@@ -32,6 +36,7 @@ public class GestureManager : MonoBehaviour
     private Camera mainCamera = null;
     
     Touch trackedFinger1;
+    Touch trackedFinger2;
 
     private void Awake()
     {
@@ -56,36 +61,63 @@ public class GestureManager : MonoBehaviour
         
         if (Input.touchCount > 0)
         {
-            trackedFinger1 = Input.GetTouch(0);
-
-            if (trackedFinger1.phase == TouchPhase.Began)
+            if (Input.touchCount == 1)
             {
-                startPoint = trackedFinger1.position;
-                gestureTime = 0.0f;
-            }
-            else if (trackedFinger1.phase == TouchPhase.Ended)
-            {
-                endPoint = trackedFinger1.position;
-                
-                float currentTapDistance  = Vector2.Distance (startPoint, endPoint);
-                float approvedTapDistance = _tapProperty.TapMaxDistance * Screen.dpi;
+                trackedFinger1 = Input.GetTouch(0);
 
-                if (gestureTime        <= _tapProperty.TapTime &&
-                    currentTapDistance < approvedTapDistance)
+                if (trackedFinger1.phase == TouchPhase.Began)
                 {
-                    FireTapEvent();
+                    startPoint = trackedFinger1.position;
+                    gestureTime = 0.0f;
                 }
-
-
-                if (gestureTime <= _swipeProperty.swipeTime && 
-                    (Vector2.Distance(startPoint, endPoint) >= (_swipeProperty.minSwipeDistance * Screen.dpi)))
+                else if (trackedFinger1.phase == TouchPhase.Ended)
                 {
-                    FireSwipeEvent();
+                    endPoint = trackedFinger1.position;
+
+                    float currentTapDistance = Vector2.Distance(startPoint, endPoint);
+                    float approvedTapDistance = _tapProperty.TapMaxDistance * Screen.dpi;
+
+                    if (gestureTime <= _tapProperty.TapTime &&
+                        currentTapDistance < approvedTapDistance)
+                    {
+                        FireTapEvent();
+                    }
+
+
+                    if (gestureTime <= _swipeProperty.swipeTime &&
+                        (Vector2.Distance(startPoint, endPoint) >= (_swipeProperty.minSwipeDistance * Screen.dpi)))
+                    {
+                        FireSwipeEvent();
+                    }
+                }
+                else
+                {
+                    gestureTime += Time.deltaTime;
                 }
             }
             else
             {
-                gestureTime += Time.deltaTime;
+                trackedFinger1 = Input.GetTouch(0);
+                trackedFinger2 = Input.GetTouch(1);
+
+                if (trackedFinger1.phase == TouchPhase.Moved && trackedFinger2.phase == TouchPhase.Moved &&
+                    Vector2.Distance(trackedFinger1.position, trackedFinger2.position) <= (_panProperty.MaxDistance * Screen.dpi))
+                {
+                    FirePanGesture();
+                }
+                else if (trackedFinger1.phase == TouchPhase.Moved || trackedFinger2.phase == TouchPhase.Moved)
+                {
+                    Vector2 prevPoint1 = GetPreviousPoint(trackedFinger1);
+                    Vector2 prevPoint2 = GetPreviousPoint(trackedFinger2);
+
+                    float currDistance = Vector2.Distance(trackedFinger1.position, trackedFinger2.position);
+                    float prevDistance = Vector2.Distance(prevPoint1, prevPoint2);
+
+                    if (Mathf.Abs(currDistance - prevDistance) >= (_pinchProperty.MinDistanceChange * Screen.dpi))
+                    {
+                        FirePinchEvent(currDistance - prevDistance);
+                    }
+                }
             }
         }
     }
@@ -156,6 +188,29 @@ public class GestureManager : MonoBehaviour
         var ray = mainCamera.ScreenPointToRay (screenPos);
         bool hasHit = Physics.Raycast (ray, out var hitInfo, Mathf.Infinity);
         return (hasHit is true) ? hitInfo.collider.gameObject : null;
+    }
+
+    private void FirePanGesture()
+    {
+        PanEventArgs args = new PanEventArgs(trackedFinger1, trackedFinger2);
+        if (onTwoFingerDrag != null)
+        {
+            onTwoFingerDrag(this, args);
+        }
+    }
+
+    private Vector2 GetPreviousPoint(Touch t)
+    {
+        return t.position - t.deltaPosition;
+    }
+
+    private void FirePinchEvent(float dist_diff)
+    {
+        PinchEventArgs args = new PinchEventArgs(trackedFinger1, trackedFinger2, dist_diff);
+        if (onPinchSpread != null)
+        {
+            onPinchSpread(this, args);
+        }
     }
     
     // private void OnDrawGizmos()
