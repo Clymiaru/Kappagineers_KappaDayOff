@@ -6,12 +6,13 @@ public class WaterBalloon : AlliedBullets
 {
     public float AoERadius = 5.0f;
     public int AoEDamage = 5;
-    public WaterBalloon()
+
+    private void Awake()
     {
-        damage = UpgradableStats.Instance().GetWaterBalloonPower();
-        AoEDamage = damage;
+        damage     = GameManager.Instance.WaterBalloonLauncher.Power;
+        AoEDamage  = damage;
         damageType = EnemyType.Youkai;
-        type = BulletType.WaterBalloon;
+        type       = BulletType.WaterBalloon;
     }
 
     protected override void activateEffect()

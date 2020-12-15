@@ -6,10 +6,16 @@ public class StaticBomb : AlliedBullets
 {
     public StaticBomb()
     {
-        damage = UpgradableStats.Instance().GetStaticBombPower();
-        damageType = EnemyType.Machine;
-        type = BulletType.StaticBomb;
+        
     }
+
+    private void Awake()
+    {
+        damage     = GameManager.Instance.StaticBomb.Power;
+        damageType = EnemyType.Machine;
+        type       = BulletType.StaticBomb;
+    }
+    
 
     protected override void activateEffect()
     {
