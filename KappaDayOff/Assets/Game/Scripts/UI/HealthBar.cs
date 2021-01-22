@@ -8,9 +8,12 @@ public class HealthBar : MonoBehaviour
 
     private Slider bar;
 
+    private PlayerStats player;
+
     private void Awake()
     {
-        bar = GetComponent<Slider>();
+        bar    = GetComponent<Slider>();
+        player = GameObject.Find("Player").GetComponent<PlayerStats>();
     }
 
     private void Start()
@@ -28,7 +31,7 @@ public class HealthBar : MonoBehaviour
         // currentHealth = player.HP;
         // if (maxHP != currentHP)
         // {
-            bar.value = currentHP;
+            bar.value = player.HP;
         // }
     }
 }

@@ -11,7 +11,7 @@ public class BarrierBehavior : MonoBehaviour
 
     private void Awake()
     {
-        cooldown = UpgradableStats.Instance().GetBarrierCD();
+        cooldown = GameManager.Instance.PlayerCharacter.BarrierCooldownTime;
     }
 
     public void ActivateBarrier()

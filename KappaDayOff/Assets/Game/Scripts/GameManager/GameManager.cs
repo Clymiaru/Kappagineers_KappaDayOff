@@ -1,5 +1,4 @@
 ﻿using System;
-using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -165,6 +164,35 @@ public class GameManager : MonoBehaviour
     {
         PlayerCurrency.Coins       = 1000;
         PlayerCurrency.KappaTokens = 3;
+        
+        PlayerCharacter.MaxHP   = 50;
+        PlayerCharacter.HPLevel = 1;
+        
+        PlayerCharacter.BarrierCooldownTime  = 60;
+        PlayerCharacter.BarrierCooldownLevel = 1;
+
+        WaterBalloonLauncher.Power         = 10;
+        WaterBalloonLauncher.PowerLevel    = 1;
+        WaterBalloonLauncher.CooldownTime  = 1.0f;
+        WaterBalloonLauncher.CooldownLevel = 1;
+
+        AmplifiedSpeakers.Power             = 10;
+        AmplifiedSpeakers.PowerLevel        = 1;
+        AmplifiedSpeakers.CooldownTime      = 1.0f;
+        AmplifiedSpeakers.CooldownLevel     = 1;
+        AmplifiedSpeakers.PushDistance      = 1.0f;
+        AmplifiedSpeakers.PushDistanceLevel = 1;
+
+        StaticBomb.Power                   = 1;
+        StaticBomb.PowerLevel              = 1;
+        StaticBomb.CooldownTime            = 1;
+        StaticBomb.CooldownLevel           = 1;
+        StaticBomb.ImmobilizationTime      = 0.2f;
+        StaticBomb.ImmobilizationTimeLevel = 1;
+
+        LevelOneProgress.ProgressLevel     = LevelState.NOT_STARTED;
+        LevelOneProgress.HighscoreAchieved = 0;
+        
         Debug.Log("DEBUG: Reset Player Progress");
     }
 

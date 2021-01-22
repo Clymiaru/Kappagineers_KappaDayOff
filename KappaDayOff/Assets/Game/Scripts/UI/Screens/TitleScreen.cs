@@ -5,6 +5,8 @@ public class TitleScreen : MonoBehaviour
 {
     [SerializeField] private ExitGamePopup exitGamePopup = null;
 
+    [SerializeField] private AudioSource audioSource = null;
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -15,6 +17,7 @@ public class TitleScreen : MonoBehaviour
 
     public void OnStartGame()
     {
+        AudioHandler.Instance.PlaySFX(audioSource);
         SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
     }
 

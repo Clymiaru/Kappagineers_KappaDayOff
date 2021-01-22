@@ -31,5 +31,12 @@ public class RailFollower : MonoBehaviour
                 currentTravelTime = 0;
             }
         }
+        else
+        {
+            Debug.Log("End!");
+            SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
+        }
+        
+        
     }
 }

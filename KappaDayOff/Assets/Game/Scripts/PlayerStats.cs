@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private int HP = 50;
+    public int HP = 50;
 
-    private void Awake()
+    private void Start()
     {
-        HP = UpgradableStats.Instance().GetPlayerHP();
+        HP = GameManager.Instance.PlayerCharacter.MaxHP;
     }
 
     public void TakeDamage(int damage)
@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
         if (HP <= 0)
         {
             Destroy(gameObject);
+            SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
         }
     }
 }

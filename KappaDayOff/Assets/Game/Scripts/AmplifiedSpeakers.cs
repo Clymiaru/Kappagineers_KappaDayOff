@@ -9,11 +9,17 @@ public class AmplifiedSpeakers : AlliedBullets
     public float knockbackDistance = 2.0f;
     public AmplifiedSpeakers()
     {
-        damage = UpgradableStats.Instance().GetSpeakerPower();
-        knockbackDistance = UpgradableStats.Instance().GetSpeakerPushDistance();
-        damageType = EnemyType.Fairy;
-        type = BulletType.AmplifiedWave;
+        
     }
+
+    private void Awake()
+    {
+        damage            = GameManager.Instance.AmplifiedSpeakers.Power;
+        knockbackDistance = GameManager.Instance.AmplifiedSpeakers.PushDistance;
+        damageType        = EnemyType.Fairy;
+        type              = BulletType.AmplifiedWave;
+    }
+    
 
     protected override void activateEffect()
     {
