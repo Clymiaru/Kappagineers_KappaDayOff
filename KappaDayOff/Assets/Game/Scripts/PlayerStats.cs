@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public int HP = 50;
+    public AdsManager adsManager;
 
     private void Start()
     {
@@ -16,6 +17,7 @@ public class PlayerStats : MonoBehaviour
         HP -= damage;
         if (HP <= 0)
         {
+            adsManager.ShowInterstitialAd();
             Destroy(gameObject);
             SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
         }

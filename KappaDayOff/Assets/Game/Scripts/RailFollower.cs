@@ -10,6 +10,8 @@ public class RailFollower : MonoBehaviour
     private int currentRailpointIndex = 1;
     private float currentTravelTime = 0;
 
+    public AdsManager adsManager;
+
     private void Awake()
     {
         railPoints = new Vector3[rail.positionCount];
@@ -31,8 +33,10 @@ public class RailFollower : MonoBehaviour
                 currentTravelTime = 0;
             }
         }
-        else
+        else if (this.gameObject.GetComponent<PlayerStats>() != null)
         {
+            if (adsManager != null)
+                adsManager.ShowInterstitialAd();
             Debug.Log("End!");
             SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
         }
