@@ -26,6 +26,8 @@ public class SettingsScreen : MonoBehaviour
     [SerializeField] private AudioSource successSFX = null;
 
     private GameObject currentPanelSelected = null;
+
+    public AdsManager adsManager;
     
     private int optionIndex = 0; // For now, auto-select the first option
     
@@ -145,5 +147,7 @@ public class SettingsScreen : MonoBehaviour
         currentPanelSelected = soundOptionsPanel.gameObject;
         currentPanelSelected.SetActive(true);
         optionIndex = 0;
+
+        adsManager.HideBannerAd();
     }
 }

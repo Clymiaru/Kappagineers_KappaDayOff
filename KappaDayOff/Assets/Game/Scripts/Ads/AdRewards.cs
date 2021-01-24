@@ -8,11 +8,9 @@ public class AdRewards : MonoBehaviour
     public int rewardForWatchingAds = 1;
     public AdsManager adManager;
 
-    private Text textHolder;
     // Start is called before the first frame update
     void Start()
     {
-        textHolder = GetComponent<Text>();
         adManager.OnAdDone += AdManager_OnAdDone;
     }
 

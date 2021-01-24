@@ -20,6 +20,8 @@ public class WorkshopScreen : MonoBehaviour
     [SerializeField] private AudioSource successSFX = null;
     
     private GameObject currentPanelSelected = null;
+
+    public AdsManager adsManager;
     
     private int optionIndex = 0; // For now, auto-select the first option
 
@@ -65,6 +67,7 @@ public class WorkshopScreen : MonoBehaviour
     {
         AudioHandler.Instance.PlaySFX(tapSFX);
         gameObject.SetActive(false);
+        adsManager.HideBannerAd();
     }
 
     private void UpdateCurrency(int currentLevel)
