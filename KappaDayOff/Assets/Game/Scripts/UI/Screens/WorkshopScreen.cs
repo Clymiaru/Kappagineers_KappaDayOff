@@ -70,7 +70,7 @@ public class WorkshopScreen : MonoBehaviour
     private void UpdateCurrency(int currentLevel)
     {
         int costInCoins       = 100 * currentLevel;
-        int costInKappaTokens = (2 * (currentLevel - 5));
+        int costInKappaTokens = 2 * (currentLevel - 5);
         costInKappaTokens = Mathf.Max(costInKappaTokens, 0);
 
         GameManager.Instance.PlayerCurrency.Coins -= costInCoins;
@@ -105,148 +105,21 @@ public class WorkshopScreen : MonoBehaviour
         // else
         // don't
         
-        float CD    = GameManager.Instance.PlayerCharacter.BarrierCooldownTime;
         int   level = GameManager.Instance.PlayerCharacter.BarrierCooldownLevel;
-        
-        switch (CD)
+        float CD = 63 - Mathf.Ceil(2.8f * level); //CD formula
+
+        if (barrierCD.UpgradeStat(CD, level,
+                                          GameManager.Instance.PlayerCurrency))
         {
-            case 60:
-                if (barrierCD.UpgradeStat(57, level, 
-                                          GameManager.Instance.PlayerCurrency))
-                {
-                    UpgradableStats.Instance().upgradeBarrierCD();
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
-                    
-                    UpgradableStats.Instance().SetBarrierCD(57);
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 57;
-                    
-                    UpdateCurrency(level);
-                    
-                    AudioHandler.Instance.PlaySFX(successSFX);
-                }
-                break;
-            case 57:
-                if (barrierCD.UpgradeStat(54, level, 
-                                          GameManager.Instance.PlayerCurrency))
-                {
-                    UpgradableStats.Instance().upgradeBarrierCD();
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
-                    
-                    UpgradableStats.Instance().SetBarrierCD(54);
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 54;
-                    
-                    UpdateCurrency(level);
-                    
-                    AudioHandler.Instance.PlaySFX(successSFX);
-                }
-                break;
-            case 54:
-                if (barrierCD.UpgradeStat(51, level, 
-                                          GameManager.Instance.PlayerCurrency))
-                {
-                    UpgradableStats.Instance().upgradeBarrierCD();
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
-                    
-                    UpgradableStats.Instance().SetBarrierCD(51);
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 51;
-                    
-                    UpdateCurrency(level);
-                    
-                    AudioHandler.Instance.PlaySFX(successSFX);
-                }
-                break;
-            case 51:
-                if (barrierCD.UpgradeStat(49, level, 
-                                          GameManager.Instance.PlayerCurrency))
-                {
-                    UpgradableStats.Instance().upgradeBarrierCD();
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
-                    
-                    UpgradableStats.Instance().SetBarrierCD(49);
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 49;
-                    
-                    UpdateCurrency(level);
-                    
-                    AudioHandler.Instance.PlaySFX(successSFX);
-                }
-                break;
-            case 49:
-                if (barrierCD.UpgradeStat(46, level, 
-                                          GameManager.Instance.PlayerCurrency))
-                {
-                    UpgradableStats.Instance().upgradeBarrierCD();
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
-                    
-                    UpgradableStats.Instance().SetBarrierCD(46);
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 46;
-                    
-                    UpdateCurrency(level);
-                    
-                    AudioHandler.Instance.PlaySFX(successSFX);
-                }
-                break;
-            case 46:
-                if (barrierCD.UpgradeStat(43, level, 
-                                          GameManager.Instance.PlayerCurrency))
-                {
-                    UpgradableStats.Instance().upgradeBarrierCD();
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
-                    
-                    UpgradableStats.Instance().SetBarrierCD(43);
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 43;
-                    
-                    UpdateCurrency(level);
-                    
-                    AudioHandler.Instance.PlaySFX(successSFX);
-                }
-                break;
-            case 43:
-                if (barrierCD.UpgradeStat(40, level, 
-                                          GameManager.Instance.PlayerCurrency))
-                {
-                    UpgradableStats.Instance().upgradeBarrierCD();
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
-                    
-                    UpgradableStats.Instance().SetBarrierCD(40);
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 40;
-                    
-                    UpdateCurrency(level);
-                    
-                    AudioHandler.Instance.PlaySFX(successSFX);
-                }
-                break;
-            case 40:
-                if (barrierCD.UpgradeStat(37, level, 
-                                          GameManager.Instance.PlayerCurrency))
-                {
-                    UpgradableStats.Instance().upgradeBarrierCD();
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
-                    
-                    UpgradableStats.Instance().SetBarrierCD(37);
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 37;
-                    
-                    UpdateCurrency(level);
-                    
-                    AudioHandler.Instance.PlaySFX(successSFX);
-                }
-                break;
-            case 37:
-                if (barrierCD.UpgradeStat(35, level, 
-                                          GameManager.Instance.PlayerCurrency))
-                {
-                    UpgradableStats.Instance().upgradeBarrierCD();
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
-                    
-                    UpgradableStats.Instance().SetBarrierCD(35);
-                    GameManager.Instance.PlayerCharacter.BarrierCooldownTime = 35;
-                    
-                    UpdateCurrency(level);
-                    
-                    AudioHandler.Instance.PlaySFX(successSFX);
-                }
-                break;
-            default:
-                break;
+            UpgradableStats.Instance().upgradeBarrierCD();
+            GameManager.Instance.PlayerCharacter.BarrierCooldownLevel++;
+
+            UpgradableStats.Instance().SetBarrierCD(CD);
+            GameManager.Instance.PlayerCharacter.BarrierCooldownTime = CD;
+
+            UpdateCurrency(level);
+
+            AudioHandler.Instance.PlaySFX(successSFX);
         }
     }
     
@@ -260,41 +133,9 @@ public class WorkshopScreen : MonoBehaviour
         
         int   power     = GameManager.Instance.AmplifiedSpeakers.Power        + 5;
         float CD        = GameManager.Instance.AmplifiedSpeakers.CooldownTime - 0.1f;
-        float knockback = GameManager.Instance.AmplifiedSpeakers.PushDistance;
         int   level     = GameManager.Instance.AmplifiedSpeakers.PowerLevel;
-        
-        switch (knockback)
-        {
-            case 1.0f:
-                knockback = 1.25f;
-                break;
-            case 1.25f:
-                knockback = 1.5f;
-                break;
-            case 1.5f:
-                knockback = 1.75f;
-                break;
-            case 1.75f:
-                knockback = 2.0f;
-                break;
-            case 2.0f:
-                knockback = 2.5f;
-                break;
-            case 2.5f:
-                knockback = 3.0f;
-                break;
-            case 3.0f:
-                knockback = 3.5f;
-                break;
-            case 3.5f:
-                knockback = 4.0f;
-                break;
-            case 4.0f:
-                knockback = 5.0f;
-                break;
-            default:
-                break;
-        }
+        float knockback = GameManager.Instance.AmplifiedSpeakers.PushDistance + 0.25f * Mathf.Pow(2, Mathf.FloorToInt((level - 1) / 4));//knockback formula
+
         if (amplifiedSpeakersUpgrade.UpgradeStats(power, CD, level, knockback, 
                                                   GameManager.Instance.PlayerCurrency))
         {
@@ -357,40 +198,9 @@ public class WorkshopScreen : MonoBehaviour
         
         int power = UpgradableStats.Instance().GetStaticBombPower() + 5;
         float CD = UpgradableStats.Instance().GetStaticBombCD() - 0.1f;
-        float stunDuration = UpgradableStats.Instance().GetStaticBombDuration();
         int level = UpgradableStats.Instance().GetStaticBombLevel();
-        switch(stunDuration)
-        {
-            case 0.2f:
-                stunDuration = 0.25f;
-                break;
-            case 0.25f:
-                stunDuration = 0.3f;
-                break;
-            case 0.3f:
-                stunDuration = 0.35f;
-                break;
-            case 0.35f:
-                stunDuration = 0.45f;
-                break;
-            case 0.45f:
-                stunDuration = 0.55f;
-                break;
-            case 0.55f:
-                stunDuration = 0.75f;
-                break;
-            case 0.75f:
-                stunDuration = 0.95f;
-                break;
-            case 0.95f:
-                stunDuration = 1.15f;
-                break;
-            case 1.15f:
-                stunDuration = 1.25f;
-                break;
-            default:
-                break;
-        }
+        float stunDuration = UpgradableStats.Instance().GetStaticBombDuration() + 0.05f * Mathf.Pow(2, Mathf.FloorToInt((level - 1) / 3));
+
         if (staticBombUpgrade.UpgradeStats(power, CD, level, stunDuration, 
                                            GameManager.Instance.PlayerCurrency))
         {
