@@ -36,7 +36,6 @@ public class CameraPanner : MonoBehaviour
     private void OnPinchSpread(object sender, PinchEventArgs e)
     {
         float scale = e.DistanceDiff / Screen.dpi * scaleSpeed;
-        if (Camera.main.orthographicSize < 8.4f)
-            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize + scale, 5, 8.4f);
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize + scale, 5, 8.4f);
     }
 }
