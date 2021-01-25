@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 2801217751
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: title_screen
+      Dependencies: {}

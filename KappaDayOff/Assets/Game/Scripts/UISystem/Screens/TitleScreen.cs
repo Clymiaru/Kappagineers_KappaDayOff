@@ -6,15 +6,15 @@ public class TitleScreen : View
 	[Header("Title Screen Elements")]
 	[SerializeField] private Image background;
 
-	[SerializeField] private ExitGamePopup exitGamePopup;
+	protected override void OnInitialize()
+	{
+		background.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.TITLE_SCREEN,
+		                                                                 AssetNames.Sprite.BACKGROUND);
+	}
 
 	protected override void OnBackPressed()
 	{
 		OnExitGame();
-	}
-
-	private void Initialize()
-	{
 	}
 
 	public void OnStartGame()
@@ -25,6 +25,6 @@ public class TitleScreen : View
 
 	public void OnExitGame()
 	{
-		exitGamePopup.gameObject.SetActive(true);
+		Debug.Log("Quit game!");
 	}
 }

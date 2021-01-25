@@ -56,6 +56,8 @@ public class View : MonoBehaviour
 			exitSequence.OnPlay(ExitStart);
 			exitSequence.OnComplete(ExitEnd);
 		}
+
+		OnInitialize();
 	}
 
 	public void Deinitialize()
@@ -93,6 +95,10 @@ public class View : MonoBehaviour
 			ExitStart();
 			ExitEnd();
 		}
+	}
+
+	protected virtual void OnInitialize()
+	{
 	}
 
 	protected virtual void OnBackPressed()
