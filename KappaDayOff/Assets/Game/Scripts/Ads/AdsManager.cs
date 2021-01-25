@@ -16,6 +16,8 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
             return "3983609";
 #elif UNITY_IOS
             return "3983608";
+#else
+            return null;
 #endif
         }
     }
@@ -58,17 +60,17 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 
     public void OnUnityAdsReady(string placementId)
     {
-        
+
     }
 
     public void OnUnityAdsDidError(string message)
     {
-        
+
     }
 
     public void OnUnityAdsDidStart(string placementId)
     {
-       
+
     }
 
     public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
