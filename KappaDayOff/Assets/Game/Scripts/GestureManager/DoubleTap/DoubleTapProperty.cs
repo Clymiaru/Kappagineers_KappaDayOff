@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class DoubleTapProperty
 {
-    [Tooltip("Maximum time between taps")]
-    public float MaxTapTimeDistance = 0.3f;
+	[Tooltip("Maximum time between taps")]
+	public float MaxTapTimeDistance = 0.3f;
 }

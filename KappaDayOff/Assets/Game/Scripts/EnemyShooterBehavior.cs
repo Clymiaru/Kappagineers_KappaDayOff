@@ -1,45 +1,45 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyShooterBehavior : MonoBehaviour
 {
-    public GameObject player;
-    public BulletPool objectPool;
-    public float secondsPerShot = 1.0f;
-    private bool isCoolingDown = false;
-    private bool isVisible = false;
+	public  GameObject player;
+	public  BulletPool objectPool;
+	public  float      secondsPerShot = 1.0f;
+	private bool       isCoolingDown;
+	private bool       isVisible;
 
-    private void Update()
-    {
-        if (!isCoolingDown && player != null && isVisible)
-        {
-            StartCoroutine(Shoot());
-        }
-    }
+	private void Update()
+	{
+		if (!isCoolingDown && player != null && isVisible)
+		{
+			StartCoroutine(Shoot());
+		}
+	}
 
-    private IEnumerator Shoot()
-    {
-        isCoolingDown = true;
+	private void OnBecameInvisible()
+	{
+		isVisible = false;
+	}
 
-        GameObject newShot = objectPool.GetEnemyBullet();
-        newShot.transform.position = gameObject.transform.position;
-        BulletBehavior shotBehavior = newShot.GetComponent<BulletBehavior>();
-        if (shotBehavior != null)
-        {
-            shotBehavior.SetBulletDestination(player.transform.position);
-        }
-        yield return new WaitForSeconds(secondsPerShot);
-        isCoolingDown = false;
-    }
+	private void OnBecameVisible()
+	{
+		isVisible = true;
+	}
 
-    private void OnBecameInvisible()
-    {
-        isVisible = false;
-    }
+	private IEnumerator Shoot()
+	{
+		isCoolingDown = true;
 
-    private void OnBecameVisible()
-    {
-        isVisible = true;
-    }
+		GameObject newShot = objectPool.GetEnemyBullet();
+		newShot.transform.position = gameObject.transform.position;
+		var shotBehavior = newShot.GetComponent<BulletBehavior>();
+		if (shotBehavior != null)
+		{
+			shotBehavior.SetBulletDestination(player.transform.position);
+		}
+
+		yield return new WaitForSeconds(secondsPerShot);
+		isCoolingDown = false;
+	}
 }

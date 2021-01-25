@@ -16,18 +16,18 @@ public class ScaleTransition : Transition
 
 	protected override void SetupEntrance()
 	{
-		this.EntranceTween = this.transform.DOScale(this.toScale, this.duration)
-		                         .SetEase(this.easingStrategy);
+		EntranceTween = transform.DOScale(toScale, duration)
+		                         .SetEase(easingStrategy);
 	}
 
 	protected override void SetupExit()
 	{
-		this.ExitTween = this.transform.DOScale(this.fromScale, this.duration)
-		                     .SetEase(this.easingStrategy);
+		ExitTween = transform.DOScale(fromScale, duration)
+		                     .SetEase(easingStrategy);
 	}
 
 	public override void OnReset()
 	{
-		this.gameObject.transform.localScale = this.fromScale;
+		gameObject.transform.localScale = fromScale;
 	}
 }

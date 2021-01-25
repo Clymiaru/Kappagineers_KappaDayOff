@@ -15,26 +15,26 @@ public abstract class Transition : MonoBehaviour
 
 	private void OnDisable()
 	{
-		this.OnReset();
+		OnReset();
 	}
 
 	public void Intialize()
 	{
-		this.Setup();
-		if (this.easingStrategy == Ease.Unset)
+		Setup();
+		if (easingStrategy == Ease.Unset)
 		{
-			this.easingStrategy = DOTween.defaultEaseType;
+			easingStrategy = DOTween.defaultEaseType;
 		}
 
-		this.SetupEntrance();
-		this.SetupExit();
-		this.OnReset();
+		SetupEntrance();
+		SetupExit();
+		OnReset();
 	}
 
 	public void Deinitialize()
 	{
-		this.EntranceTween?.Kill();
-		this.ExitTween?.Kill();
+		EntranceTween?.Kill();
+		ExitTween?.Kill();
 	}
 
 	protected virtual void Setup()

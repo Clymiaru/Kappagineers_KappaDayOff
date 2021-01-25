@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
 /*
@@ -10,224 +9,201 @@ using System.Collections.Generic;
  */
 public class Parameters
 {
+	//reference type parcelable
+	private readonly Dictionary<string, ArrayList> arrayListData;
+	private readonly Dictionary<string, bool>      boolData;
 
 	//basic supported parcelable types
-	private Dictionary<string, char> charData;
-	private Dictionary<string, int> intData;
-	private Dictionary<string, bool> boolData;
-	private Dictionary<string, float> floatData;
-	private Dictionary<string, double> doubleData;
-	private Dictionary<string, short> shortData;
-	private Dictionary<string, long> longData;
-	private Dictionary<string, string> stringData;
-
-	//reference type parcelable
-	private Dictionary<string, ArrayList> arrayListData;
-	private Dictionary<string, object> objectListData;
+	private readonly Dictionary<string, char>   charData;
+	private readonly Dictionary<string, double> doubleData;
+	private readonly Dictionary<string, float>  floatData;
+	private readonly Dictionary<string, int>    intData;
+	private readonly Dictionary<string, long>   longData;
+	private readonly Dictionary<string, object> objectListData;
+	private readonly Dictionary<string, short>  shortData;
+	private readonly Dictionary<string, string> stringData;
 
 
 	public Parameters()
 	{
-		this.charData = new Dictionary<string, char>();
-		this.intData = new Dictionary<string, int>();
-		this.boolData = new Dictionary<string, bool>();
-		this.floatData = new Dictionary<string, float>();
-		this.doubleData = new Dictionary<string, double>();
-		this.shortData = new Dictionary<string, short>();
-		this.longData = new Dictionary<string, long>();
-		this.stringData = new Dictionary<string, string>();
-		this.arrayListData = new Dictionary<string, ArrayList>();
-		this.objectListData = new Dictionary<string, object>();
+		charData       = new Dictionary<string, char>();
+		intData        = new Dictionary<string, int>();
+		boolData       = new Dictionary<string, bool>();
+		floatData      = new Dictionary<string, float>();
+		doubleData     = new Dictionary<string, double>();
+		shortData      = new Dictionary<string, short>();
+		longData       = new Dictionary<string, long>();
+		stringData     = new Dictionary<string, string>();
+		arrayListData  = new Dictionary<string, ArrayList>();
+		objectListData = new Dictionary<string, object>();
 	}
 
 	public void PutExtra(string paramName, bool value)
 	{
-		this.boolData.Add(paramName, value);
+		boolData.Add(paramName, value);
 	}
 
 	public void PutExtra(string paramName, int value)
 	{
-		this.intData.Add(paramName, value);
+		intData.Add(paramName, value);
 	}
 
 	public void PutExtra(string paramName, char value)
 	{
-		this.charData.Add(paramName, value);
+		charData.Add(paramName, value);
 	}
 
 	public void PutExtra(string paramName, float value)
 	{
-		this.floatData.Add(paramName, value);
+		floatData.Add(paramName, value);
 	}
 
 	public void PutExtra(string paramName, double value)
 	{
-		this.doubleData.Add(paramName, value);
+		doubleData.Add(paramName, value);
 	}
 
 	public void PutExtra(string paramName, short value)
 	{
-		this.shortData.Add(paramName, value);
+		shortData.Add(paramName, value);
 	}
 
 	public void PutExtra(string paramName, long value)
 	{
-		this.longData.Add(paramName, value);
+		longData.Add(paramName, value);
 	}
 
 	public void PutExtra(string paramName, string value)
 	{
-		this.stringData.Add(paramName, value);
+		stringData.Add(paramName, value);
 	}
 
 	public void PutExtra(string paramName, ArrayList arrayList)
 	{
-		this.arrayListData.Add(paramName, arrayList);
+		arrayListData.Add(paramName, arrayList);
 	}
 
 	public void PutExtra(string paramName, object[] objectArray)
 	{
-		ArrayList arrayList = new ArrayList();
+		var arrayList = new ArrayList();
 		arrayList.AddRange(objectArray);
-		this.PutExtra(paramName, arrayList);
+		PutExtra(paramName, arrayList);
 	}
 
 	public void PutObjectExtra(string paramName, object value)
 	{
-		this.objectListData.Add(paramName, value);
+		objectListData.Add(paramName, value);
 	}
 
 	public int GetIntExtra(string paramName, int defaultValue)
 	{
-		if (this.intData.ContainsKey(paramName))
+		if (intData.ContainsKey(paramName))
 		{
-			return this.intData[paramName];
+			return intData[paramName];
 		}
-		else
-		{
-			return defaultValue;
-		}
+
+		return defaultValue;
 	}
 
 	public char GetCharExtra(string paramName, char defaultValue)
 	{
-		if (this.charData.ContainsKey(paramName))
+		if (charData.ContainsKey(paramName))
 		{
-			return this.charData[paramName];
+			return charData[paramName];
 		}
-		else
-		{
-			return defaultValue;
-		}
+
+		return defaultValue;
 	}
 
 	public bool GetBoolExtra(string paramName, bool defaultValue)
 	{
-		if (this.boolData.ContainsKey(paramName))
+		if (boolData.ContainsKey(paramName))
 		{
-			return this.boolData[paramName];
+			return boolData[paramName];
 		}
-		else
-		{
-			return defaultValue;
-		}
+
+		return defaultValue;
 	}
 
 	public float GetFloatExtra(string paramName, float defaultValue)
 	{
-		if (this.floatData.ContainsKey(paramName))
+		if (floatData.ContainsKey(paramName))
 		{
-			return this.floatData[paramName];
+			return floatData[paramName];
 		}
-		else
-		{
-			return defaultValue;
-		}
+
+		return defaultValue;
 	}
 
 	public double GetDoubleExtra(string paramName, double defaultValue)
 	{
-		if (this.doubleData.ContainsKey(paramName))
+		if (doubleData.ContainsKey(paramName))
 		{
-			return this.doubleData[paramName];
+			return doubleData[paramName];
 		}
-		else
-		{
-			return defaultValue;
-		}
+
+		return defaultValue;
 	}
 
 	public short GetShortExtra(string paramName, short defaultValue)
 	{
-		if (this.shortData.ContainsKey(paramName))
+		if (shortData.ContainsKey(paramName))
 		{
-			return this.shortData[paramName];
+			return shortData[paramName];
 		}
-		else
-		{
-			return defaultValue;
-		}
+
+		return defaultValue;
 	}
 
 	public long GetLongExtra(string paramName, long defaultValue)
 	{
-		if (this.longData.ContainsKey(paramName))
+		if (longData.ContainsKey(paramName))
 		{
-			return this.longData[paramName];
+			return longData[paramName];
 		}
-		else
-		{
-			return defaultValue;
-		}
+
+		return defaultValue;
 	}
 
 	public string GetStringExtra(string paramName, string defaultValue)
 	{
-		if (this.stringData.ContainsKey(paramName))
+		if (stringData.ContainsKey(paramName))
 		{
-			return this.stringData[paramName];
+			return stringData[paramName];
 		}
-		else
-		{
-			return defaultValue;
-		}
+
+		return defaultValue;
 	}
 
 	public ArrayList GetArrayListExtra(string paramName)
 	{
-		if (this.arrayListData.ContainsKey(paramName))
+		if (arrayListData.ContainsKey(paramName))
 		{
-			return this.arrayListData[paramName];
+			return arrayListData[paramName];
 		}
-		else
-		{
-			return null;
-		}
+
+		return null;
 	}
 
 	public object[] GetArrayExtra(string paramName)
 	{
-		ArrayList arrayListData = this.GetArrayListExtra(paramName);
+		ArrayList arrayListData = GetArrayListExtra(paramName);
 
 		if (arrayListData != null)
 		{
 			return arrayListData.ToArray();
 		}
-		else
-		{
-			return null;
-		}
+
+		return null;
 	}
 
 	public object GetObjectExtra(string paramName)
 	{
-		if (this.objectListData.ContainsKey(paramName))
+		if (objectListData.ContainsKey(paramName))
 		{
-			return this.objectListData[paramName];
+			return objectListData[paramName];
 		}
-		else
-		{
-			return null;
-		}
+
+		return null;
 	}
 }

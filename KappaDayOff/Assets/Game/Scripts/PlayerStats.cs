@@ -1,23 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int HP = 50;
+	public int HP = 50;
 
-    private void Start()
-    {
-        HP = GameManager.Instance.PlayerCharacter.MaxHP;
-    }
+	private void Start()
+	{
+		HP = GameManager.Instance.PlayerCharacter.MaxHP;
+	}
 
-    public void TakeDamage(int damage)
-    {
-        HP -= damage;
-        if (HP <= 0)
-        {
-            Destroy(gameObject);
-            SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
-        }
-    }
+	public void TakeDamage(int damage)
+	{
+		HP -= damage;
+		if (HP <= 0)
+		{
+			Destroy(gameObject);
+			SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
+		}
+	}
 }

@@ -1,16 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
 
 public enum LevelState
 {
-    NOT_STARTED,
-    IN_PROGRESSED,
-    COMPLETED
+	NOT_STARTED,
+	IN_PROGRESSED,
+	COMPLETED
 }
 
-[System.Serializable]
+[Serializable]
 public class LevelData
 {
-    public string     Name;
-    public LevelState ProgressLevel;
-    public int        HighscoreAchieved;
+	public string     Name;
+	public LevelState ProgressLevel;
+	public int        HighscoreAchieved;
 }

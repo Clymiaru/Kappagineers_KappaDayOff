@@ -8,7 +8,7 @@ public class ViewHandler : MonoBehaviour
 
 	private void Awake()
 	{
-		foreach (View view in this.views)
+		foreach (View view in views)
 		{
 			view.Initialize();
 		}
@@ -16,12 +16,12 @@ public class ViewHandler : MonoBehaviour
 
 	private void Start()
 	{
-		this.startingView.Show();
+		startingView.Show();
 	}
 
 	private void OnDestroy()
 	{
-		foreach (View view in this.views)
+		foreach (View view in views)
 		{
 			view.Deinitialize();
 		}

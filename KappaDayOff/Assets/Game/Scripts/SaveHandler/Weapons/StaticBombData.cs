@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
 
-[System.Serializable]
+[Serializable]
 public class StaticBombData : WeaponData
 {
-    public float ImmobilizationTime;
-    public int   ImmobilizationTimeLevel;
+	public float ImmobilizationTime;
+	public int   ImmobilizationTimeLevel;
 }

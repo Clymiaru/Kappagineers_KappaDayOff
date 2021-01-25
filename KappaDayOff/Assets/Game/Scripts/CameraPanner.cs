@@ -1,42 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraPanner : MonoBehaviour
 {
-    public float speed = 10;
-    public float scaleSpeed = 5;
-    // Start is called before the first frame update
-    void Start()
-    {
-        GestureManager.Instance.onTwoFingerDrag += OnTwoFingerDrag;
-        GestureManager.Instance.onPinchSpread += OnPinchSpread;
-    }
+	public float speed = 10;
 
-    private void OnDisable()
-    {
-        GestureManager.Instance.onTwoFingerDrag -= OnTwoFingerDrag;
-        GestureManager.Instance.onPinchSpread -= OnPinchSpread;
-    }
+	public float scaleSpeed = 5;
 
-    private void OnTwoFingerDrag(object sender, PanEventArgs e)
-    {
-        Vector2 delta1 = e.finger1.deltaPosition;
-        Vector2 delta2 = e.finger2.deltaPosition;
+	// Start is called before the first frame update
+	private void Start()
+	{
+		GestureManager.Instance.onTwoFingerDrag += OnTwoFingerDrag;
+		GestureManager.Instance.onPinchSpread   += OnPinchSpread;
+	}
 
-        Vector2 ave = new Vector2((delta1.x + delta2.x) / 2, (delta1.y + delta2.y) / 2);
+	private void OnDisable()
+	{
+		GestureManager.Instance.onTwoFingerDrag -= OnTwoFingerDrag;
+		GestureManager.Instance.onPinchSpread   -= OnPinchSpread;
+	}
 
-        ave /= Screen.dpi;
+	private void OnTwoFingerDrag(object sender, PanEventArgs e)
+	{
+		Vector2 delta1 = e.finger1.deltaPosition;
+		Vector2 delta2 = e.finger2.deltaPosition;
 
-        Vector3 change = (Vector3)ave * speed;
+		var ave = new Vector2((delta1.x + delta2.x) / 2, (delta1.y + delta2.y) / 2);
 
-        transform.position += change;
-    }
+		ave /= Screen.dpi;
 
-    private void OnPinchSpread(object sender, PinchEventArgs e)
-    {
-        float scale = e.DistanceDiff / Screen.dpi * scaleSpeed;
-        if (Camera.main.orthographicSize < 8.4f)
-            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize + scale, 5, 8.4f);
-    }
+		Vector3 change = (Vector3) ave * speed;
+
+		transform.position += change;
+	}
+
+	private void OnPinchSpread(object sender, PinchEventArgs e)
+	{
+		float scale = e.DistanceDiff / Screen.dpi * scaleSpeed;
+		if (Camera.main.orthographicSize < 8.4f)
+		{
+			Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize + scale, 5, 8.4f);
+		}
+	}
 }

@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
 
-[System.Serializable]
+[Serializable]
 public class CurrencyData
 {
-    public int Coins       = 0;
-    public int KappaTokens = 0;
+	public int Coins;
+	public int KappaTokens;
 }

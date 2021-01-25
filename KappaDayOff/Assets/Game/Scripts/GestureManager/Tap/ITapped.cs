@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public interface ITapped
+﻿public interface ITapped
 {
-    void OnTap(TapEventArgs args);
+	void OnTap(TapEventArgs args);
 }

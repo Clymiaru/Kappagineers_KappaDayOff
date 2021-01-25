@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IPinchEvent
+﻿public interface IPinchEvent
 {
-    void OnPinchSpread(PinchEventArgs args);
+	void OnPinchSpread(PinchEventArgs args);
 }

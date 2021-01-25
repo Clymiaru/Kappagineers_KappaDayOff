@@ -2,18 +2,15 @@
 
 public class PlayerController : MonoBehaviour
 {
-    private void Awake()
-    {
-        
-    }
-    
-    private void Start()
-    {
-        
-    }
+	private void Awake()
+	{
+	}
 
-    private void Update()
-    {
-        
-    }
+	private void Start()
+	{
+	}
+
+	private void Update()
+	{
+	}
 }

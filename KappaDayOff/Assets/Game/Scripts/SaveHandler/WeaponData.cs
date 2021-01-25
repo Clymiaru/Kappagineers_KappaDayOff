@@ -1,12 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
 
-[System.Serializable]
+[Serializable]
 public class WeaponData
 {
-    public string Name;
-    public int    Power;
-    public int    PowerLevel;
-    public float  CooldownTime;
-    public int    CooldownLevel;
-
+	public string Name;
+	public int    Power;
+	public int    PowerLevel;
+	public float  CooldownTime;
+	public int    CooldownLevel;
 }

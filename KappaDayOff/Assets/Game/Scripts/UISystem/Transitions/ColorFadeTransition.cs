@@ -15,23 +15,23 @@ public class ColorFadeTransition : Transition
 
 	protected override void Setup()
 	{
-		this.image = this.GetComponent<Image>();
+		image = GetComponent<Image>();
 	}
 
 	protected override void SetupEntrance()
 	{
-		this.EntranceTween = this.image.DOColor(this.toColor, this.duration)
-		                         .SetEase(this.easingStrategy);
+		EntranceTween = image.DOColor(toColor, duration)
+		                     .SetEase(easingStrategy);
 	}
 
 	protected override void SetupExit()
 	{
-		this.ExitTween = this.image.DOColor(this.fromColor, this.duration)
-		                     .SetEase(this.easingStrategy);
+		ExitTween = image.DOColor(fromColor, duration)
+		                 .SetEase(easingStrategy);
 	}
 
 	public override void OnReset()
 	{
-		this.image.color = this.fromColor;
+		image.color = fromColor;
 	}
 }

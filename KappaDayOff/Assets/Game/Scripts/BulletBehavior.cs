@@ -1,57 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour
 {
-    protected Vector3 flightDirection;
-    protected float speed = 0.25f;
-    protected int damage = 10;
-    protected BulletPool objectPool;
+	public enum BulletType
+	{
+		AmplifiedWave,
+		StaticBomb,
+		WaterBalloon,
+		EnemyBullet
+	}
 
-    public enum BulletType
-    {
-        AmplifiedWave, StaticBomb, WaterBalloon, EnemyBullet
-    }
+	protected int        damage = 10;
+	protected Vector3    flightDirection;
+	protected BulletPool objectPool;
+	protected float      speed = 0.25f;
 
-    protected BulletType type;
+	protected BulletType type;
 
-    public void SetBulletDestination(Vector3 target)
-    {
-        flightDirection = (target - gameObject.transform.position).normalized;
-    }
+	private void Update()
+	{
+		gameObject.transform.position += speed * flightDirection;
+	}
 
-    public void SetBulletPool(BulletPool pool)
-    {
-        objectPool = pool;
-    }
+	private void OnDisable()
+	{
+		switch (type)
+		{
+			case BulletType.AmplifiedWave:
+				objectPool.ReturnAmplifiedWaves(gameObject);
+				break;
+			case BulletType.StaticBomb:
+				objectPool.ReturnStaticBomb(gameObject);
+				break;
+			case BulletType.WaterBalloon:
+				objectPool.ReturnWaterBalloon(gameObject);
+				break;
+			case BulletType.EnemyBullet:
+				objectPool.ReturnEnemyBullet(gameObject);
+				break;
+		}
+	}
 
-    private void Update()
-    {
-        gameObject.transform.position += speed * flightDirection;
-    }
+	private void OnBecameInvisible()
+	{
+		gameObject.SetActive(false);
+	}
 
-    private void OnBecameInvisible()
-    {
-        gameObject.SetActive(false);
-    }
+	public void SetBulletDestination(Vector3 target)
+	{
+		flightDirection = (target - gameObject.transform.position).normalized;
+	}
 
-    private void OnDisable()
-    {
-        switch (type)
-        {
-            case BulletType.AmplifiedWave:
-                objectPool.ReturnAmplifiedWaves(gameObject);
-                break;
-            case BulletType.StaticBomb:
-                objectPool.ReturnStaticBomb(gameObject);
-                break;
-            case BulletType.WaterBalloon:
-                objectPool.ReturnWaterBalloon(gameObject);
-                break;
-            case BulletType.EnemyBullet:
-                objectPool.ReturnEnemyBullet(gameObject);
-                break;
-        }
-    }
+	public void SetBulletPool(BulletPool pool)
+	{
+		objectPool = pool;
+	}
 }

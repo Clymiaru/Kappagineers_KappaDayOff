@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class PanProperty
 {
-    [Tooltip("Maximum distance between the two fingers")]
-    public float MaxDistance = 0.4f;
+	[Tooltip("Maximum distance between the two fingers")]
+	public float MaxDistance = 0.4f;
 }

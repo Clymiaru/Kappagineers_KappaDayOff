@@ -1,25 +1,27 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+// TODO: Identify if we need to make a loading screen and asynchronous loading
+public class SceneLoader
 {
-    private static SceneLoader sharedInstance = null;
-    public static SceneLoader Instance 
-    {
-        get => sharedInstance;
-        private set => sharedInstance = value;
-    }
-    
-    private void Awake()
-    {
-        Instance = this;
-    }
-    
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
+	public static SceneLoader Instance
+	{
+		get
+		{
+			if (instance == null)
+			{
+				instance = new SceneLoader();
+			}
+			return instance;
+		}
+	}
+	private static SceneLoader instance;
+
+	private SceneLoader()
+	{
+	}
+
+	public void LoadScene(string sceneName)
+	{
+		SceneManager.LoadScene(sceneName);
+	}
 }

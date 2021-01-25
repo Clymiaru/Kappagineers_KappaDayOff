@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IPan 
+﻿public interface IPan
 {
-    void OnPan(PanEventArgs args);
+	void OnPan(PanEventArgs args);
 }

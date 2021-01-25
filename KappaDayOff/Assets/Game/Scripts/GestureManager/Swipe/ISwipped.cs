@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface ISwipped 
+﻿public interface ISwipped
 {
-    void OnSwipe(SwipeEventArgs args);
+	void OnSwipe(SwipeEventArgs args);
 }

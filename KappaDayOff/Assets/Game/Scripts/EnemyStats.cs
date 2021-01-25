@@ -1,27 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum EnemyType
 {
-    Fairy, Youkai, Machine
+	Fairy,
+	Youkai,
+	Machine
 }
 
 public class EnemyStats : MonoBehaviour
 {
-    private int HP = 10;
-    [SerializeField] private EnemyType type = EnemyType.Youkai;
-    public void TakeDamage(int damage, EnemyType damageType)
-    {
-        if (damageType == type)
-        {
-            HP -= damage;
-            if (HP <= 0)
-                Destroy(gameObject);
-        }
-        else
-        {
-            Debug.Log("No damage");
-        }
-    }
+	[SerializeField] private EnemyType type = EnemyType.Youkai;
+	private                  int       HP   = 10;
+
+	public void TakeDamage(int damage, EnemyType damageType)
+	{
+		if (damageType == type)
+		{
+			HP -= damage;
+			if (HP <= 0)
+			{
+				Destroy(gameObject);
+			}
+		}
+		else
+		{
+			Debug.Log("No damage");
+		}
+	}
 }
