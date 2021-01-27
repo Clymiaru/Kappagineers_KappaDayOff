@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image)), DisallowMultipleComponent]
-public class ColorFadeTransition : Transition
+public class ColorFadeViewAnimation : ViewAnimation
 {
 	[Header("Color Fade Transition Options"), Tooltip("Color before entrance transition."), SerializeField]
 	private Color fromColor;

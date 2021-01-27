@@ -8,9 +8,10 @@ using UnityEngine.UI;
 public struct TransitionInfo
 {
 	public float      StartTime;
-	public Transition Transition;
+	public ViewAnimation viewAnimation;
 }
 
+[RequireComponent(typeof(CanvasHelper))]
 public class View : MonoBehaviour
 {
 	[Header("Transitions"), SerializeField]
@@ -26,6 +27,8 @@ public class View : MonoBehaviour
 	protected Action OnExitEnd;
 	protected Action OnExitStart;
 
+	protected ViewHandler viewHandler;
+
 	private List<Selectable> selectables = new List<Selectable>();
 
 	private void Update()
@@ -37,8 +40,9 @@ public class View : MonoBehaviour
 		}
 	}
 
-	public void Initialize()
+	public void Initialize(ViewHandler handler)
 	{
+		viewHandler = handler;
 		GetSelectables();
 		if (transitions.Count > 0)
 		{
@@ -46,9 +50,9 @@ public class View : MonoBehaviour
 			exitSequence     = DOTween.Sequence().SetAutoKill(false);
 			foreach (TransitionInfo transitionInfo in transitions)
 			{
-				transitionInfo.Transition.Intialize();
-				entranceSequence.Insert(transitionInfo.StartTime, transitionInfo.Transition.EntranceTween);
-				exitSequence.Insert(transitionInfo.StartTime, transitionInfo.Transition.ExitTween);
+				transitionInfo.viewAnimation.Intialize();
+				entranceSequence.Insert(transitionInfo.StartTime, transitionInfo.viewAnimation.EntranceTween);
+				exitSequence.Insert(transitionInfo.StartTime, transitionInfo.viewAnimation.ExitTween);
 			}
 
 			entranceSequence.OnPlay(EnterStart);
@@ -66,7 +70,7 @@ public class View : MonoBehaviour
 		exitSequence?.Kill();
 		foreach (TransitionInfo transitionInfo in transitions)
 		{
-			transitionInfo.Transition.Deinitialize();
+			transitionInfo.viewAnimation.Deinitialize();
 		}
 	}
 
@@ -109,7 +113,7 @@ public class View : MonoBehaviour
 	{
 		foreach (TransitionInfo transitionInfo in transitions)
 		{
-			transitionInfo.Transition.OnReset();
+			transitionInfo.viewAnimation.OnReset();
 		}
 	}
 
@@ -144,7 +148,6 @@ public class View : MonoBehaviour
 	{
 		// Debug.Log($"View {name} Exit End");
 		OnExitEnd?.Invoke();
-
 		gameObject.SetActive(false);
 	}
 

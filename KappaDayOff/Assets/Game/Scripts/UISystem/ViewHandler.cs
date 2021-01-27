@@ -10,8 +10,20 @@ public class ViewHandler : MonoBehaviour
 	{
 		foreach (View view in views)
 		{
-			view.Initialize();
+			view.Initialize(this);
 		}
+	}
+
+	public void Show(View view)
+	{
+		if (views.Contains(view))
+		{
+			return;
+		}
+
+		views.Add(view);
+		view.Initialize(this);
+		view.Show();
 	}
 
 	private void Start()

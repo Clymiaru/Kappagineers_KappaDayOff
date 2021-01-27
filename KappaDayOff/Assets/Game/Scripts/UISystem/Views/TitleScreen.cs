@@ -5,6 +5,7 @@ public class TitleScreen : View
 {
 	[Header("Title Screen Elements")]
 	[SerializeField] private Image background;
+	[SerializeField] private ExitGamePopup exitGamePopup;
 
 	protected override void OnInitialize()
 	{
@@ -25,6 +26,7 @@ public class TitleScreen : View
 
 	public void OnExitGame()
 	{
+		exitGamePopup.Show();
 		Debug.Log("Quit game!");
 	}
 }

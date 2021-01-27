@@ -2,13 +2,15 @@
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class ScaleTransition : Transition
+public class ScaleViewAnimation : ViewAnimation
 {
-	[Header("Scale Transition Options"), Tooltip("Scale vector of the game object before entrance transition."), SerializeField]
-	private Vector3 fromScale;
+	[Header("Scale Transition Options")]
 
-	[Tooltip("Scale vector of the game object after entrance transition."), SerializeField]
-	private Vector3 toScale;
+	[Tooltip("Scale vector of the game object before entrance transition.")]
+	[SerializeField] private Vector3 fromScale;
+
+	[Tooltip("Scale vector of the game object after entrance transition.")]
+	[SerializeField] private Vector3 toScale;
 
 	protected override void Setup()
 	{

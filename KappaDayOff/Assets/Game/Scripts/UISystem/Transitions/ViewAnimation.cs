@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public abstract class Transition : MonoBehaviour
+public abstract class ViewAnimation : MonoBehaviour
 {
 	[Header("Transition Properties"), SerializeField]
 	protected float duration;
