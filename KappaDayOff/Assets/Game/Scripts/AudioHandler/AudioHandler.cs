@@ -2,65 +2,65 @@
 
 public class AudioHandler : MonoBehaviour
 {
-	private readonly AudioSource currentBGM = null;
-	private          int         currentBGMVolume;
-	private          int         currentSFXVolume;
+	[Header("Audio Handler Properties")]
+	[SerializeField]
+	private AudioSource soundAudioSource;
 
-	private readonly int maxBGMVolume = 100;
+	[SerializeField]
+	private AudioSource musicAudioSource;
 
-	private readonly int maxSFXVolume = 100;
+	[SerializeField]
+	private int maxMusicVolume = 100;
+
+	[SerializeField]
+	private int maxSoundVolume = 100;
+
+	private float currentMusicVolume;
+	private float currentSoundVolume;
 
 	public static AudioHandler Instance { get; private set; }
 
-	public int BGMVolume
+	public float MusicVolume
 	{
-		get => currentBGMVolume;
-		set => currentBGMVolume = Mathf.Clamp(value, 0, maxBGMVolume);
+		get => currentMusicVolume * maxMusicVolume;
+		set => currentMusicVolume = Mathf.Clamp(value, 0.0f, maxMusicVolume);
 	}
 
-	public int SFXVolume
+	public float SoundVolume
 	{
-		get => currentSFXVolume;
-		set => currentSFXVolume = Mathf.Clamp(value, 0, maxSFXVolume);
+		get => currentSoundVolume * maxSoundVolume;
+		set => currentSoundVolume = Mathf.Clamp(value, 0.0f, maxSoundVolume);
 	}
 
 	private void Awake()
 	{
 		Instance = this;
 
-		BGMVolume = PlayerPrefs.GetInt("BGM_Volume", maxBGMVolume);
-		SFXVolume = PlayerPrefs.GetInt("SFX_Volume", maxSFXVolume);
-
-		// currentBGM = GameObject.Find("BGM").GetComponent<AudioSource>();
+		MusicVolume = PlayerPrefs.GetFloat(PlayerPrefsKeys.MUSIC_VOLUME, maxMusicVolume);
+		SoundVolume = PlayerPrefs.GetFloat(PlayerPrefsKeys.SOUND_VOLUME, maxSoundVolume);
 	}
 
 	private void Update()
 	{
-		if (currentBGM != null)
-		{
-			currentBGM.volume = (float) BGMVolume / 100;
-		}
+		musicAudioSource.volume = currentMusicVolume / maxMusicVolume;
 	}
 
 	private void OnDestroy()
 	{
-		PlayerPrefs.SetInt("BGM_Volume", currentBGMVolume);
-		PlayerPrefs.SetInt("SFX_Volume", currentSFXVolume);
+		PlayerPrefs.SetFloat(PlayerPrefsKeys.MUSIC_VOLUME, currentMusicVolume);
+		PlayerPrefs.SetFloat(PlayerPrefsKeys.SOUND_VOLUME, currentSoundVolume);
 	}
 
-	public void PlaySFX(AudioSource audioSource)
+	public void PlaySound(AudioClip sfx)
 	{
-		audioSource.loop   = false;
-		audioSource.volume = (float) SFXVolume / 100;
-		;
-		audioSource.Play();
+		soundAudioSource.volume = currentSoundVolume / maxSoundVolume;
+		soundAudioSource.PlayOneShot(sfx);
 	}
 
-	public void PlayBGM(AudioSource audioSource)
+	public void PlayMusic(AudioSource audioSource)
 	{
 		audioSource.loop   = true;
-		audioSource.volume = (float) BGMVolume / 100;
-		;
+		audioSource.volume = currentMusicVolume / maxMusicVolume;
 		audioSource.Play();
 	}
 }

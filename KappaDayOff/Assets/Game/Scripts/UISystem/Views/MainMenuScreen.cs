@@ -42,13 +42,13 @@ public class MainMenuScreen : MonoBehaviour
 		// HACK: Skip to level for now
 		// TODO: Go to level selection screen if we have enough time.
 
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		SceneLoader.Instance.LoadScene(SceneNames.Level);
 	}
 
 	public void OnGoToWorkshop()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		workshopScreen.gameObject.SetActive(true);
 	}
 
@@ -56,7 +56,7 @@ public class MainMenuScreen : MonoBehaviour
 	{
 		// Get data from game manager
 		// * Player Currency Data
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		exchangeScreen.WantedCurrency = CurrencyType.KAPPA_TOKEN;
 		exchangeScreen.gameObject.SetActive(true);
 	}
@@ -65,14 +65,14 @@ public class MainMenuScreen : MonoBehaviour
 	{
 		// Get data from game manager
 		// * Player Currency Data
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		exchangeScreen.WantedCurrency = CurrencyType.COIN;
 		exchangeScreen.gameObject.SetActive(true);
 	}
 
 	public void OnOpenSettings()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		settingsScreen.gameObject.SetActive(true);
 	}
 

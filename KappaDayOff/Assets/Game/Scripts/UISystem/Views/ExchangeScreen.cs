@@ -45,7 +45,7 @@ public class ExchangeScreen : MonoBehaviour
 
 	public void OnExchange()
 	{
-		AudioHandler.Instance.PlaySFX(successSFX);
+		// AudioHandler.Instance.PlaySound(successSFX);
 
 		CurrencyExchanger.CommenceExchange(WantedCurrency,
 		                                   quantityOfWantedCurrency);
@@ -56,7 +56,7 @@ public class ExchangeScreen : MonoBehaviour
 
 	public void OnAddWantedCurrency()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		quantityOfWantedCurrency++;
 
 		bool isExchangeValid = CurrencyExchanger.CheckForAffordability(WantedCurrency, quantityOfWantedCurrency);
@@ -73,7 +73,7 @@ public class ExchangeScreen : MonoBehaviour
 
 	public void OnSubtractWantedCurrency()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		quantityOfWantedCurrency--;
 		quantityOfWantedCurrency = Mathf.Max(quantityOfWantedCurrency, 0);
 
@@ -100,14 +100,14 @@ public class ExchangeScreen : MonoBehaviour
 
 	public void OnExitScreen()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		ResetScreen();
 		gameObject.SetActive(false);
 	}
 
 	#region Currency Icons
 	[Header("Currency Icons"), SerializeField]
-    
+
      private Sprite coinsIcon;
 
 	[SerializeField] private Sprite kappaTokensIcon;
@@ -116,7 +116,7 @@ public class ExchangeScreen : MonoBehaviour
 	[Header("Wanted Currency"), SerializeField]
 
 	#region Wanted Currency
-    
+
      private Image wantedCurrencyIcon;
 
 	[SerializeField] private Text wantedCurrencyText;
@@ -124,7 +124,7 @@ public class ExchangeScreen : MonoBehaviour
 
 	#region Needed Currency Controls
 	[Header("Needed Currency"), SerializeField]
-    
+
      private Image neededCurrencyIcon;
 
 	[SerializeField] private Text neededCurrencyText;

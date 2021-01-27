@@ -411,7 +411,7 @@ MonoBehaviour:
   duration: 0.2
   easingStrategy: 0
   fromColor: {r: 0, g: 0, b: 0, a: 0}
-  toColor: {r: 0, g: 0, b: 0, a: 1}
+  toColor: {r: 0, g: 0, b: 0, a: 0.78431374}
 --- !u!1 &5213003664908475097
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,6 +851,10 @@ MonoBehaviour:
     viewAnimation: {fileID: 5213003664653429463}
   - StartTime: 0.1
     viewAnimation: {fileID: 5213003665613391850}
+  popupBackground: {fileID: 5213003665613391852}
+  closeButton: {fileID: 5213003665059875951}
+  proceedButton: {fileID: 5213003664342048900}
+  sfxAudioSource: {fileID: 0}
 --- !u!1 &5213003665613391841
 GameObject:
   m_ObjectHideFlags: 0

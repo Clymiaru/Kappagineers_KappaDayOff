@@ -7,8 +7,8 @@ public class SettingsScreen : MonoBehaviour
 {
 	[SerializeField] private List<Button> optionButtons = new List<Button>();
 
-	[Header("Sound Options"), SerializeField] 
-    
+	[Header("Sound Options"), SerializeField]
+
      private GameObject soundOptionsPanel;
 
 	[SerializeField] private Slider musicVolumeSlider;
@@ -16,10 +16,10 @@ public class SettingsScreen : MonoBehaviour
 	[SerializeField] private Slider sfxVolumeSlider;
 	[SerializeField] private Text   sfxVolumeLabel;
 
-	[Header("Credits"), SerializeField] 
+	[Header("Credits"), SerializeField]
      private GameObject creditsPanel;
 
-	[Header("Debug Options"), SerializeField] 
+	[Header("Debug Options"), SerializeField]
      private GameObject debugOptionsPanel;
 
 	[SerializeField] private AudioSource tapSFX;
@@ -35,11 +35,11 @@ public class SettingsScreen : MonoBehaviour
 		optionButtons[optionIndex].Select();
 		currentPanelSelected = soundOptionsPanel.gameObject;
 
-		musicVolumeLabel.text   = AudioHandler.Instance.BGMVolume.ToString("F0");
-		musicVolumeSlider.value = AudioHandler.Instance.BGMVolume;
+		musicVolumeLabel.text   = AudioHandler.Instance.MusicVolume.ToString("F0");
+		musicVolumeSlider.value = AudioHandler.Instance.MusicVolume;
 
-		sfxVolumeLabel.text   = AudioHandler.Instance.SFXVolume.ToString("F0");
-		sfxVolumeSlider.value = AudioHandler.Instance.SFXVolume;
+		sfxVolumeLabel.text   = AudioHandler.Instance.SoundVolume.ToString("F0");
+		sfxVolumeSlider.value = AudioHandler.Instance.SoundVolume;
 	}
 
 	private void Update()
@@ -55,7 +55,7 @@ public class SettingsScreen : MonoBehaviour
 	#region Credits
 	public void OnCreditsSelect()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		currentPanelSelected.SetActive(false);
 		currentPanelSelected = creditsPanel.gameObject;
 		currentPanelSelected.SetActive(true);
@@ -65,7 +65,7 @@ public class SettingsScreen : MonoBehaviour
 
 	public void OnExitScreen()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 
 		gameObject.SetActive(false);
 		currentPanelSelected.SetActive(false);
@@ -78,7 +78,7 @@ public class SettingsScreen : MonoBehaviour
 	#region Sound Options
 	public void OnSoundOptionsSelect()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		currentPanelSelected.SetActive(false);
 		currentPanelSelected = soundOptionsPanel.gameObject;
 		currentPanelSelected.SetActive(true);
@@ -88,20 +88,20 @@ public class SettingsScreen : MonoBehaviour
 	public void OnMusicVolumeChange(float value)
 	{
 		musicVolumeLabel.text           = value.ToString("F0");
-		AudioHandler.Instance.BGMVolume = (int) value;
+		AudioHandler.Instance.MusicVolume = (int) value;
 	}
 
 	public void OnSFXVolumeChange(float value)
 	{
 		sfxVolumeLabel.text             = value.ToString("F0");
-		AudioHandler.Instance.SFXVolume = (int) value;
+		AudioHandler.Instance.SoundVolume = (int) value;
 	}
 	#endregion
 
 	#region Debug Options
 	public void OnDebugOptionsSelect()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		currentPanelSelected.SetActive(false);
 		currentPanelSelected = debugOptionsPanel.gameObject;
 		currentPanelSelected.SetActive(true);
@@ -110,34 +110,34 @@ public class SettingsScreen : MonoBehaviour
 
 	public void OnUnlockAllLevels()
 	{
-		AudioHandler.Instance.PlaySFX(successSFX);
+		// AudioHandler.Instance.PlaySound(successSFX);
 	}
 
 	public void OnUnlimitedMoney()
 	{
-		AudioHandler.Instance.PlaySFX(successSFX);
+		// AudioHandler.Instance.PlaySound(successSFX);
 		GameManager.Instance.UnlimitedMoney();
 	}
 
 	public void OnResetPlayerProgress()
 	{
-		AudioHandler.Instance.PlaySFX(successSFX);
+		// AudioHandler.Instance.PlaySound(successSFX);
 		GameManager.Instance.ResetPlayerProgress();
 	}
 
 	public void OnChangeTimeOfDay()
 	{
-		AudioHandler.Instance.PlaySFX(successSFX);
+		// AudioHandler.Instance.PlaySound(successSFX);
 	}
 
 	public void GenerateNotifications()
 	{
-		AudioHandler.Instance.PlaySFX(successSFX);
+		// AudioHandler.Instance.PlaySound(successSFX);
 	}
 
 	public void GenerateNotificationsAtInterval()
 	{
-		AudioHandler.Instance.PlaySFX(successSFX);
+		// AudioHandler.Instance.PlaySound(successSFX);
 	}
 	#endregion
 }

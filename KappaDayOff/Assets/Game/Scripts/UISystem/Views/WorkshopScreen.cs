@@ -43,7 +43,7 @@ public class WorkshopScreen : MonoBehaviour
 
 	public void OnCharacterUpgradesSelect()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 
 		currentPanelSelected.SetActive(false);
 		currentPanelSelected = characterUpgradesPanel.gameObject;
@@ -53,7 +53,7 @@ public class WorkshopScreen : MonoBehaviour
 
 	public void OnWeaponUpgradesSelect()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 
 		currentPanelSelected.SetActive(false);
 		currentPanelSelected = weaponUpgradesPanel.gameObject;
@@ -63,7 +63,7 @@ public class WorkshopScreen : MonoBehaviour
 
 	public void OnExitScreen()
 	{
-		AudioHandler.Instance.PlaySFX(tapSFX);
+		// AudioHandler.Instance.PlaySound(tapSFX);
 		gameObject.SetActive(false);
 	}
 
@@ -85,7 +85,7 @@ public class WorkshopScreen : MonoBehaviour
 		if (playerHP.UpgradeStat(HP, level,
 		                         GameManager.Instance.PlayerCurrency))
 		{
-			AudioHandler.Instance.PlaySFX(successSFX);
+			// AudioHandler.Instance.PlaySound(successSFX);
 
 			UpgradableStats.Instance().SetPlayerHP(HP);
 			UpgradableStats.Instance().upgradePlayerHP();
@@ -122,7 +122,7 @@ public class WorkshopScreen : MonoBehaviour
 
 					UpdateCurrency(level);
 
-					AudioHandler.Instance.PlaySFX(successSFX);
+					// AudioHandler.Instance.PlaySound(successSFX);
 				}
 
 				break;
@@ -138,7 +138,7 @@ public class WorkshopScreen : MonoBehaviour
 
 					UpdateCurrency(level);
 
-					AudioHandler.Instance.PlaySFX(successSFX);
+					// AudioHandler.Instance.PlaySound(successSFX);
 				}
 
 				break;
@@ -154,7 +154,7 @@ public class WorkshopScreen : MonoBehaviour
 
 					UpdateCurrency(level);
 
-					AudioHandler.Instance.PlaySFX(successSFX);
+					// AudioHandler.Instance.PlaySound(successSFX);
 				}
 
 				break;
@@ -170,7 +170,7 @@ public class WorkshopScreen : MonoBehaviour
 
 					UpdateCurrency(level);
 
-					AudioHandler.Instance.PlaySFX(successSFX);
+					// AudioHandler.Instance.PlaySound(successSFX);
 				}
 
 				break;
@@ -186,7 +186,7 @@ public class WorkshopScreen : MonoBehaviour
 
 					UpdateCurrency(level);
 
-					AudioHandler.Instance.PlaySFX(successSFX);
+					// AudioHandler.Instance.PlaySound(successSFX);
 				}
 
 				break;
@@ -202,7 +202,7 @@ public class WorkshopScreen : MonoBehaviour
 
 					UpdateCurrency(level);
 
-					AudioHandler.Instance.PlaySFX(successSFX);
+					// AudioHandler.Instance.PlaySound(successSFX);
 				}
 
 				break;
@@ -218,7 +218,7 @@ public class WorkshopScreen : MonoBehaviour
 
 					UpdateCurrency(level);
 
-					AudioHandler.Instance.PlaySFX(successSFX);
+					// AudioHandler.Instance.PlaySound(successSFX);
 				}
 
 				break;
@@ -234,7 +234,7 @@ public class WorkshopScreen : MonoBehaviour
 
 					UpdateCurrency(level);
 
-					AudioHandler.Instance.PlaySFX(successSFX);
+					// AudioHandler.Instance.PlaySound(successSFX);
 				}
 
 				break;
@@ -250,7 +250,7 @@ public class WorkshopScreen : MonoBehaviour
 
 					UpdateCurrency(level);
 
-					AudioHandler.Instance.PlaySFX(successSFX);
+					// AudioHandler.Instance.PlaySound(successSFX);
 				}
 
 				break;
@@ -304,7 +304,7 @@ public class WorkshopScreen : MonoBehaviour
 		if (amplifiedSpeakersUpgrade.UpgradeStats(power, CD, level, knockback,
 		                                          GameManager.Instance.PlayerCurrency))
 		{
-			AudioHandler.Instance.PlaySFX(successSFX);
+			// AudioHandler.Instance.PlaySound(successSFX);
 
 			GameManager.Instance.AmplifiedSpeakers.PowerLevel++;
 			GameManager.Instance.AmplifiedSpeakers.CooldownLevel++;
@@ -337,7 +337,7 @@ public class WorkshopScreen : MonoBehaviour
 		if (waterBalloonUpgrade.UpgradeStats(power, CD, level, 0,
 		                                     GameManager.Instance.PlayerCurrency))
 		{
-			AudioHandler.Instance.PlaySFX(successSFX);
+			// AudioHandler.Instance.PlaySound(successSFX);
 
 			GameManager.Instance.WaterBalloonLauncher.PowerLevel++;
 			GameManager.Instance.WaterBalloonLauncher.CooldownLevel++;
@@ -399,7 +399,7 @@ public class WorkshopScreen : MonoBehaviour
 		if (staticBombUpgrade.UpgradeStats(power, CD, level, stunDuration,
 		                                   GameManager.Instance.PlayerCurrency))
 		{
-			AudioHandler.Instance.PlaySFX(successSFX);
+			// AudioHandler.Instance.PlaySound(successSFX);
 
 			GameManager.Instance.StaticBomb.PowerLevel++;
 			GameManager.Instance.StaticBomb.CooldownLevel++;
