@@ -8,13 +8,19 @@ public class EnemyShooterBehavior : MonoBehaviour
 	public  float      secondsPerShot = 1.0f;
 	private bool       isCoolingDown;
 	private bool       isVisible;
+	private bool       isStunned;
+	private float      remainingStunDuration = 0;
 
 	private void Update()
 	{
-		if (!isCoolingDown && player != null && isVisible)
+		if (!isCoolingDown && player != null && isVisible && !isStunned)
 		{
 			StartCoroutine(Shoot());
 		}
+
+		remainingStunDuration -= Time.deltaTime;
+		if (remainingStunDuration <= 0)
+			isStunned = false;
 	}
 
 	private void OnBecameInvisible()
@@ -42,4 +48,10 @@ public class EnemyShooterBehavior : MonoBehaviour
 		yield return new WaitForSeconds(secondsPerShot);
 		isCoolingDown = false;
 	}
+
+	public void Stun(float duration)
+    {
+		isStunned = true;
+		remainingStunDuration = duration;
+    }
 }
