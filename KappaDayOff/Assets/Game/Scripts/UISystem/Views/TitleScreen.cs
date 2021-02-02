@@ -7,18 +7,18 @@ public class TitleScreen : View
 	[SerializeField] private Image background;
 	[SerializeField] private ExitGamePopup exitGamePopup;
 
-	private AudioClip tapSFX;
-	private AudioClip cancelSFX;
+	private AudioClip acceptSfx;
+	private AudioClip cancelSfx;
 
 	protected override void OnInitialize()
 	{
 		background.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.TITLE_SCREEN,
-		                                                                 AssetNames.Sprite.BACKGROUND);
+		                                                                 AssetNames.Sprite.TITLE_BACKGROUND);
 
-		tapSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.TITLE_SCREEN,
+		acceptSfx = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
 		                                                AssetNames.SoundClip.ACCEPT);
 
-		cancelSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.TITLE_SCREEN,
+		cancelSfx = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
 		                                                            AssetNames.SoundClip.CANCEL);
 	}
 
@@ -30,14 +30,14 @@ public class TitleScreen : View
 	public void OnStartGame()
 	{
 		Debug.Log("Start game!");
-		AudioHandler.Instance.PlaySound(tapSFX);
+		AudioHandler.Instance.PlaySound(acceptSfx);
 		SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
 	}
 
 	public void OnExitGame()
 	{
 		Debug.Log("Attempting to quit game!");
-		AudioHandler.Instance.PlaySound(cancelSFX);
+		AudioHandler.Instance.PlaySound(cancelSfx);
 		exitGamePopup.Show();
 	}
 }

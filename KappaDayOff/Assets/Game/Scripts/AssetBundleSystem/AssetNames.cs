@@ -1,13 +1,17 @@
 ﻿public static class AssetBundleNames
 {
+	public static string GENERAL = "general";
+
 	public static string TITLE_SCREEN = "title_screen";
+	public static string MAIN_MENU_SCREEN = "main_menu_screen";
 }
 
 public static class AssetNames
 {
 	public static class Sprite
 	{
-		public static string BACKGROUND = "WorkshopBG.png";
+		public static string TITLE_BACKGROUND = "TitleBG.png";
+		public static string WORKSHOP_BACKGROUND = "WorkshopBG.png";
 	}
 
 	public static class SoundClip

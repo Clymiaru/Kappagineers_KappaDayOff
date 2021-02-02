@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using Text = TMPro.TMP_Text;
 
-public class MainMenuScreen : MonoBehaviour
+public class MainMenuScreen : View
 {
 	// TODO: Change background when orientation changes
 
@@ -10,74 +11,90 @@ public class MainMenuScreen : MonoBehaviour
 	[SerializeField] private ExchangeScreen exchangeScreen;
 	[SerializeField] private ExitGamePopup  exitGamePopup;
 
+	[Header("Main Menu Screen Elements")]
+	[SerializeField] private Image background;
+
 	[SerializeField] private Text coinsValueText;
 	[SerializeField] private Text kappaTokensValueText;
 
-	[SerializeField] private AudioSource tapSFX;
-	[SerializeField] private AudioSource successSFX;
+	private AudioClip acceptSFX;
+	private AudioClip cancelSFX;
 
 	private CurrencyData playerCurrency;
 
 	private void Start()
 	{
-		playerCurrency = GameManager.Instance.PlayerCurrency;
+		// playerCurrency = GameManager.Instance.PlayerCurrency;
 
-		coinsValueText.text       = playerCurrency.Coins.ToString();
-		kappaTokensValueText.text = playerCurrency.KappaTokens.ToString();
+		// coinsValueText.text       = playerCurrency.Coins.ToString();
+		// kappaTokensValueText.text = playerCurrency.KappaTokens.ToString();
 	}
+
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			OnExitGame();
-		}
-
-		coinsValueText.text       = playerCurrency.Coins.ToString();
-		kappaTokensValueText.text = playerCurrency.KappaTokens.ToString();
+		// coinsValueText.text       = playerCurrency.Coins.ToString();
+		// kappaTokensValueText.text = playerCurrency.KappaTokens.ToString();
 	}
 
-	public void OnGoToDeparture()
+	protected override void OnInitialize()
 	{
-		// HACK: Skip to level for now
-		// TODO: Go to level selection screen if we have enough time.
+		background.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                                 AssetNames.Sprite.WORKSHOP_BACKGROUND);
 
-		// AudioHandler.Instance.PlaySound(tapSFX);
-		SceneLoader.Instance.LoadScene(SceneNames.Level);
+		acceptSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
+		                                                            AssetNames.SoundClip.ACCEPT);
+
+		cancelSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.TITLE_SCREEN,
+		                                                            AssetNames.SoundClip.CANCEL);
 	}
 
-	public void OnGoToWorkshop()
+	protected override void OnBackPressed()
 	{
-		// AudioHandler.Instance.PlaySound(tapSFX);
-		workshopScreen.gameObject.SetActive(true);
+		OnExitGame();
 	}
 
-	public void OnExchangeCoinsForKappaTokens()
-	{
-		// Get data from game manager
-		// * Player Currency Data
-		// AudioHandler.Instance.PlaySound(tapSFX);
-		exchangeScreen.WantedCurrency = CurrencyType.KAPPA_TOKEN;
-		exchangeScreen.gameObject.SetActive(true);
-	}
+	// public void OnGoToDeparture()
+	// {
+	// 	// HACK: Skip to level for now
+	// 	// TODO: Go to level selection screen if we have enough time.
+	//
+	// 	// AudioHandler.Instance.PlaySound(tapSFX);
+	// 	SceneLoader.Instance.LoadScene(SceneNames.Level);
+	// }
+	//
+	// public void OnGoToWorkshop()
+	// {
+	// 	// AudioHandler.Instance.PlaySound(tapSFX);
+	// 	workshopScreen.gameObject.SetActive(true);
+	// }
+	//
+	// public void OnExchangeCoinsForKappaTokens()
+	// {
+	// 	// Get data from game manager
+	// 	// * Player Currency Data
+	// 	// AudioHandler.Instance.PlaySound(tapSFX);
+	// 	exchangeScreen.WantedCurrency = CurrencyType.KAPPA_TOKEN;
+	// 	exchangeScreen.gameObject.SetActive(true);
+	// }
+	//
+	// public void OnExchangeKappaTokensForCoins()
+	// {
+	// 	// Get data from game manager
+	// 	// * Player Currency Data
+	// 	// AudioHandler.Instance.PlaySound(tapSFX);
+	// 	exchangeScreen.WantedCurrency = CurrencyType.COIN;
+	// 	exchangeScreen.gameObject.SetActive(true);
+	// }
+	//
+	// public void OnOpenSettings()
+	// {
+	// 	// AudioHandler.Instance.PlaySound(tapSFX);
+	// 	// settingsScreen.gameObject.SetActive(true);
+	// }
 
-	public void OnExchangeKappaTokensForCoins()
+	private void OnExitGame()
 	{
-		// Get data from game manager
-		// * Player Currency Data
-		// AudioHandler.Instance.PlaySound(tapSFX);
-		exchangeScreen.WantedCurrency = CurrencyType.COIN;
-		exchangeScreen.gameObject.SetActive(true);
-	}
-
-	public void OnOpenSettings()
-	{
-		// AudioHandler.Instance.PlaySound(tapSFX);
-		settingsScreen.gameObject.SetActive(true);
-	}
-
-	public void OnExitGame()
-	{
-		exitGamePopup.gameObject.SetActive(true);
+		exitGamePopup.Show();
 	}
 }

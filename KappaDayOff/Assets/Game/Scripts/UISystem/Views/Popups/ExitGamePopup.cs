@@ -3,22 +3,22 @@ using UnityEngine.UI;
 
 public class ExitGamePopup : OneChoicePopup
 {
-	private AudioClip tapSFX;
-	private AudioClip cancelSFX;
+	private AudioClip acceptSfx;
+	private AudioClip cancelSfx;
 
 	protected override void OnInitialize()
 	{
-		tapSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.TITLE_SCREEN,
+		acceptSfx = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
 		                                                         AssetNames.SoundClip.ACCEPT);
 
-		cancelSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.TITLE_SCREEN,
+		cancelSfx = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
 		                                                            AssetNames.SoundClip.CANCEL);
 	}
 
 	public override void OnProceed()
 	{
 		// GameManager.Instance.SavePlayerData();
-		AudioHandler.Instance.PlaySound(tapSFX);
+		AudioHandler.Instance.PlaySound(acceptSfx);
 		Debug.Log("Exit Game Proceed");
 		OnExitEnd = Application.Quit;
 		Hide();
@@ -26,7 +26,7 @@ public class ExitGamePopup : OneChoicePopup
 
 	public override void OnCancel()
 	{
-		AudioHandler.Instance.PlaySound(cancelSFX);
+		AudioHandler.Instance.PlaySound(cancelSfx);
 		Debug.Log("Exit Game Cancelled");
 		Hide();
 	}
