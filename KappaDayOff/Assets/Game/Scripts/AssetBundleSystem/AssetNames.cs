@@ -19,4 +19,9 @@ public static class AssetNames
 		public static string ACCEPT = "se_ok00.wav";
 		public static string CANCEL = "se_cancel00.wav";
 	}
+
+	public static class Icon
+	{
+		public static string PLUS = "Icon_Plus.png";
+	}
 }

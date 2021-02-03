@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2765256715
+CRC: 2388203507
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a9a9a2b80d20ccbadb74bb388be5c401
+    Hash: 3ce723ae9e41fe90d9605407c6ad7349
   TypeTreeHash:
     serializedVersion: 2
     Hash: c90fc19e2679e5295d10bd00f33cb4c3
@@ -15,4 +15,5 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Bundles/MainMenuScreen/WorkshopBG.png
+- Assets/Bundles/MainMenuScreen/Icon_Plus.png
 Dependencies: []

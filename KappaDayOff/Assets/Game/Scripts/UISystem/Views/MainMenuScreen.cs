@@ -14,8 +14,11 @@ public class MainMenuScreen : View
 	[Header("Main Menu Screen Elements")]
 	[SerializeField] private Image background;
 
+	[SerializeField] private Image coinsExchangeIcon;
 	[SerializeField] private Text coinsValueText;
-	[SerializeField] private Text kappaTokensValueText;
+
+	[SerializeField] private Image kappaTokensExchangeIcon;
+	[SerializeField] private Text  kappaTokensValueText;
 
 	private AudioClip acceptSFX;
 	private AudioClip cancelSFX;
@@ -41,6 +44,12 @@ public class MainMenuScreen : View
 	{
 		background.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
 		                                                                 AssetNames.Sprite.WORKSHOP_BACKGROUND);
+
+		coinsExchangeIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                                        AssetNames.Icon.PLUS);
+
+		kappaTokensExchangeIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                                              AssetNames.Icon.PLUS);
 
 		acceptSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
 		                                                            AssetNames.SoundClip.ACCEPT);
