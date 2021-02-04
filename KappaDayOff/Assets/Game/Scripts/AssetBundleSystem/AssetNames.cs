@@ -22,6 +22,10 @@ public static class AssetNames
 
 	public static class Icon
 	{
-		public static string PLUS = "Icon_Plus.png";
+		public static string PLUS     = "Icon_Plus.png";
+		public static string WATCH_AD = "Border.png";
+		public static string SETTINGS = "Border.png";
+		public static string DEPART   = "Border.png";
+		public static string UPGRADES = "Border.png";
 	}
 }

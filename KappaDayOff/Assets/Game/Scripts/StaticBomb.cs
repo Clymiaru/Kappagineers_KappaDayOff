@@ -2,9 +2,9 @@
 {
 	private void Awake()
 	{
-		damage     = GameManager.Instance.StaticBomb.Power;
-		damageType = EnemyType.Machine;
-		type       = BulletType.StaticBomb;
+		// damage     = GameManager.Instance.StaticBomb.Power;
+		// damageType = EnemyType.Machine;
+		// type       = BulletType.StaticBomb;
 	}
 
 

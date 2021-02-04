@@ -10,7 +10,7 @@ public class BarrierBehavior : MonoBehaviour
 
 	private void Awake()
 	{
-		cooldown = GameManager.Instance.PlayerCharacter.BarrierCooldownTime;
+		// cooldown = GameManager.Instance.PlayerCharacter.BarrierCooldownTime;
 	}
 
 	public void ActivateBarrier()

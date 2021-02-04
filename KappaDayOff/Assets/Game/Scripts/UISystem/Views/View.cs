@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-[Serializable]
+[System.Serializable]
 public struct TransitionInfo
 {
 	public float      StartTime;
@@ -21,11 +20,11 @@ public class View : MonoBehaviour
 	private Sequence exitSequence;
 
 	protected bool   isFocused;
-	protected Action OnEnterEnd;
+	protected System.Action OnEnterEnd;
 
-	protected Action OnEnterStart;
-	protected Action OnExitEnd;
-	protected Action OnExitStart;
+	protected System.Action OnEnterStart;
+	protected System.Action OnExitEnd;
+	protected System.Action OnExitStart;
 
 	protected ViewHandler viewHandler;
 

@@ -7,4 +7,9 @@
 		public const string ON_EXIT_START  = "UI_ON_EXIT_START";
 		public const string ON_EXIT_END    = "UI_ON_EXIT_END";
 	}
+
+	public class Currency
+	{
+		public const string ON_SET_CURRENCY = "CURRENCY_ON_SET_CURRENCY";
+	}
 }

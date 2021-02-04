@@ -8,10 +8,10 @@ public class AmplifiedSpeakers : AlliedBullets
 
 	private void Awake()
 	{
-		damage            = GameManager.Instance.AmplifiedSpeakers.Power;
-		knockbackDistance = GameManager.Instance.AmplifiedSpeakers.PushDistance;
-		damageType        = EnemyType.Fairy;
-		type              = BulletType.AmplifiedWave;
+		// damage            = GameManager.Instance.AmplifiedSpeakers.Power;
+		// knockbackDistance = GameManager.Instance.AmplifiedSpeakers.PushDistance;
+		// damageType        = EnemyType.Fairy;
+		// type              = BulletType.AmplifiedWave;
 	}
 
 

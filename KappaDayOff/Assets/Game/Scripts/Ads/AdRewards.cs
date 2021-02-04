@@ -25,7 +25,7 @@ public class AdRewards : MonoBehaviour
                 case UnityEngine.Advertisements.ShowResult.Skipped:
                     break;
                 case UnityEngine.Advertisements.ShowResult.Finished:
-                    GameManager.Instance.PlayerCurrency.KappaTokens += rewardForWatchingAds;
+                    // GameManager.Instance.PlayerCurrency.KappaTokens += rewardForWatchingAds;
                     break;
             }
         }

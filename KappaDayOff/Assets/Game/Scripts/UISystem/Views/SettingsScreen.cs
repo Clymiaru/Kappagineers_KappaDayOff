@@ -3,31 +3,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using Text = TMPro.TMP_Text;
 
-public class SettingsScreen : MonoBehaviour
+public class SettingsScreen : View
 {
-	[SerializeField] private List<Button> optionButtons = new List<Button>();
-
-	[Header("Sound Options"), SerializeField]
-
-     private GameObject soundOptionsPanel;
-
-	[SerializeField] private Slider musicVolumeSlider;
-	[SerializeField] private Text   musicVolumeLabel;
-	[SerializeField] private Slider sfxVolumeSlider;
-	[SerializeField] private Text   sfxVolumeLabel;
-
-	[Header("Credits"), SerializeField]
-     private GameObject creditsPanel;
-
-	[Header("Debug Options"), SerializeField]
-     private GameObject debugOptionsPanel;
-
-	[SerializeField] private AudioSource tapSFX;
-	[SerializeField] private AudioSource successSFX;
+	private AudioSource acceptSFX;
+	private AudioClip   cancelSFX;
 
 	private GameObject currentPanelSelected;
 
 	private int optionIndex; // For now, auto-select the first option
+
+	protected override void OnInitialize()
+	{
+	}
+
+	protected override void OnBackPressed()
+	{
+	}
 
 	// private void Start()
 	// {
@@ -140,4 +131,5 @@ public class SettingsScreen : MonoBehaviour
 	// 	// AudioHandler.Instance.PlaySound(successSFX);
 	// }
 	// #endregion
+
 }
