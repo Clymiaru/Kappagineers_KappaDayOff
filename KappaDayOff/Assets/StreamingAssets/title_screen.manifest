@@ -1,22 +1,18 @@
 ManifestFileVersion: 0
-CRC: 296793268
+CRC: 1375663414
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7880016c15ccf96231a4c92bbcbe86eb
+    Hash: 2409e277d039038cb90b3433c23f8ecc
   TypeTreeHash:
     serializedVersion: 2
-    Hash: cdfaae4a706bac4ae9233855722107e4
+    Hash: c90fc19e2679e5295d10bd00f33cb4c3
 HashAppended: 0
 ClassTypes:
 - Class: 28
   Script: {instanceID: 0}
-- Class: 83
-  Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Bundles/SFX/se_ok00.wav
-- Assets/Bundles/SFX/se_cancel00.wav
-- Assets/Game/Placeholder/WorkshopBG.png
+- Assets/Bundles/TitleScreen/TitleBG.png
 Dependencies: []

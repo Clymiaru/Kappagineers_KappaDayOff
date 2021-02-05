@@ -1,83 +1,137 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using Text = TMPro.TMP_Text;
 
-public class MainMenuScreen : MonoBehaviour
+public class MainMenuScreen : View
 {
 	// TODO: Change background when orientation changes
 
+    [Header("Screens")]
 	[SerializeField] private SettingsScreen settingsScreen;
 	[SerializeField] private WorkshopScreen workshopScreen;
 	[SerializeField] private ExchangeScreen exchangeScreen;
 	[SerializeField] private ExitGamePopup  exitGamePopup;
 
-	[SerializeField] private Text coinsValueText;
-	[SerializeField] private Text kappaTokensValueText;
+	[Header("Main Menu Screen Elements")]
+	[SerializeField] private Image background;
 
-	[SerializeField] private AudioSource tapSFX;
-	[SerializeField] private AudioSource successSFX;
+	[SerializeField] private Image watchAdButtonIcon;
+	[SerializeField] private Image settingsButtonIcon;
+	[SerializeField] private Image departButtonIcon;
+	[SerializeField] private Image upgradesButtonIcon;
 
-	private CurrencyData playerCurrency;
+	[SerializeField] private Image coinsExchangeIcon;
+	[SerializeField] private Image kappaTokensExchangeIcon;
 
-	private void Start()
+	private AudioClip acceptSFX;
+	private AudioClip cancelSFX;
+
+	protected override void OnInitialize()
 	{
-		playerCurrency = GameManager.Instance.PlayerCurrency;
+		background.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                                 AssetNames.Sprite.WORKSHOP_BACKGROUND);
 
-		coinsValueText.text       = playerCurrency.Coins.ToString();
-		kappaTokensValueText.text = playerCurrency.KappaTokens.ToString();
+		coinsExchangeIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                                        AssetNames.Icon.PLUS);
+
+		kappaTokensExchangeIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                                              AssetNames.Icon.PLUS);
+
+		watchAdButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                                        AssetNames.Icon.WATCH_AD);
+
+		settingsButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                                         AssetNames.Icon.SETTINGS);
+
+		departButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                                       AssetNames.Icon.DEPART);
+
+		upgradesButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                                         AssetNames.Icon.UPGRADES);
+
+		acceptSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
+	                                                            AssetNames.SoundClip.ACCEPT);
+
+		cancelSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
+		                                                            AssetNames.SoundClip.CANCEL);
+
+		OnEnterStart += () =>
+		              {
+			              SaveDataManager.Instance.Load();
+
+			              Parameters parameters = new Parameters();
+			              parameters.PutExtra("KappaTokens", SaveDataManager.Instance.PlayerSaveData.PlayerCurrency.KappaTokens);
+			              parameters.PutExtra("Coins", SaveDataManager.Instance.PlayerSaveData.PlayerCurrency.Coins);
+
+			              EventBroadcaster.Instance.PostEvent(EventNames.Currency.ON_SET_CURRENCY,parameters);
+		              };
 	}
 
-	private void Update()
+	protected override void OnBackPressed()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			OnExitGame();
-		}
-
-		coinsValueText.text       = playerCurrency.Coins.ToString();
-		kappaTokensValueText.text = playerCurrency.KappaTokens.ToString();
+		OnExitGame();
 	}
 
-	public void OnGoToDeparture()
+	// public void OnGoToDeparture()
+	// {
+	// 	// HACK: Skip to level for now
+	// 	// TODO: Go to level selection screen if we have enough time.
+	//
+	// 	// AudioHandler.Instance.PlaySound(tapSFX);
+	// 	SceneLoader.Instance.LoadScene(SceneNames.Level);
+	// }
+	//
+	// public void OnGoToWorkshop()
+	// {
+	// 	// AudioHandler.Instance.PlaySound(tapSFX);
+	// 	workshopScreen.gameObject.SetActive(true);
+	// }
+	//
+	// public void OnExchangeCoinsForKappaTokens()
+	// {
+	// 	// Get data from game manager
+	// 	// * Player Currency Data
+	// 	// AudioHandler.Instance.PlaySound(tapSFX);
+	// 	exchangeScreen.WantedCurrency = CurrencyType.KAPPA_TOKEN;
+	// 	exchangeScreen.gameObject.SetActive(true);
+	// }
+	//
+	// public void OnExchangeKappaTokensForCoins()
+	// {
+	// 	// Get data from game manager
+	// 	// * Player Currency Data
+	// 	// AudioHandler.Instance.PlaySound(tapSFX);
+	// 	exchangeScreen.WantedCurrency = CurrencyType.COIN;
+	// 	exchangeScreen.gameObject.SetActive(true);
+	// }
+	//
+
+	public void OnDepart()
 	{
-		// HACK: Skip to level for now
-		// TODO: Go to level selection screen if we have enough time.
-
-		// AudioHandler.Instance.PlaySound(tapSFX);
-		SceneLoader.Instance.LoadScene(SceneNames.Level);
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		// settingsScreen.Show();
 	}
-
-	public void OnGoToWorkshop()
-	{
-		// AudioHandler.Instance.PlaySound(tapSFX);
-		workshopScreen.gameObject.SetActive(true);
-	}
-
-	public void OnExchangeCoinsForKappaTokens()
-	{
-		// Get data from game manager
-		// * Player Currency Data
-		// AudioHandler.Instance.PlaySound(tapSFX);
-		exchangeScreen.WantedCurrency = CurrencyType.KAPPA_TOKEN;
-		exchangeScreen.gameObject.SetActive(true);
-	}
-
-	public void OnExchangeKappaTokensForCoins()
-	{
-		// Get data from game manager
-		// * Player Currency Data
-		// AudioHandler.Instance.PlaySound(tapSFX);
-		exchangeScreen.WantedCurrency = CurrencyType.COIN;
-		exchangeScreen.gameObject.SetActive(true);
-	}
-
 	public void OnOpenSettings()
 	{
-		// AudioHandler.Instance.PlaySound(tapSFX);
-		settingsScreen.gameObject.SetActive(true);
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		Hide();
+		// settingsScreen.Show();
 	}
 
-	public void OnExitGame()
+	public void OnWatchAds()
 	{
-		exitGamePopup.gameObject.SetActive(true);
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		// settingsScreen.Show();
+	}
+	public void OnOpenUpgrades()
+	{
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		Hide();
+		// settingsScreen.Show();
+	}
+
+	private void OnExitGame()
+	{
+		exitGamePopup.Show();
 	}
 }

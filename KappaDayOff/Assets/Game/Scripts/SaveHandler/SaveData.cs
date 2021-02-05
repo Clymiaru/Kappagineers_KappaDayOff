@@ -4,7 +4,6 @@
 public class SaveData
 {
 	public CurrencyData PlayerCurrency = new CurrencyData();
-
 	public CharacterData PlayerCharacter = new CharacterData();
 
 	public WaterBalloonLauncherData WaterBalloonLauncher = new WaterBalloonLauncherData();
@@ -15,8 +14,7 @@ public class SaveData
 
 	public SaveData()
 	{
-		PlayerCurrency.Coins       = 1000;
-		PlayerCurrency.KappaTokens = 3;
+		PlayerCurrency = new CurrencyData();
 
 		PlayerCharacter.MaxHP   = 50;
 		PlayerCharacter.HPLevel = 1;

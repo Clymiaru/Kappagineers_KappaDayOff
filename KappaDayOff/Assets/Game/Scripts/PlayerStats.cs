@@ -9,7 +9,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
-        HP = GameManager.Instance.PlayerCharacter.MaxHP;
+        // HP = GameManager.Instance.PlayerCharacter.MaxHP;
     }
 
     public void TakeDamage(int damage)

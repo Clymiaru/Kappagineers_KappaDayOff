@@ -24,9 +24,9 @@ public class ShooterBehavior : MonoBehaviour
 
 	private void Awake()
 	{
-		speakerCD    = GameManager.Instance.AmplifiedSpeakers.CooldownTime;
-		balloonCD    = GameManager.Instance.WaterBalloonLauncher.CooldownTime;
-		staticBombCD = GameManager.Instance.StaticBomb.CooldownTime;
+		// speakerCD    = GameManager.Instance.AmplifiedSpeakers.CooldownTime;
+		// balloonCD    = GameManager.Instance.WaterBalloonLauncher.CooldownTime;
+		// staticBombCD = GameManager.Instance.StaticBomb.CooldownTime;
 	}
 
 	/*public void SwitchGunLeft()

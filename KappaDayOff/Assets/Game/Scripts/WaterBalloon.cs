@@ -7,10 +7,10 @@ public class WaterBalloon : AlliedBullets
 
 	private void Awake()
 	{
-		damage     = GameManager.Instance.WaterBalloonLauncher.Power;
-		AoEDamage  = damage;
-		damageType = EnemyType.Youkai;
-		type       = BulletType.WaterBalloon;
+		// damage     = GameManager.Instance.WaterBalloonLauncher.Power;
+		// AoEDamage  = damage;
+		// damageType = EnemyType.Youkai;
+		// type       = BulletType.WaterBalloon;
 	}
 
 	protected override void activateEffect()
