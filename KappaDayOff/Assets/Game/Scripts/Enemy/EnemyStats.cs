@@ -9,8 +9,8 @@ public enum EnemyType
 
 public class EnemyStats : MonoBehaviour
 {
-	[SerializeField] private EnemyType type = EnemyType.Youkai;
-	private                  int       HP   = 10;
+	[SerializeField] protected EnemyType type = EnemyType.Youkai;
+	protected                  int       HP   = 10;
 
 	public void TakeDamage(int damage, EnemyType damageType)
 	{

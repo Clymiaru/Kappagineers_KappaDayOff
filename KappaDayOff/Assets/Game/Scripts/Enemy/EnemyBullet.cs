@@ -7,10 +7,11 @@ public class EnemyBullet : BulletBehavior
 	public EnemyBullet()
 	{
 		speed = 0.05f;
+		currentSpeed = speed;
 		type  = BulletType.EnemyBullet;
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	protected void OnCollisionEnter2D(Collision2D collision)
 	{
 		var player = collision.gameObject.GetComponent<PlayerStats>();
 		if (player != null)

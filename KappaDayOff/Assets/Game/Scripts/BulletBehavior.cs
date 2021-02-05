@@ -7,19 +7,23 @@ public class BulletBehavior : MonoBehaviour
 		AmplifiedWave,
 		StaticBomb,
 		WaterBalloon,
-		EnemyBullet
+		EnemyBullet,
+		Boss2Bullet
 	}
 
 	protected int        damage = 10;
 	protected Vector3    flightDirection;
 	protected BulletPool objectPool;
 	protected float      speed = 0.25f;
+	protected float		 acceleration = 0;
+	protected float		 currentSpeed;
 
 	protected BulletType type;
 
-	private void Update()
+    protected void Update()
 	{
-		gameObject.transform.position += speed * flightDirection;
+		gameObject.transform.position += currentSpeed * flightDirection;
+		currentSpeed += acceleration * Time.deltaTime;
 	}
 
 	private void OnDisable()
@@ -38,12 +42,17 @@ public class BulletBehavior : MonoBehaviour
 			case BulletType.EnemyBullet:
 				objectPool.ReturnEnemyBullet(gameObject);
 				break;
+			case BulletType.Boss2Bullet:
+				objectPool.ReturnBoss2Bullet(gameObject);
+				break;
 		}
 	}
 
 	private void OnBecameInvisible()
 	{
 		gameObject.SetActive(false);
+		currentSpeed = speed;
+		acceleration = 0;
 	}
 
 	public void SetBulletDestination(Vector3 target)
@@ -51,8 +60,18 @@ public class BulletBehavior : MonoBehaviour
 		flightDirection = (target - gameObject.transform.position).normalized;
 	}
 
+	public void SetBulletSpeed(float speed)
+    {
+		currentSpeed = speed;
+    }
+
 	public void SetBulletPool(BulletPool pool)
 	{
 		objectPool = pool;
 	}
+
+	public void setAcceleration(float accel)
+    {
+		acceleration = accel;
+    }
 }

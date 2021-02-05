@@ -4,9 +4,10 @@ public abstract class AlliedBullets : BulletBehavior
 {
 	protected EnemyType damageType;
 
-	private void Awake()
+	protected void Awake()
 	{
-		speed = 0.5f;
+		speed = 0.25f;
+		currentSpeed = speed;
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)

@@ -56,7 +56,8 @@ public class GestureManager : MonoBehaviour
 				{
 					if (lastTapTime <= _doubleTapProperty.MaxTapTimeDistance)
 					{
-						FireDoubleTapEvent();
+						if (startPoint.x < Screen.width - 640 || startPoint.y > 230)
+							FireDoubleTapEvent();
 					}
 					else
 					{
