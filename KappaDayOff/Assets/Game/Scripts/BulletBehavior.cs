@@ -15,12 +15,14 @@ public class BulletBehavior : MonoBehaviour
 	protected Vector3    flightDirection;
 	protected BulletPool objectPool;
 	protected float      speed = 0.25f;
+	protected float		 acceleration = 0;
 
 	protected BulletType type;
 
 	protected void Update()
 	{
 		gameObject.transform.position += speed * flightDirection;
+		speed += acceleration * Time.deltaTime;
 	}
 
 	private void OnDisable()
@@ -48,6 +50,8 @@ public class BulletBehavior : MonoBehaviour
 	private void OnBecameInvisible()
 	{
 		gameObject.SetActive(false);
+		speed = 0.25f;
+		acceleration = 0;
 	}
 
 	public void SetBulletDestination(Vector3 target)
@@ -64,4 +68,9 @@ public class BulletBehavior : MonoBehaviour
 	{
 		objectPool = pool;
 	}
+
+	public void setAcceleration(float accel)
+    {
+		acceleration = accel;
+    }
 }
