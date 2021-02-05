@@ -30,6 +30,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
     {
         Advertisement.AddListener(this);
         Advertisement.Initialize(GameID, true);
+        ShowBannerAd();
     }
 
     public void ShowInterstitialAd()
@@ -40,6 +41,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 
     public void ShowBannerAd()
     {
+        Debug.Log("Rest");
         StartCoroutine(ShowBannerAd_Routine());
     }
 

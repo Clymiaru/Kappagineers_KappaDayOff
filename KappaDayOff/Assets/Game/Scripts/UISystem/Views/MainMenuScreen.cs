@@ -33,6 +33,8 @@ public class MainMenuScreen : View
 	private AudioClip acceptSFX;
 	private AudioClip cancelSFX;
 
+	private AudioClip bgm;
+
 	protected override void OnInitialize()
 	{
 		background.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
@@ -74,16 +76,6 @@ public class MainMenuScreen : View
 		cancelSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
 		                                                            AssetNames.SoundClip.CANCEL);
 
-		OnEnterStart += () =>
-		              {
-			              SaveDataManager.Instance.Load();
-
-			              Parameters parameters = new Parameters();
-			              parameters.PutExtra("KappaTokens", SaveDataManager.Instance.PlayerSaveData.PlayerCurrency.KappaTokens);
-			              parameters.PutExtra("Coins", SaveDataManager.Instance.PlayerSaveData.PlayerCurrency.Coins);
-
-			              EventBroadcaster.Instance.PostEvent(EventNames.Currency.ON_SET_CURRENCY,parameters);
-		              };
 	}
 
 	protected override void OnBackPressed()

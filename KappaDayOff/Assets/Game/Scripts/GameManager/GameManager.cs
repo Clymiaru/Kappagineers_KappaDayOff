@@ -2,8 +2,6 @@
 
 public class GameManager : MonoBehaviour
 {
-	private const string PlayerSaveFileName = "player";
-
 	public static GameManager Instance { get; private set; }
 
 	public bool IsPaused { get; } = false;
@@ -12,6 +10,23 @@ public class GameManager : MonoBehaviour
 	{
 		Instance = this;
 	}
+
+	private void Start()
+	{
+		SaveDataManager.Instance.Load();
+
+		Parameters parameters = new Parameters();
+		parameters.PutExtra("KappaTokens", SaveDataManager.Instance.PlayerSaveData.PlayerCurrency.KappaTokens);
+		parameters.PutExtra("Coins", SaveDataManager.Instance.PlayerSaveData.PlayerCurrency.Coins);
+
+		EventBroadcaster.Instance.PostEvent(EventNames.Currency.ON_SET_CURRENCY,parameters);
+	}
+
+	private void Update()
+	{
+
+	}
+
 
 	// private void Start()
 	// {
