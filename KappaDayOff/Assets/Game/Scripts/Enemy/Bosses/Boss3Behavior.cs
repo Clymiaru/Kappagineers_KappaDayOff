@@ -33,19 +33,19 @@ public class Boss3Behavior : MonoBehaviour
 		isCoolingDown = true;
 
 		int RNG = Random.Range(0, 3);
-		StartCoroutine(Pattern3());
-		/*switch (RNG)
+
+		switch (RNG)
 		{
 			case 0:
-				StartCoroutine(Pattern1(180f));
+				StartCoroutine(Pattern1());
 				break;
 			case 1:
-				StartCoroutine(Pattern1(360f));
-				break;
-			case 2:
 				StartCoroutine(Pattern2());
 				break;
-		}*/
+			case 2:
+				StartCoroutine(Pattern3());
+				break;
+		}
 
 		yield return new WaitForSeconds(secondsPerPattern);
 		isCoolingDown = false;

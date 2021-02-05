@@ -32,7 +32,7 @@ public class Boss2Behavior : MonoBehaviour
 	{
 		isCoolingDown = true;
 
-		int RNG = Random.Range(0, 2);
+		int RNG = Random.Range(0, 3);
 
 		switch (RNG)
 		{
@@ -41,6 +41,9 @@ public class Boss2Behavior : MonoBehaviour
 				break;
 			case 1:
 				StartCoroutine(Pattern2());
+				break;
+			case 2:
+				StartCoroutine(Pattern3());
 				break;
 		}
 
@@ -105,6 +108,27 @@ public class Boss2Behavior : MonoBehaviour
 			yield return new WaitForSeconds(secondsPerShot * 3);
 
 			numberOfWavesLeft--;
+		}
+	}
+
+	private IEnumerator Pattern3()
+	{
+		int bulletsForPattern = 20;
+		float secondsPerShot = 0.5f;
+
+		for (int i = 0; i < bulletsForPattern; i++)
+		{
+			GameObject newShot = objectPool.GetEnemyBullet();
+			newShot.transform.position = gameObject.transform.position + Vector3.up * (5 - 10 * Random.value);
+			var shotBehavior = newShot.GetComponent<EnemyBullet>();
+			if (shotBehavior != null)
+			{
+				shotBehavior.SetBulletDestination(player.transform.position);
+				shotBehavior.SetBulletSpeed(0.05f);
+				shotBehavior.setAcceleration(0.02f);
+			}
+
+			yield return new WaitForSeconds(secondsPerShot);
 		}
 	}
 }
