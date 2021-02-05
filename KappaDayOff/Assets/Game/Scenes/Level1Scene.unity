@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -662,6 +662,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 14
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &91206775
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,6 +894,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 26
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &118766932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1051,6 +1053,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 65
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &160616197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,6 +1548,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 14
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &229079635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,6 +2476,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 3
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &294304175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2930,12 +2935,12 @@ PrefabInstance:
     - target: {fileID: 7020663803349145588, guid: aec9ad04b5cdc3d41b044f7c48a27230,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7020663803349145588, guid: aec9ad04b5cdc3d41b044f7c48a27230,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9044320895386147463, guid: aec9ad04b5cdc3d41b044f7c48a27230,
         type: 3}
@@ -3404,6 +3409,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 32
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &360514410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3973,6 +3979,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 26
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &396789696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4131,6 +4138,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 150
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &404031259
 GameObject:
   m_ObjectHideFlags: 0
@@ -4803,6 +4811,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 55
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &471597479
 GameObject:
   m_ObjectHideFlags: 0
@@ -5296,6 +5305,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 8
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &508005048
 GameObject:
   m_ObjectHideFlags: 0
@@ -5552,6 +5562,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 165
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &513059390
 GameObject:
   m_ObjectHideFlags: 0
@@ -5964,6 +5975,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 135
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &543526288
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7265,6 +7277,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 165
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &661815216
 GameObject:
   m_ObjectHideFlags: 0
@@ -7427,6 +7440,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 20
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &671806528 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6526324371865629900, guid: aec9ad04b5cdc3d41b044f7c48a27230,
@@ -7455,6 +7469,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 26
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &685075922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8125,6 +8140,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 3
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &735569161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8797,6 +8813,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 150
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &801403835
 GameObject:
   m_ObjectHideFlags: 0
@@ -9662,6 +9679,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 3
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &892759260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9820,6 +9838,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 120
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &894000503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9978,6 +9997,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 135
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &909185378
 GameObject:
   m_ObjectHideFlags: 0
@@ -10415,6 +10435,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 80
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &953590527
 GameObject:
   m_ObjectHideFlags: 0
@@ -10783,6 +10804,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 165
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &964705733 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6526324371865629900, guid: aec9ad04b5cdc3d41b044f7c48a27230,
@@ -10811,6 +10833,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 32
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &973664130
 GameObject:
   m_ObjectHideFlags: 0
@@ -11345,6 +11368,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 165
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1040562341
 GameObject:
   m_ObjectHideFlags: 0
@@ -11487,6 +11511,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 8
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1080006861
 GameObject:
   m_ObjectHideFlags: 0
@@ -12820,6 +12845,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 150
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1170286710
 GameObject:
   m_ObjectHideFlags: 0
@@ -13365,6 +13391,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 65
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1225883423
 GameObject:
   m_ObjectHideFlags: 0
@@ -13726,6 +13753,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 120
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1232344491
 GameObject:
   m_ObjectHideFlags: 0
@@ -14113,6 +14141,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 55
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1256399161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14271,6 +14300,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 120
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1259016878 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6526324371865629900, guid: aec9ad04b5cdc3d41b044f7c48a27230,
@@ -14299,6 +14329,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 20
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1275064154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14457,6 +14488,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 14
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1279668693
 GameObject:
   m_ObjectHideFlags: 0
@@ -14874,6 +14906,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 80
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1318361350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15032,6 +15065,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 150
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1322959327
 GameObject:
   m_ObjectHideFlags: 0
@@ -15292,6 +15326,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 65
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1350554051
 GameObject:
   m_ObjectHideFlags: 0
@@ -15552,6 +15587,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 20
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1377691841
 GameObject:
   m_ObjectHideFlags: 0
@@ -15611,6 +15647,7 @@ MonoBehaviour:
   - 50
   - 130
   - 10
+  TargetToKillToProceed: {fileID: 0}
 --- !u!114 &1377691844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16118,6 +16155,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 120
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1430995220
 GameObject:
   m_ObjectHideFlags: 0
@@ -16364,6 +16402,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 135
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1460697672 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6526324371865629900, guid: aec9ad04b5cdc3d41b044f7c48a27230,
@@ -16392,6 +16431,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 14
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1467270538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16550,6 +16590,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 80
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1491193469
 GameObject:
   m_ObjectHideFlags: 0
@@ -17123,6 +17164,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 32
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1576121563
 GameObject:
   m_ObjectHideFlags: 0
@@ -17833,6 +17875,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 26
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1698284317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18576,6 +18619,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 32
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1779617030
 GameObject:
   m_ObjectHideFlags: 0
@@ -18668,6 +18712,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 20
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1816404175
 GameObject:
   m_ObjectHideFlags: 0
@@ -19112,6 +19157,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 3
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1914361536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19524,6 +19570,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 80
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1976146368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19682,6 +19729,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 80
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1984209812 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6526324371865629900, guid: aec9ad04b5cdc3d41b044f7c48a27230,
@@ -19710,6 +19758,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 8
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &2019954763
 GameObject:
   m_ObjectHideFlags: 0
@@ -20393,6 +20442,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 80
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &2068004479
 GameObject:
   m_ObjectHideFlags: 0
@@ -20803,6 +20853,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 135
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &2103161608
 GameObject:
   m_ObjectHideFlags: 0
@@ -21090,6 +21141,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 55
   - 5
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &2139677158 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6526324371865629900, guid: aec9ad04b5cdc3d41b044f7c48a27230,
@@ -21118,6 +21170,7 @@ MonoBehaviour:
   durationGoingToEachPoint:
   - 8
   - 20
+  TargetToKillToProceed: {fileID: 0}
 --- !u!222 &7568074390509522849
 CanvasRenderer:
   m_ObjectHideFlags: 0

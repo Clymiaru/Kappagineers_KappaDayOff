@@ -11,6 +11,7 @@ public class Boss2Bullet : EnemyBullet
     public Boss2Bullet()
     {
         speed = 0.05f;
+        currentSpeed = speed;
         type = BulletType.Boss2Bullet;
     }
 

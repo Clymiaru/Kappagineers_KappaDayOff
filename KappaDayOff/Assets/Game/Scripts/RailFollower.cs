@@ -10,6 +10,8 @@ public class RailFollower : MonoBehaviour
     private int currentRailpointIndex = 1;
     private float currentTravelTime = 0;
 
+    public GameObject TargetToKillToProceed;
+
     private void Awake()
     {
         railPoints = new Vector3[rail.positionCount];
@@ -22,15 +24,18 @@ public class RailFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentRailpointIndex < railPoints.Length)
+        if (TargetToKillToProceed == null)
         {
-            this.gameObject.transform.position = Vector3.Lerp(railPoints[currentRailpointIndex - 1],
-                railPoints[currentRailpointIndex], currentTravelTime / durationGoingToEachPoint[currentRailpointIndex - 1]);
-            currentTravelTime = Mathf.Clamp(currentTravelTime + Time.deltaTime, 0, durationGoingToEachPoint[currentRailpointIndex - 1]);
-            if (currentTravelTime == durationGoingToEachPoint[currentRailpointIndex - 1])
+            if (currentRailpointIndex < railPoints.Length)
             {
-                currentRailpointIndex++;
-                currentTravelTime = 0;
+                this.gameObject.transform.position = Vector3.Lerp(railPoints[currentRailpointIndex - 1],
+                    railPoints[currentRailpointIndex], currentTravelTime / durationGoingToEachPoint[currentRailpointIndex - 1]);
+                currentTravelTime = Mathf.Clamp(currentTravelTime + Time.deltaTime, 0, durationGoingToEachPoint[currentRailpointIndex - 1]);
+                if (currentTravelTime == durationGoingToEachPoint[currentRailpointIndex - 1])
+                {
+                    currentRailpointIndex++;
+                    currentTravelTime = 0;
+                }
             }
         }
     }

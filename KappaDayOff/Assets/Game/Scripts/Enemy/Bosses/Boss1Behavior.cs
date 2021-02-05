@@ -7,7 +7,6 @@ public class Boss1Behavior : MonoBehaviour
 	public GameObject player;
 	public BulletPool objectPool;
 	public float secondsPerPattern = 15.0f;
-	public float secondsPerShot = 0.5f;
 	private bool isCoolingDown;
 	private bool isVisible;
 
@@ -56,6 +55,7 @@ public class Boss1Behavior : MonoBehaviour
     {
 		int numberOfWavesLeft = 10;
 		int numberOfBulletsPerWave = 10 * Mathf.FloorToInt(waveArc / 180);
+		float secondsPerShot = 0.5f;
 
 		while (numberOfWavesLeft > 0)
         {
@@ -81,6 +81,7 @@ public class Boss1Behavior : MonoBehaviour
 				if (shotBehavior != null)
 				{
 					shotBehavior.SetBulletDestination(newDirection + gameObject.transform.position);
+					shotBehavior.SetBulletSpeed(0.2f);
 				}
 			}
 
@@ -94,7 +95,8 @@ public class Boss1Behavior : MonoBehaviour
     {
 		int numberOfWavesLeft = 10;
 		int numberOfSoloBulletsPerWave = 10;
-		int numberOfCircleBulletsPerWave = 15;
+		int numberOfCircleBulletsPerWave = 25;
+		float secondsPerShot = 0.2f;
 		
 		while (numberOfWavesLeft > 0)
 		{
@@ -139,6 +141,7 @@ public class Boss1Behavior : MonoBehaviour
 
 				if (shotBehavior != null)
 				{
+					shotBehavior.SetBulletSpeed(0.15f);
 					shotBehavior.SetBulletDestination(newDirection + gameObject.transform.position);
 				}
 			}

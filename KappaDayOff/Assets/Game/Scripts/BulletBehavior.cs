@@ -20,10 +20,6 @@ public class BulletBehavior : MonoBehaviour
 
 	protected BulletType type;
 
-    private void Awake()
-    {
-        currentSpeed = speed;
-    }
     protected void Update()
 	{
 		gameObject.transform.position += currentSpeed * flightDirection;

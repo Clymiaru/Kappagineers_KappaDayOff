@@ -14,8 +14,10 @@ public class BossStats : EnemyStats
     private void OnDestroy()
     {
         if (adsManager != null)
+        {
             adsManager.ShowInterstitialAd();
-        Debug.Log("End!");
-        SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
+            Debug.Log("End!");
+            SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
+        }
     }
 }

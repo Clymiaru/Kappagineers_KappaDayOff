@@ -7,6 +7,7 @@ public class EnemyBullet : BulletBehavior
 	public EnemyBullet()
 	{
 		speed = 0.05f;
+		currentSpeed = speed;
 		type  = BulletType.EnemyBullet;
 	}
 

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -219,7 +219,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16324501}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -355,7 +355,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21067106}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -978,6 +978,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &160616197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1133,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181312371}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1268,7 +1269,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257123503}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1804,7 +1805,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296652107}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2288,7 +2289,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373108052}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2646,6 +2647,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &446838564
 GameObject:
   m_ObjectHideFlags: 0
@@ -2670,7 +2672,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446838564}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2806,7 +2808,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447428122}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3164,6 +3166,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &501052631
 GameObject:
   m_ObjectHideFlags: 0
@@ -3188,7 +3191,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501052631}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3422,7 +3425,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510430508}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3710,12 +3713,12 @@ PrefabInstance:
     - target: {fileID: 7020663803349145588, guid: aec9ad04b5cdc3d41b044f7c48a27230,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7020663803349145588, guid: aec9ad04b5cdc3d41b044f7c48a27230,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9044320895386147463, guid: aec9ad04b5cdc3d41b044f7c48a27230,
         type: 3}
@@ -4067,6 +4070,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &613358883
 GameObject:
   m_ObjectHideFlags: 0
@@ -4306,6 +4310,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &630684063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5351,6 +5356,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &675982270
 GameObject:
   m_ObjectHideFlags: 0
@@ -5375,7 +5381,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675982270}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -5652,6 +5658,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &716861716
 GameObject:
   m_ObjectHideFlags: 0
@@ -5850,6 +5857,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &747474213
 GameObject:
   m_ObjectHideFlags: 0
@@ -6144,7 +6152,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782131748}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7032,7 +7040,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866525306}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7590,7 +7598,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934602449}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7867,6 +7875,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &953590527
 GameObject:
   m_ObjectHideFlags: 0
@@ -7966,7 +7975,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 959617374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -8240,7 +8249,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970913390}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9058,7 +9067,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042865731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9737,6 +9746,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1094585136
 GameObject:
   m_ObjectHideFlags: 0
@@ -10424,6 +10434,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1186743206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10589,6 +10600,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1225883423
 GameObject:
   m_ObjectHideFlags: 0
@@ -10828,6 +10840,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1275700786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10993,6 +11006,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1279668693
 GameObject:
   m_ObjectHideFlags: 0
@@ -11625,6 +11639,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1350554051
 GameObject:
   m_ObjectHideFlags: 0
@@ -12055,6 +12070,7 @@ MonoBehaviour:
   - 50
   - 20
   - 70
+  TargetToKillToProceed: {fileID: 0}
 --- !u!114 &1377691844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12352,7 +12368,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434102020}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -12765,6 +12781,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1471629964
 GameObject:
   m_ObjectHideFlags: 0
@@ -12789,7 +12806,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471629964}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -13254,7 +13271,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493914029}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -13491,7 +13508,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534629408}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -15115,6 +15132,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1839104124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15275,7 +15293,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879572211}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -15615,6 +15633,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1908208551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15780,6 +15799,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1918832578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15945,6 +15965,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1957494200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16110,6 +16131,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1001 &1993475256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16275,6 +16297,7 @@ MonoBehaviour:
   - 30
   - 10
   - 30
+  TargetToKillToProceed: {fileID: 0}
 --- !u!1 &1997760123
 GameObject:
   m_ObjectHideFlags: 0
@@ -16299,7 +16322,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997760123}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
