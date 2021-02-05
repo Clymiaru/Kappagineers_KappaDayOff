@@ -10,12 +10,12 @@ public class RailFollower : MonoBehaviour
     private int currentRailpointIndex = 1;
     private float currentTravelTime = 0;
 
-    public AdsManager adsManager;
-
     private void Awake()
     {
         railPoints = new Vector3[rail.positionCount];
         rail.GetPositions(railPoints);
+        for (int i = 0; i < railPoints.Length; i++)
+            railPoints[i] += rail.transform.position;
         this.gameObject.transform.position = railPoints[0];
     }
 
@@ -33,14 +33,5 @@ public class RailFollower : MonoBehaviour
                 currentTravelTime = 0;
             }
         }
-        else if (this.gameObject.GetComponent<PlayerStats>() != null)
-        {
-            if (adsManager != null)
-                adsManager.ShowInterstitialAd();
-            Debug.Log("End!");
-            SceneLoader.Instance.LoadScene(SceneNames.MainMenu);
-        }
-        
-        
     }
 }
