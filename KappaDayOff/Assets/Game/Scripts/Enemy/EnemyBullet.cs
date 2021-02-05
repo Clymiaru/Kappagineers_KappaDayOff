@@ -10,7 +10,7 @@ public class EnemyBullet : BulletBehavior
 		type  = BulletType.EnemyBullet;
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	protected void OnCollisionEnter2D(Collision2D collision)
 	{
 		var player = collision.gameObject.GetComponent<PlayerStats>();
 		if (player != null)

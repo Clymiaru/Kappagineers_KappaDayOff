@@ -7,7 +7,8 @@ public class BulletBehavior : MonoBehaviour
 		AmplifiedWave,
 		StaticBomb,
 		WaterBalloon,
-		EnemyBullet
+		EnemyBullet,
+		Boss2Bullet
 	}
 
 	protected int        damage = 10;
@@ -17,7 +18,7 @@ public class BulletBehavior : MonoBehaviour
 
 	protected BulletType type;
 
-	private void Update()
+	protected void Update()
 	{
 		gameObject.transform.position += speed * flightDirection;
 	}
@@ -37,6 +38,9 @@ public class BulletBehavior : MonoBehaviour
 				break;
 			case BulletType.EnemyBullet:
 				objectPool.ReturnEnemyBullet(gameObject);
+				break;
+			case BulletType.Boss2Bullet:
+				objectPool.ReturnBoss2Bullet(gameObject);
 				break;
 		}
 	}

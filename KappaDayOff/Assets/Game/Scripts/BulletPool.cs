@@ -10,14 +10,17 @@ public class BulletPool : MonoBehaviour
 	public GameObject staticBombBase;
 
 	public           GameObject       enemyBulletBase;
+	public           GameObject       Boss2BulletBase;
 	private readonly List<GameObject> activeAmplifiedWaves = new List<GameObject>();
 
 	private readonly List<GameObject> activeEnemyBullets = new List<GameObject>();
+	private readonly List<GameObject> activeBoss2Bullets = new List<GameObject>();
 	private readonly List<GameObject> activeStaticBombs  = new List<GameObject>();
 
 	private readonly List<GameObject> activeWaterBalloons    = new List<GameObject>();
 	private readonly List<GameObject> inactiveAmplifiedWaves = new List<GameObject>();
 	private readonly List<GameObject> inactiveEnemyBullets   = new List<GameObject>();
+	private readonly List<GameObject> inactiveBoss2Bullets   = new List<GameObject>();
 	private readonly List<GameObject> inactiveStaticBombs    = new List<GameObject>();
 	private readonly List<GameObject> inactiveWaterBalloons  = new List<GameObject>();
 
@@ -63,6 +66,14 @@ public class BulletPool : MonoBehaviour
 			newEnemyBullet.GetComponent<BulletBehavior>().SetBulletPool(Instance);
 			newEnemyBullet.SetActive(false);
 		}
+	}
+
+	private void GenerateBossBullets()
+    {
+		GameObject newBoss2Bullet = Instantiate(Boss2BulletBase);
+		inactiveBoss2Bullets.Add(newBoss2Bullet);
+		newBoss2Bullet.GetComponent<BulletBehavior>().SetBulletPool(Instance);
+		newBoss2Bullet.SetActive(false);
 	}
 
 	public GameObject GetWaterBalloon()
@@ -125,6 +136,21 @@ public class BulletPool : MonoBehaviour
 		return bullet;
 	}
 
+	public GameObject GetBoss2Bullet()
+    {
+		if (inactiveBoss2Bullets.Count == 0)
+        {
+			GenerateBossBullets();
+        }
+
+		GameObject bullet = inactiveBoss2Bullets[inactiveBoss2Bullets.Count - 1];
+		bullet.SetActive(true);
+		activeBoss2Bullets.Add(bullet);
+		inactiveBoss2Bullets.Remove(bullet);
+
+		return bullet;
+	}
+
 	public void ReturnWaterBalloon(GameObject balloon)
 	{
 		inactiveWaterBalloons.Add(balloon);
@@ -148,6 +174,12 @@ public class BulletPool : MonoBehaviour
 		inactiveEnemyBullets.Add(bullet);
 		activeEnemyBullets.Remove(bullet);
 	}
+
+	public void ReturnBoss2Bullet(GameObject bullet)
+    {
+		inactiveBoss2Bullets.Add(bullet);
+		activeBoss2Bullets.Remove(bullet);
+    }
 
 	public List<GameObject> GetEnemyBullets()
 	{

@@ -111,7 +111,7 @@ public class Boss1Behavior : MonoBehaviour
 				if (shotBehavior != null)
 				{
 					shotBehavior.SetBulletDestination(newDirection + gameObject.transform.position);
-					shotBehavior.SetBulletSpeed(0.25f * Random.value);
+					shotBehavior.SetBulletSpeed(0.5f * Random.value);
 				}
 
 				yield return new WaitForSeconds(secondsPerShot);
