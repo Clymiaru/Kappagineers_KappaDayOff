@@ -304,6 +304,8 @@ MonoBehaviour:
     viewAnimation: {fileID: 7873853497746253189}
   background: {fileID: 0}
   exitGamePopup: {fileID: 1700491226676365144}
+  playButtonImage: {fileID: 6846208944598833205}
+  exitButtonImage: {fileID: 7817946475163549520}
 --- !u!1 &3599768646137388545
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,8 +657,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4288970614
+  m_fontColor: {r: 0.4627451, g: 0.49765143, b: 0.6431373, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -673,12 +675,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 139.77
+  m_fontSize: 170.83
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 139.77
+  m_fontSizeMax: 170.83
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -868,6 +870,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5213003665387953516, guid: fe45dc93981086040b56ab5d50c58bd4,
+        type: 3}
+      propertyPath: proceedButtonImage
+      value: 
+      objectReference: {fileID: 1700491225575881393}
+    - target: {fileID: 5213003665387953516, guid: fe45dc93981086040b56ab5d50c58bd4,
+        type: 3}
+      propertyPath: closeButtonImage
+      value: 
+      objectReference: {fileID: 1700491225930438232}
+    - target: {fileID: 5213003665387953516, guid: fe45dc93981086040b56ab5d50c58bd4,
+        type: 3}
+      propertyPath: promptBackground
+      value: 
+      objectReference: {fileID: 1700491226450927064}
     - target: {fileID: 5213003665387953519, guid: fe45dc93981086040b56ab5d50c58bd4,
         type: 3}
       propertyPath: m_Name
@@ -881,7 +898,7 @@ PrefabInstance:
     - target: {fileID: 5213003665613391854, guid: fe45dc93981086040b56ab5d50c58bd4,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 320
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe45dc93981086040b56ab5d50c58bd4, type: 3}
@@ -901,5 +918,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9db084f448339a64daa8b0366c2708e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1700491226450927064 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5213003665613391852, guid: fe45dc93981086040b56ab5d50c58bd4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6899819142815455796}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1700491225575881393 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5213003664342048901, guid: fe45dc93981086040b56ab5d50c58bd4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6899819142815455796}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1700491225930438232 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5213003665059875948, guid: fe45dc93981086040b56ab5d50c58bd4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6899819142815455796}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

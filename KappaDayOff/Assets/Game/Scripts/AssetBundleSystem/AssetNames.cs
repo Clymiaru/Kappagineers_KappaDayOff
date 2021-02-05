@@ -28,9 +28,12 @@ public static class AssetNames
 		public static string PLUS     = "Icon_Plus.png";
 		public static string CLOSE    = "Close_Icon.png";
 		public static string PLAY     = "Play_Icon.png";
-		public static string WATCH_AD = "Border.png";
-		public static string SETTINGS = "Border.png";
-		public static string DEPART   = "Border.png";
-		public static string UPGRADES = "Border.png";
+		public static string WATCH_AD = "Watch_Ads.png";
+		public static string SETTINGS = "Settings_Icon.png";
+		public static string DEPART   = "Depart_Icon.png";
+		public static string UPGRADES = "Workshop_Icon.png";
+
+		public static string COIN   = "Coin_Icon.png";
+		public static string KAPPA_TOKEN = "KappaToken_Icon.png";
 	}
 }

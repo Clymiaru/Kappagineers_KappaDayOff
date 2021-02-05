@@ -23,6 +23,13 @@ public class MainMenuScreen : View
 	[SerializeField] private Image coinsExchangeIcon;
 	[SerializeField] private Image kappaTokensExchangeIcon;
 
+	[SerializeField] private Image coinIcon;
+	[SerializeField] private Image kappaTokenIcon;
+
+	[SerializeField] private Image coinButtonBackground;
+	[SerializeField] private Image kappaTokenButtonBackground;
+
+
 	private AudioClip acceptSFX;
 	private AudioClip cancelSFX;
 
@@ -48,6 +55,18 @@ public class MainMenuScreen : View
 
 		upgradesButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
 		                                                                         AssetNames.Icon.UPGRADES);
+
+		coinIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                               AssetNames.Icon.COIN);
+
+		kappaTokenIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		                                                               AssetNames.Icon.KAPPA_TOKEN);
+
+		coinButtonBackground.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.GENERAL,
+		                                                                           AssetNames.Sprite.BUTTON_01_BACKGROUND);
+
+		kappaTokenButtonBackground.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.GENERAL,
+		                                                                                 AssetNames.Sprite.BUTTON_01_BACKGROUND);
 
 		acceptSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
 	                                                            AssetNames.SoundClip.ACCEPT);
@@ -115,7 +134,7 @@ public class MainMenuScreen : View
 	{
 		AudioHandler.Instance.PlaySound(acceptSFX);
 		Hide();
-		// settingsScreen.Show();
+		settingsScreen.Show();
 	}
 
 	public void OnWatchAds()
