@@ -90,11 +90,12 @@ public class Boss2Behavior : MonoBehaviour
 					newShot.transform.position = gameObject.transform.position;
 					var shotBehavior = newShot.GetComponent<BulletBehavior>();
 
-					Vector3 newDirection;
-					newDirection = new Vector3(Direction.x * Mathf.Cos(Mathf.Deg2Rad * (-(360 - 270 / numberOfWaves * (numberOfWaves - numberOfWavesLeft)) 
-												/ numberOfBulletsPerWave * i)),
-											Direction.y * -Mathf.Sin(Mathf.Deg2Rad * (-(360 - 270 / numberOfWaves * (numberOfWaves - numberOfWavesLeft))
-												/ numberOfBulletsPerWave * i)), Direction.z);
+					Vector3 newDirection = new Vector3(Direction.x * Mathf.Cos(Mathf.Deg2Rad * (-(360 - 270 / numberOfWaves * (numberOfWaves - numberOfWavesLeft))
+												/ numberOfBulletsPerWave * i)) + Direction.y * Mathf.Sin(Mathf.Deg2Rad * 
+												(-(360 - 270 / numberOfWaves * (numberOfWaves - numberOfWavesLeft)) / numberOfBulletsPerWave * i)),
+												Direction.y * Mathf.Cos(Mathf.Deg2Rad * (-(360 - 270 / numberOfWaves * (numberOfWaves - numberOfWavesLeft)) 
+												/ numberOfBulletsPerWave * i)) - Direction.x * Mathf.Sin(Mathf.Deg2Rad * 
+												(-(360 - 270 / numberOfWaves * (numberOfWaves - numberOfWavesLeft)) / numberOfBulletsPerWave * i)), Direction.z);
 
 					if (shotBehavior != null)
 					{

@@ -69,13 +69,17 @@ public class Boss1Behavior : MonoBehaviour
 				Vector3 newDirection;
 				if (numberOfWavesLeft % 2 == 0)
 				{
-					newDirection = new Vector3(Direction.x * Mathf.Cos(Mathf.Deg2Rad * (-45 + waveArc / numberOfBulletsPerWave * i)),
-											Direction.y * -Mathf.Sin(Mathf.Deg2Rad * (-45 + waveArc / numberOfBulletsPerWave * i)), Direction.z);
+					newDirection = new Vector3(Direction.x * Mathf.Cos(Mathf.Deg2Rad * (-45 + waveArc / numberOfBulletsPerWave * i))
+												+ Direction.y * Mathf.Sin(Mathf.Deg2Rad * (-45 + waveArc / numberOfBulletsPerWave * i)),
+												Direction.y * Mathf.Cos(Mathf.Deg2Rad * (-45 + waveArc / numberOfBulletsPerWave * i))
+											- Direction.x * Mathf.Sin(Mathf.Deg2Rad * (-45 + waveArc / numberOfBulletsPerWave * i)), Direction.z);
 				}
 				else
                 {
-					newDirection = new Vector3(Direction.x * Mathf.Cos(Mathf.Deg2Rad * (45 - waveArc / numberOfBulletsPerWave * i)),
-											Direction.y * -Mathf.Sin(Mathf.Deg2Rad * (45 - waveArc / numberOfBulletsPerWave * i)), Direction.z);
+					newDirection = new Vector3(Direction.x * Mathf.Cos(Mathf.Deg2Rad * (45 - waveArc / numberOfBulletsPerWave * i))
+												+ Direction.y * Mathf.Sin(Mathf.Deg2Rad * (45 - waveArc / numberOfBulletsPerWave * i)),
+												Direction.y * Mathf.Cos(Mathf.Deg2Rad * (45 - waveArc / numberOfBulletsPerWave * i))
+											- Direction.x * Mathf.Sin(Mathf.Deg2Rad * (45 - waveArc / numberOfBulletsPerWave * i)), Direction.z);
 				}
 
 				if (shotBehavior != null)
@@ -127,17 +131,10 @@ public class Boss1Behavior : MonoBehaviour
 				newShot.transform.position = gameObject.transform.position;
 				var shotBehavior = newShot.GetComponent<BulletBehavior>();
 
-				Vector3 newDirection;
-				if (numberOfWavesLeft % 2 == 0)
-				{
-					newDirection = new Vector3(Direction.x * Mathf.Cos(Mathf.Deg2Rad * (-45 + 360 / numberOfCircleBulletsPerWave * i)),
-											Direction.y * -Mathf.Sin(Mathf.Deg2Rad * (-45 + 360 / numberOfCircleBulletsPerWave * i)), Direction.z);
-				}
-				else
-				{
-					newDirection = new Vector3(Direction.x * Mathf.Cos(Mathf.Deg2Rad * (45 - 360 / numberOfCircleBulletsPerWave * i)),
-											Direction.y * -Mathf.Sin(Mathf.Deg2Rad * (45 - 360 / numberOfCircleBulletsPerWave * i)), Direction.z);
-				}
+				Vector3 newDirection = new Vector3(Direction.x * Mathf.Cos(Mathf.Deg2Rad * (-45 + 360 / numberOfCircleBulletsPerWave * i))
+												+ Direction.y * Mathf.Sin(Mathf.Deg2Rad * (-45 + 360 / numberOfCircleBulletsPerWave * i)),
+												Direction.y * Mathf.Cos(Mathf.Deg2Rad * (-45 + 360 / numberOfCircleBulletsPerWave * i))
+											- Direction.x * Mathf.Sin(Mathf.Deg2Rad * (-45 + 360 / numberOfCircleBulletsPerWave * i)), Direction.z);
 
 				if (shotBehavior != null)
 				{
