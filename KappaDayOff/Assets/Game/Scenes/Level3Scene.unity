@@ -507,7 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1377691841}
   objectPool: {fileID: 1835396088}
-  secondsPerPattern: 15
+  secondsPerPattern: 10
 --- !u!1 &265189379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,7 +1973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1377691841}
   objectPool: {fileID: 1835396088}
-  secondsPerPattern: 15
+  secondsPerPattern: 10
 --- !u!1 &801403835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4630,7 +4630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1377691841}
   objectPool: {fileID: 1835396088}
-  secondsPerPattern: 15
+  secondsPerPattern: 10
 --- !u!1 &1715933498
 GameObject:
   m_ObjectHideFlags: 0
