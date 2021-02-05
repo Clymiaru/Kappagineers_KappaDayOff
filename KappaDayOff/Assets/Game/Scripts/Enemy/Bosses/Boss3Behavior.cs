@@ -79,6 +79,7 @@ public class Boss3Behavior : MonoBehaviour
 				if (shotBehavior != null)
 				{
 					shotBehavior.SetBulletDestination(newDirection + spawnLocation);
+					shotBehavior.SetBulletSpeed(0.25f);
 				}
 			}
 

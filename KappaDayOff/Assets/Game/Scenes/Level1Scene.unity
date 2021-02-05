@@ -2935,12 +2935,12 @@ PrefabInstance:
     - target: {fileID: 7020663803349145588, guid: aec9ad04b5cdc3d41b044f7c48a27230,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7020663803349145588, guid: aec9ad04b5cdc3d41b044f7c48a27230,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9044320895386147463, guid: aec9ad04b5cdc3d41b044f7c48a27230,
         type: 3}
@@ -2993,7 +2993,6 @@ MonoBehaviour:
   player: {fileID: 1377691841}
   objectPool: {fileID: 1835396088}
   secondsPerPattern: 15
-  secondsPerShot: 0.5
 --- !u!1 &328195029
 GameObject:
   m_ObjectHideFlags: 0
