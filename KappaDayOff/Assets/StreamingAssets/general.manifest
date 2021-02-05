@@ -1,17 +1,25 @@
 ManifestFileVersion: 0
-CRC: 430653972
+CRC: 217852268
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 50f958eddfad849ce1797440f58b9e48
+    Hash: 695d737cd7e32d820abca86dd75289b9
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+    Hash: cdfaae4a706bac4ae9233855722107e4
 HashAppended: 0
 ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
 - Class: 83
   Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
 Assets:
+- Assets/Bundles/General/Close_Icon.png
+- Assets/Bundles/General/Button02.png
 - Assets/Bundles/General/se_ok00.wav
 - Assets/Bundles/General/se_cancel00.wav
+- Assets/Bundles/General/Prompt_Background.png
+- Assets/Bundles/General/Play_Icon.png
 Dependencies: []

@@ -6,6 +6,8 @@ public class TitleScreen : View
 	[Header("Title Screen Elements")]
 	[SerializeField] private Image background;
 	[SerializeField] private ExitGamePopup exitGamePopup;
+	[SerializeField] private Image         playButtonImage;
+	[SerializeField] private Image         exitButtonImage;
 
 	private AudioClip acceptSfx;
 	private AudioClip cancelSfx;
@@ -14,6 +16,12 @@ public class TitleScreen : View
 	{
 		background.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.TITLE_SCREEN,
 		                                                                 AssetNames.Sprite.TITLE_BACKGROUND);
+
+		playButtonImage.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.GENERAL,
+		                                                                      AssetNames.Icon.PLAY);
+
+		exitButtonImage.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.GENERAL,
+		                                                                      AssetNames.Icon.CLOSE);
 
 		acceptSfx = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
 		                                                AssetNames.SoundClip.ACCEPT);

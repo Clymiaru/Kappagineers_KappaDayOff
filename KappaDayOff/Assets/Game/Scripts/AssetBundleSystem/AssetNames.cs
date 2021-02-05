@@ -12,6 +12,9 @@ public static class AssetNames
 	{
 		public static string TITLE_BACKGROUND = "TitleBG.png";
 		public static string WORKSHOP_BACKGROUND = "WorkshopBG.png";
+
+		public static string PROMPT_BACKGROUND = "Prompt_Background.png";
+		public static string BUTTON_01_BACKGROUND = "Button02.png";
 	}
 
 	public static class SoundClip
@@ -23,6 +26,8 @@ public static class AssetNames
 	public static class Icon
 	{
 		public static string PLUS     = "Icon_Plus.png";
+		public static string CLOSE    = "Close_Icon.png";
+		public static string PLAY     = "Play_Icon.png";
 		public static string WATCH_AD = "Border.png";
 		public static string SETTINGS = "Border.png";
 		public static string DEPART   = "Border.png";
