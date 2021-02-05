@@ -5,10 +5,10 @@ public class StaticBomb : AlliedBullets
 	private float stunDuration;
 	private void Awake()
 	{
-		damage     = GameManager.Instance.StaticBomb.Power;
-		damageType = EnemyType.Machine;
-		type       = BulletType.StaticBomb;
-		stunDuration = GameManager.Instance.StaticBomb.ImmobilizationTime;
+		//damage     = GameManager.Instance.StaticBomb.Power;
+		//damageType = EnemyType.Machine;
+		//type       = BulletType.StaticBomb;
+		//stunDuration = GameManager.Instance.StaticBomb.ImmobilizationTime;
 	}
 
 

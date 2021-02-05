@@ -51,6 +51,11 @@ public class BulletBehavior : MonoBehaviour
 		flightDirection = (target - gameObject.transform.position).normalized;
 	}
 
+	public void SetBulletSpeed(float speed)
+    {
+		this.speed = speed;
+    }
+
 	public void SetBulletPool(BulletPool pool)
 	{
 		objectPool = pool;
