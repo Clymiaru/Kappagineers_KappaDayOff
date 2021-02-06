@@ -1,13 +1,13 @@
 ManifestFileVersion: 0
-CRC: 1507362675
+CRC: 3328615878
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: title_screen
-      Dependencies: {}
-    Info_1:
       Name: general
       Dependencies: {}
+    Info_1:
+      Name: main_menu
+      Dependencies: {}
     Info_2:
-      Name: main_menu_screen
+      Name: title
       Dependencies: {}

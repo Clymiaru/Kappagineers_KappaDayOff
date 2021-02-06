@@ -17,8 +17,8 @@ public static class CurrencyExchanger
 			int amountAddedToWantedCurrency = quantityOfWantedCurrency * KappaTokenToCoin;
 			int amountAddedToNeededCurrency = quantityOfWantedCurrency;
 
-			// GameManager.Instance.UpdateCurrency(CurrencyType.COIN, amountAddedToWantedCurrency);
-			// GameManager.Instance.UpdateCurrency(CurrencyType.KAPPA_TOKEN, -amountAddedToNeededCurrency);
+			GameManager.Instance.UpdateCurrency(CurrencyType.COIN, amountAddedToWantedCurrency);
+			GameManager.Instance.UpdateCurrency(CurrencyType.KAPPA_TOKEN, -amountAddedToNeededCurrency);
 
 			// Debug.Log("KAPPA TOKEN TO COIN");
 			// Debug.Log("COIN: "        + amountAddedToWantedCurrency);
@@ -30,8 +30,8 @@ public static class CurrencyExchanger
 			int amountAddedToWantedCurrency = quantityOfWantedCurrency;
 			int amountAddedToNeededCurrency = quantityOfWantedCurrency * CoinToKappaToken;
 
-			// GameManager.Instance.UpdateCurrency(CurrencyType.KAPPA_TOKEN, amountAddedToWantedCurrency);
-			// GameManager.Instance.UpdateCurrency(CurrencyType.COIN, -amountAddedToNeededCurrency);
+			GameManager.Instance.UpdateCurrency(CurrencyType.KAPPA_TOKEN, amountAddedToWantedCurrency);
+			GameManager.Instance.UpdateCurrency(CurrencyType.COIN, -amountAddedToNeededCurrency);
 
 			// Debug.Log("COIN TO KAPPA TOKEN");
 			// Debug.Log("COIN: "        + amountAddedToNeededCurrency);
@@ -40,7 +40,8 @@ public static class CurrencyExchanger
 	}
 
 	public static bool CheckForAffordability(CurrencyType wantedCurrency,
-	                                         int quantityWanted)
+	                                         int quantityWanted,
+	                                         CurrencyData ownedCurrency)
 	{
 		float affordabilityRatio = 0.0f;
 
@@ -49,13 +50,13 @@ public static class CurrencyExchanger
 		if (wantedCurrency is CurrencyType.COIN)
 		{
 			// Need to have enough Kappa Tokens
-			// currentCurrencyAmount = GameManager.Instance.PlayerCurrency.KappaTokens;
+			currentCurrencyAmount = ownedCurrency.KappaTokens;
 		}
 
 		if (wantedCurrency is CurrencyType.KAPPA_TOKEN)
 		{
 			// Need to have enough Coins
-			// currentCurrencyAmount = GameManager.Instance.PlayerCurrency.Coins / CoinToKappaToken;
+			currentCurrencyAmount = ownedCurrency.Coins / CoinToKappaToken;
 		}
 
 		affordabilityRatio = (float) currentCurrencyAmount / quantityWanted;

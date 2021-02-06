@@ -22,13 +22,13 @@ public class AudioHandler : MonoBehaviour
 
 	public float MusicVolume
 	{
-		get => currentMusicVolume * maxMusicVolume;
+		get => currentMusicVolume;
 		set => currentMusicVolume = Mathf.Clamp(value, 0.0f, maxMusicVolume);
 	}
 
 	public float SoundVolume
 	{
-		get => currentSoundVolume * maxSoundVolume;
+		get => currentSoundVolume;
 		set => currentSoundVolume = Mathf.Clamp(value, 0.0f, maxSoundVolume);
 	}
 
@@ -57,10 +57,24 @@ public class AudioHandler : MonoBehaviour
 		soundAudioSource.PlayOneShot(sfx);
 	}
 
-	public void PlayMusic(AudioSource audioSource)
+	public void PlayMusic(AudioClip music)
 	{
-		audioSource.loop   = true;
-		audioSource.volume = currentMusicVolume / maxMusicVolume;
-		audioSource.Play();
+		if (musicAudioSource.isPlaying)
+		{
+			musicAudioSource.volume = currentMusicVolume / maxMusicVolume;
+			return;
+		}
+
+		musicAudioSource.loop   = true;
+		musicAudioSource.clip   = music;
+		musicAudioSource.Play();
+	}
+
+	public void StopMusic()
+	{
+		if (musicAudioSource.isPlaying)
+		{
+			musicAudioSource.Stop();
+		}
 	}
 }

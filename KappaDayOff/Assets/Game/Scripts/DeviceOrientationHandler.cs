@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class DeviceOrientationHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static DeviceOrientationHandler Instance { get; private set; }
+
+    public event System.Action<DeviceOrientation> OnOrientationUpdate;
+
+    private DeviceOrientation previousOrientation;
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        DeviceOrientation currentOrientation = Input.deviceOrientation;
+
+        if (currentOrientation != previousOrientation)
+        {
+            Debug.Log("Testing orientation");
+            OnOrientationUpdate?.Invoke(currentOrientation);
+            previousOrientation = currentOrientation;
+        }
     }
 }

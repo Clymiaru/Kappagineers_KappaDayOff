@@ -82,4 +82,28 @@ public class SaveDataManager
 			Save();
 		}
 	}
+
+	public void ResetProgress()
+	{
+		PlayerSaveData = new SaveData();
+
+		string directoryPath = Path.Combine(RootPath, PathDestination);
+		string path          = Path.Combine(directoryPath, $"{SaveName}.{SaveFileExtension}");
+
+		if (!Directory.Exists(directoryPath))
+		{
+			Directory.CreateDirectory(directoryPath);
+		}
+
+		var formatter = new BinaryFormatter();
+
+		using (var stream = new FileStream(path, FileMode.Create))
+		{
+			formatter.Serialize(stream, PlayerSaveData);
+		}
+
+		Load();
+
+		Debug.Log($"Save successful!! {path}");
+	}
 }

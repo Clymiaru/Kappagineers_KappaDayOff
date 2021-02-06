@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 217852268
+CRC: 3613392757
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 695d737cd7e32d820abca86dd75289b9
+    Hash: 98f7a00c3b0928d151d07c335762939c
   TypeTreeHash:
     serializedVersion: 2
     Hash: cdfaae4a706bac4ae9233855722107e4
@@ -19,7 +19,13 @@ Assets:
 - Assets/Bundles/General/Close_Icon.png
 - Assets/Bundles/General/Button02.png
 - Assets/Bundles/General/se_ok00.wav
+- Assets/Bundles/General/Button03.png
 - Assets/Bundles/General/se_cancel00.wav
 - Assets/Bundles/General/Prompt_Background.png
 - Assets/Bundles/General/Play_Icon.png
+- Assets/Bundles/General/Slider05.png
+- Assets/Bundles/General/Icon_Minus.png
+- Assets/Bundles/General/SliderBar_ProgressBar.png
+- Assets/Bundles/General/Progress01.png
+- Assets/Bundles/General/Icon_Plus.png
 Dependencies: []

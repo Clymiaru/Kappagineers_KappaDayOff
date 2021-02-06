@@ -1,135 +1,90 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Advertisements;
 using UnityEngine.UI;
 using Text = TMPro.TMP_Text;
 
 public class SettingsScreen : View
 {
-	private AudioSource acceptSFX;
-	private AudioClip   cancelSFX;
+	[SerializeField] private View previousView;
 
-	private GameObject currentPanelSelected;
+	[SerializeField] private GameObject soundOptionsPanel;
+	[SerializeField] private GameObject debugOptionsPanel;
 
-	private int optionIndex; // For now, auto-select the first option
+	private                  AudioClip  acceptSFX;
+	private                  AudioClip  cancelSFX;
 
 	protected override void OnInitialize()
 	{
+		acceptSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
+		                                                            AssetNames.SoundClip.ACCEPT);
+
+		cancelSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
+		                                                            AssetNames.SoundClip.CANCEL);
+
+		debugOptionsPanel.SetActive(false);
+		soundOptionsPanel.SetActive(true);
 	}
 
 	protected override void OnBackPressed()
 	{
+		OnExitScreen();
 	}
 
-	// private void Start()
-	// {
-	// 	optionIndex = 0;
-	// 	optionButtons[optionIndex].Select();
-	// 	currentPanelSelected = soundOptionsPanel.gameObject;
-	//
-	// 	musicVolumeLabel.text   = AudioHandler.Instance.MusicVolume.ToString("F0");
-	// 	musicVolumeSlider.value = AudioHandler.Instance.MusicVolume;
-	//
-	// 	sfxVolumeLabel.text   = AudioHandler.Instance.SoundVolume.ToString("F0");
-	// 	sfxVolumeSlider.value = AudioHandler.Instance.SoundVolume;
-	// }
-	//
-	// private void Update()
-	// {
-	// 	optionButtons[optionIndex].Select();
-	//
-	// 	if (Input.GetKeyDown(KeyCode.Escape))
-	// 	{
-	// 		OnExitScreen();
-	// 	}
-	// }
-	//
-	// #region Credits
-	// public void OnCreditsSelect()
-	// {
-	// 	// AudioHandler.Instance.PlaySound(tapSFX);
-	// 	currentPanelSelected.SetActive(false);
-	// 	currentPanelSelected = creditsPanel.gameObject;
-	// 	currentPanelSelected.SetActive(true);
-	// 	optionIndex = 1;
-	// }
-	// #endregion
-	//
-	// public void OnExitScreen()
-	// {
-	// 	// AudioHandler.Instance.PlaySound(tapSFX);
-	//
-	// 	gameObject.SetActive(false);
-	// 	currentPanelSelected.SetActive(false);
-	//
-	// 	currentPanelSelected = soundOptionsPanel.gameObject;
-	// 	currentPanelSelected.SetActive(true);
-	// 	optionIndex = 0;
-	// }
-	//
-	// #region Sound Options
-	// public void OnSoundOptionsSelect()
-	// {
-	// 	// AudioHandler.Instance.PlaySound(tapSFX);
-	// 	currentPanelSelected.SetActive(false);
-	// 	currentPanelSelected = soundOptionsPanel.gameObject;
-	// 	currentPanelSelected.SetActive(true);
-	// 	optionIndex = 0;
-	// }
-	//
-	// public void OnMusicVolumeChange(float value)
-	// {
-	// 	musicVolumeLabel.text           = value.ToString("F0");
-	// 	AudioHandler.Instance.MusicVolume = (int) value;
-	// }
-	//
-	// public void OnSFXVolumeChange(float value)
-	// {
-	// 	sfxVolumeLabel.text             = value.ToString("F0");
-	// 	AudioHandler.Instance.SoundVolume = (int) value;
-	// }
-	// #endregion
-	//
-	// #region Debug Options
-	// public void OnDebugOptionsSelect()
-	// {
-	// 	// AudioHandler.Instance.PlaySound(tapSFX);
-	// 	currentPanelSelected.SetActive(false);
-	// 	currentPanelSelected = debugOptionsPanel.gameObject;
-	// 	currentPanelSelected.SetActive(true);
-	// 	optionIndex = 2;
-	// }
-	//
-	// public void OnUnlockAllLevels()
-	// {
-	// 	// AudioHandler.Instance.PlaySound(successSFX);
-	// }
-	//
-	// public void OnUnlimitedMoney()
-	// {
-	// 	// AudioHandler.Instance.PlaySound(successSFX);
-	// 	GameManager.Instance.UnlimitedMoney();
-	// }
-	//
-	// public void OnResetPlayerProgress()
-	// {
-	// 	// AudioHandler.Instance.PlaySound(successSFX);
-	// 	GameManager.Instance.ResetPlayerProgress();
-	// }
-	//
-	// public void OnChangeTimeOfDay()
-	// {
-	// 	// AudioHandler.Instance.PlaySound(successSFX);
-	// }
-	//
-	// public void GenerateNotifications()
-	// {
-	// 	// AudioHandler.Instance.PlaySound(successSFX);
-	// }
-	//
-	// public void GenerateNotificationsAtInterval()
-	// {
-	// 	// AudioHandler.Instance.PlaySound(successSFX);
-	// }
-	// #endregion
+	public void OnExitScreen()
+	{
+		AudioHandler.Instance.PlaySound(cancelSFX);
+		previousView.Show();
+		Hide();
+	}
 
+	public void OnSoundOptionsSelect()
+	{
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		debugOptionsPanel.SetActive(false);
+		soundOptionsPanel.SetActive(true);
+	}
+
+	public void OnDebugOptionsSelect()
+	{
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		debugOptionsPanel.SetActive(true);
+		soundOptionsPanel.SetActive(false);
+	}
+
+	public void OnNotifyLevelUnlock()
+	{
+		AudioHandler.Instance.PlaySound(acceptSFX);
+	}
+
+	public void OnPlayVideoAds()
+	{
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		AdsManager.Instance.ShowInterstitialAd();
+
+	}
+
+	public void OnPlayRewardedAds()
+	{
+		AudioHandler.Instance.PlaySound(acceptSFX);
+
+	}
+
+	public void OnUnlimitedMoney()
+	{
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		GameManager.Instance.UnlimitedMoney();
+	}
+
+	public void OnUnlockAllLevels()
+	{
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		GameManager.Instance.UnlockAllLevels();
+	}
+
+	public void OnResetPlayerProgress()
+	{
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		GameManager.Instance.ResetPlayerProgress();
+	}
 }

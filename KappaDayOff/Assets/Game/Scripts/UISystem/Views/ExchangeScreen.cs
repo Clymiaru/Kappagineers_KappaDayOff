@@ -2,16 +2,58 @@
 using UnityEngine.UI;
 using Text = TMPro.TMP_Text;
 
-public class ExchangeScreen : MonoBehaviour
+public class ExchangeScreen : View
 {
+	[Header("Wanted Currency")]
+	[SerializeField] private Image wantedCurrencyIcon;
+	[SerializeField] private Text wantedCurrencyText;
+
+	[Header("Needed Currency")]
+	[SerializeField] private Image neededCurrencyIcon;
+	[SerializeField] private Text neededCurrencyText;
+
 	private const int          defaultAmountOfCurrency = 0;
 	public        CurrencyType WantedCurrency          = CurrencyType.COIN;
 
 
-	[SerializeField] private AudioSource tapSFX;
-	[SerializeField] private AudioSource successSFX;
+
+
+	private AudioClip acceptSFX;
+	private AudioClip cancelSFX;
 
 	private int quantityOfWantedCurrency;
+
+	private Sprite coinsIcon;
+	private Sprite kappaTokensIcon;
+	private Sprite plusIcon;
+	private Sprite minusIcon;
+
+	protected override void OnInitialize()
+	{
+		coinsIcon = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU,
+		                                                            AssetNames.Icon.COIN);
+
+		kappaTokensIcon = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU,
+		                                                               AssetNames.Icon.KAPPA_TOKEN);
+
+		plusIcon = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.GENERAL,
+		                                                        AssetNames.Icon.PLUS);
+
+		minusIcon = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.GENERAL,
+		                                                         AssetNames.Icon.MINUS);
+
+		acceptSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
+		                                                            AssetNames.SoundClip.ACCEPT);
+
+		cancelSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
+		                                                            AssetNames.SoundClip.CANCEL);
+
+	}
+
+	protected override void OnBackPressed()
+	{
+		OnExitScreen();
+	}
 
 	private void OnEnable()
 	{
@@ -45,7 +87,9 @@ public class ExchangeScreen : MonoBehaviour
 
 	public void OnExchange()
 	{
-		// AudioHandler.Instance.PlaySound(successSFX);
+		AudioHandler.Instance.PlaySound(acceptSFX);
+
+		Debug.Log("Exchange");
 
 		CurrencyExchanger.CommenceExchange(WantedCurrency,
 		                                   quantityOfWantedCurrency);
@@ -56,10 +100,11 @@ public class ExchangeScreen : MonoBehaviour
 
 	public void OnAddWantedCurrency()
 	{
-		// AudioHandler.Instance.PlaySound(tapSFX);
+		AudioHandler.Instance.PlaySound(acceptSFX);
 		quantityOfWantedCurrency++;
 
-		bool isExchangeValid = CurrencyExchanger.CheckForAffordability(WantedCurrency, quantityOfWantedCurrency);
+		bool isExchangeValid = CurrencyExchanger.CheckForAffordability(WantedCurrency, quantityOfWantedCurrency,
+		                                                               GameManager.Instance.PlayerData.PlayerCurrency);
 		if (!isExchangeValid)
 		{
 			quantityOfWantedCurrency--;
@@ -73,7 +118,7 @@ public class ExchangeScreen : MonoBehaviour
 
 	public void OnSubtractWantedCurrency()
 	{
-		// AudioHandler.Instance.PlaySound(tapSFX);
+		AudioHandler.Instance.PlaySound(acceptSFX);
 		quantityOfWantedCurrency--;
 		quantityOfWantedCurrency = Mathf.Max(quantityOfWantedCurrency, 0);
 
@@ -100,33 +145,8 @@ public class ExchangeScreen : MonoBehaviour
 
 	public void OnExitScreen()
 	{
-		// AudioHandler.Instance.PlaySound(tapSFX);
+		AudioHandler.Instance.PlaySound(acceptSFX);
 		ResetScreen();
-		gameObject.SetActive(false);
+		Hide();
 	}
-
-	#region Currency Icons
-	[Header("Currency Icons"), SerializeField]
-
-     private Sprite coinsIcon;
-
-	[SerializeField] private Sprite kappaTokensIcon;
-	#endregion
-
-	[Header("Wanted Currency"), SerializeField]
-
-	#region Wanted Currency
-
-     private Image wantedCurrencyIcon;
-
-	[SerializeField] private Text wantedCurrencyText;
-	#endregion
-
-	#region Needed Currency Controls
-	[Header("Needed Currency"), SerializeField]
-
-     private Image neededCurrencyIcon;
-
-	[SerializeField] private Text neededCurrencyText;
-	#endregion
 }

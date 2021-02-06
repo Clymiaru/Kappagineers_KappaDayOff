@@ -6,12 +6,10 @@ using UnityEngine.UI;
 public class AdRewards : MonoBehaviour
 {
     public int rewardForWatchingAds = 1;
-    public AdsManager adManager;
 
-    // Start is called before the first frame update
     void Start()
     {
-        adManager.OnAdDone += AdManager_OnAdDone;
+        AdsManager.Instance.OnAdDone += AdManager_OnAdDone;
     }
 
     private void AdManager_OnAdDone(object sender, AdFinishEventArgs e)
@@ -25,7 +23,8 @@ public class AdRewards : MonoBehaviour
                 case UnityEngine.Advertisements.ShowResult.Skipped:
                     break;
                 case UnityEngine.Advertisements.ShowResult.Finished:
-                    // GameManager.Instance.PlayerCurrency.KappaTokens += rewardForWatchingAds;
+                    SaveDataManager.Instance.PlayerSaveData.PlayerCurrency.KappaTokens += rewardForWatchingAds;
+                    Debug.Log(SaveDataManager.Instance.PlayerSaveData.PlayerCurrency.KappaTokens);
                     break;
             }
         }

@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 941997117
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 329fa0c4fc0e259c8f59e4e757cdc5c1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: cdfaae4a706bac4ae9233855722107e4
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Bundles/MainMenu/Depart_Icon.png
+- Assets/Bundles/MainMenu/Workshop_Icon.png
+- Assets/Bundles/MainMenu/Settings_Icon.png
+- Assets/Bundles/MainMenu/MainMenuBGM.ogg
+- Assets/Bundles/MainMenu/Border.png
+- Assets/Bundles/MainMenu/WorkshopBG.png
+- Assets/Bundles/MainMenu/Coin_Icon.png
+- Assets/Bundles/MainMenu/Watch_Ads.png
+- Assets/Bundles/MainMenu/KappaToken_Icon.png
+Dependencies: []

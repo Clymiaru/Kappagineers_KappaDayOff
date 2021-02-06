@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // TODO: Finish workshop functionality and the screen
-public class WorkshopScreen : MonoBehaviour
+public class WorkshopScreen : View
 {
 	[SerializeField] private List<Button> upgradeCategoryButtons = new List<Button>();
 

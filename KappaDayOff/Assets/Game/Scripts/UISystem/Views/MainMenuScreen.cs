@@ -29,7 +29,6 @@ public class MainMenuScreen : View
 	[SerializeField] private Image coinButtonBackground;
 	[SerializeField] private Image kappaTokenButtonBackground;
 
-
 	private AudioClip acceptSFX;
 	private AudioClip cancelSFX;
 
@@ -37,31 +36,31 @@ public class MainMenuScreen : View
 
 	protected override void OnInitialize()
 	{
-		background.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		background.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU,
 		                                                                 AssetNames.Sprite.WORKSHOP_BACKGROUND);
 
-		coinsExchangeIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		coinsExchangeIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.GENERAL,
 		                                                                        AssetNames.Icon.PLUS);
 
-		kappaTokensExchangeIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		kappaTokensExchangeIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.GENERAL,
 		                                                                              AssetNames.Icon.PLUS);
 
-		watchAdButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		watchAdButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU,
 		                                                                        AssetNames.Icon.WATCH_AD);
 
-		settingsButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		settingsButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU,
 		                                                                         AssetNames.Icon.SETTINGS);
 
-		departButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		departButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU,
 		                                                                       AssetNames.Icon.DEPART);
 
-		upgradesButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		upgradesButtonIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU,
 		                                                                         AssetNames.Icon.UPGRADES);
 
-		coinIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		coinIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU,
 		                                                               AssetNames.Icon.COIN);
 
-		kappaTokenIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU_SCREEN,
+		kappaTokenIcon.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.MAIN_MENU,
 		                                                               AssetNames.Icon.KAPPA_TOKEN);
 
 		coinButtonBackground.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.GENERAL,
@@ -76,51 +75,56 @@ public class MainMenuScreen : View
 		cancelSFX = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.GENERAL,
 		                                                            AssetNames.SoundClip.CANCEL);
 
+		bgm = AssetBundleManager.Instance.GetAsset<AudioClip>(AssetBundleNames.MAIN_MENU,
+		                                                            AssetNames.MusicClip.MAIN_MENU);
+
+		OnEnterEnd += () =>
+		              {
+			              AudioHandler.Instance.PlayMusic(bgm);
+
+			              Parameters parameters = new Parameters();
+			              parameters.PutExtra("KappaTokens", SaveDataManager.Instance.PlayerSaveData.PlayerCurrency.KappaTokens);
+			              parameters.PutExtra("Coins", SaveDataManager.Instance.PlayerSaveData.PlayerCurrency.Coins);
+
+			              EventBroadcaster.Instance.PostEvent(EventNames.Currency.ON_SET_CURRENCY, parameters);
+		              };
+
 	}
 
 	protected override void OnBackPressed()
 	{
 		OnExitGame();
 	}
-
-	// public void OnGoToDeparture()
-	// {
-	// 	// HACK: Skip to level for now
-	// 	// TODO: Go to level selection screen if we have enough time.
+	public void OnGoToWorkshop()
+	{
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		workshopScreen.Show();
+	}
 	//
-	// 	// AudioHandler.Instance.PlaySound(tapSFX);
-	// 	SceneLoader.Instance.LoadScene(SceneNames.Level);
-	// }
-	//
-	// public void OnGoToWorkshop()
-	// {
-	// 	// AudioHandler.Instance.PlaySound(tapSFX);
-	// 	workshopScreen.gameObject.SetActive(true);
-	// }
-	//
-	// public void OnExchangeCoinsForKappaTokens()
-	// {
-	// 	// Get data from game manager
-	// 	// * Player Currency Data
-	// 	// AudioHandler.Instance.PlaySound(tapSFX);
-	// 	exchangeScreen.WantedCurrency = CurrencyType.KAPPA_TOKEN;
-	// 	exchangeScreen.gameObject.SetActive(true);
-	// }
-	//
-	// public void OnExchangeKappaTokensForCoins()
-	// {
-	// 	// Get data from game manager
-	// 	// * Player Currency Data
-	// 	// AudioHandler.Instance.PlaySound(tapSFX);
-	// 	exchangeScreen.WantedCurrency = CurrencyType.COIN;
-	// 	exchangeScreen.gameObject.SetActive(true);
-	// }
-	//
+	public void OnExchangeCoinsForKappaTokens()
+	{
+		// Get data from game manager
+		// * Player Currency Data
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		exchangeScreen.WantedCurrency = CurrencyType.KAPPA_TOKEN;
+		exchangeScreen.Show();
+	}
+	public void OnExchangeKappaTokensForCoins()
+	{
+		// Get data from game manager
+		// * Player Currency Data
+		AudioHandler.Instance.PlaySound(acceptSFX);
+		exchangeScreen.WantedCurrency = CurrencyType.COIN;
+		exchangeScreen.Show();
+	}
 
 	public void OnDepart()
 	{
+		// HACK: Skip to level for now
+		// TODO: Go to level selection screen if we have enough time.
+
 		AudioHandler.Instance.PlaySound(acceptSFX);
-		// settingsScreen.Show();
+		SceneLoader.Instance.LoadScene(SceneNames.Level_1);
 	}
 	public void OnOpenSettings()
 	{
@@ -132,7 +136,7 @@ public class MainMenuScreen : View
 	public void OnWatchAds()
 	{
 		AudioHandler.Instance.PlaySound(acceptSFX);
-		// settingsScreen.Show();
+		AdsManager.Instance.ShowRewardedAd();
 	}
 	public void OnOpenUpgrades()
 	{

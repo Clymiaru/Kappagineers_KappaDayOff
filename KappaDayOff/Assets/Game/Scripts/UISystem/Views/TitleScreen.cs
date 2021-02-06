@@ -14,7 +14,7 @@ public class TitleScreen : View
 
 	protected override void OnInitialize()
 	{
-		background.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.TITLE_SCREEN,
+		background.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.TITLE,
 		                                                                 AssetNames.Sprite.TITLE_BACKGROUND);
 
 		playButtonImage.sprite = AssetBundleManager.Instance.GetAsset<Sprite>(AssetBundleNames.GENERAL,
